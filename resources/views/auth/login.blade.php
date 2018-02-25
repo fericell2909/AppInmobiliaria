@@ -29,7 +29,7 @@
         <div class="col-xs-8">
           <div class="checkbox icheck">
             <label>
-              <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Recordar
+              <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Recordarme
             </label>
           </div>
         </div>
@@ -41,13 +41,12 @@
       </div>
     </form>
 
-    <div class="social-auth-links text-center">
+  <!--  <div class="social-auth-links text-center">
       <p>- O -</p>
       <a href="{{ url('/auth/facebook') }}" class="btn btn-block btn-social btn-facebook"><span class="fa fa-facebook"></span>  Continuar con Facebook</a>      
       <a href="#" class="btn btn-block btn-social btn-google"><i class="fa fa-google"></i> Iniciar sesión usando Google</a>    
     </div>
-    
-    <!-- /.social-auth-links -->
+-->    <!-- /.social-auth-links -->
 
     <a href="{{ route('password.request') }}"> Olvidé mi contraseña</a><br>    
 

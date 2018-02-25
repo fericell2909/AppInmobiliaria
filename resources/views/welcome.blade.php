@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>Mi Aplicacion</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
@@ -19,6 +19,14 @@
                 font-weight: 100;
                 height: 100vh;
                 margin: 0;
+            }
+            .btn
+            {
+                background-color: red;
+                color: white;
+                border.border-radius: 5px;
+                padding: 5px;
+                margin: 5px;
             }
             .full-height {
                 height: 100vh;
@@ -70,10 +78,10 @@
 
             <div class="content">
                 <div class="container">                                     
-                    <h1>AdminLTE</h1> 
+                    <h1>Bienvenido a Mi Primera Pagina con Laravel</h1> 
                 </div>
 
-             
+             <button type="button" class="btn btn-success">Boton Uno</button>
             </div>
         </div>
     </body>
