@@ -1,18 +1,20 @@
 @extends('layouts.app')
-
+@section('htmlheader_title')
+Bienvenido
+@endsection
 @section('content')
     <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <h1>
-        Page Header
-        <small>Optional description</small>
-      </h1>
-      <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
-        <li class="active">Here</li>
-      </ol>
-    </section>
-
+    
+    <h1 class="text-center text-primary">Bienvenido</h1>
+    <div class="row container text-center"> 
+                <div class="col-md-4">
+                    <a href="{{route("ubicaciones")}}">
+                        <div class="contenedor-reporte">
+                            <i class="fa fa-street-view fa-5x"></i>
+                            <h3><small>Registro de Ubicaciones</small></h3>
+                        </div>
+                </div>   <!-- end div #sales -->
+    </div>
 
     <section class="content container-fluid">
 
@@ -24,6 +26,8 @@
 
       
     </section>
+
+
  
 
 @endsection

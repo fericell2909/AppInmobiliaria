@@ -5,10 +5,11 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Mi Aplicacion</title>
+        <title>Bienvenidos a AppInmobiliaria</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+        <link href="{{ asset('dist/img/ico.ico')}}" rel="shortcut icon">
 
         <!-- Styles -->
         <style>
@@ -20,13 +21,12 @@
                 height: 100vh;
                 margin: 0;
             }
-            .btn
+            body
             {
-                background-color: red;
-                color: white;
-                border.border-radius: 5px;
-                padding: 5px;
-                margin: 5px;
+                background-image: url('./dist/img/mapa.png');
+                background-repeat:no-repeat;
+                background-position:center;
+                background-size: cover;
             }
             .full-height {
                 height: 100vh;
@@ -69,19 +69,19 @@
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
-                        <a href="{{ url('/home') }}">Home</a>
+                        <a href="{{ url('/home') }}" style="color:blue;">Inicio</a>
                     @else
-                        <a href="{{ route('login') }}">Login</a>                   
+                        <a href="{{ route('login') }}" style="color:blue;">Iniciar Sesion</a>                   
                     @endauth
                 </div>
             @endif
 
             <div class="content">
                 <div class="container">                                     
-                    <h1>Bienvenido a Mi Primera Pagina con Laravel</h1> 
+                    <h1  style="color:blue;">Bienvenidos</h1> 
                 </div>
 
-             <button type="button" class="btn btn-success">Boton Uno</button>
+             
             </div>
         </div>
     </body>

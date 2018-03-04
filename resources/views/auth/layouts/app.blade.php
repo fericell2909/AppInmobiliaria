@@ -26,13 +26,22 @@
 
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+  <style>
+   body
+            {
+                background-image: url('./dist/img/mapa.png') !important;
+                background-repeat:no-repeat !important;
+                background-position:center !important;
+                background-size: cover !important;
+            }
+</style>
 </head>
 <body class="hold-transition login-page">
 <div class="login-box">
-  <div class="login-logo">
+  <!--<div class="login-logo">
     <a href="{{ url('home')}}"><b>Admin</b>LTE</a> 
         
-  </div>
+  </div>-->
 
 
 @yield('content')

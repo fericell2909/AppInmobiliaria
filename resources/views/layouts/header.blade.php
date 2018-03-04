@@ -1,13 +1,16 @@
 
 
+
 <header class="main-header">
 
     <!-- Logo -->
-    <a href="index2.html" class="logo">
+    <a href="{{url('/home')}}" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>A</b>LT</span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Admin</b>LTE</span>
+      {{-- <span class="logo-mini"><b>A</b>LT</span>
+      <span class="logo-lg"><b>Admin</b>LTE</span> --}}
+      {{-- <span class="logo-mini"><b>Ubicacion</span>
+      <span class="logo-lg">Ubicacion</span> --}}
     </a>
 
     <!-- Header Navbar -->
@@ -20,7 +23,7 @@
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
           <!-- Messages: style can be found in dropdown.less-->
-          <li class="dropdown messages-menu">
+          {{-- <li class="dropdown messages-menu">
             <!-- Menu toggle button -->
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <i class="fa fa-envelope-o"></i>
@@ -56,11 +59,11 @@
               </li>
               <li class="footer"><a href="#">See All Messages</a></li>
             </ul>
-          </li>
+          </li> --}}
           <!-- /.messages-menu -->
 
           <!-- Notifications Menu -->
-          <li class="dropdown notifications-menu">
+          {{-- <li class="dropdown notifications-menu">
             <!-- Menu toggle button -->
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <i class="fa fa-bell-o"></i>
@@ -69,7 +72,7 @@
             <ul class="dropdown-menu">
               <li class="header">You have 10 notifications</li>
               <li>
-                <!-- Inner Menu: contains the notifications -->
+                Inner Menu: contains the notifications
                 <ul class="menu">
                   <li><!-- start notification -->
                     <a href="#">
@@ -81,9 +84,9 @@
               </li>
               <li class="footer"><a href="#">View all</a></li>
             </ul>
-          </li>
+          </li> --}}
           <!-- Tasks Menu -->
-          <li class="dropdown tasks-menu">
+          {{-- <li class="dropdown tasks-menu">
             <!-- Menu Toggle Button -->
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <i class="fa fa-flag-o"></i>
@@ -118,14 +121,14 @@
                 <a href="#">View all tasks</a>
               </li>
             </ul>
-          </li>
+          </li> --}}
           <!-- User Account Menu -->
           <li class="dropdown user user-menu">
             <!-- Menu Toggle Button -->
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <!-- The user image in the navbar-->
               @if (Auth::user()->avatar == null)
-                <img src="dist/img/user.jpg" class="user-image" alt="User Image">
+                <img src="/dist/img/user.jpg" class="user-image" alt="User Image">
               @else
                 <img src="{{Auth::user()->avatar}}" class="user-image" alt="User Image">
               @endif
@@ -142,7 +145,7 @@
               <!-- The user image in the menu -->
               <li class="user-header">
               @if (Auth::user()->avatar == null)
-                <img src="dist/img/user.jpg" class="img-circle" alt="User Image">
+                <img src="/dist/img/user.jpg" class="img-circle" alt="User Image">
                 @else
                 <img src="{{Auth::user()->avatar}}" class="img-circle" alt="User Image">
               @endif  
@@ -157,7 +160,7 @@
                 </p>
               </li>
               <!-- Menu Body -->
-              <li class="user-body">
+              {{-- <li class="user-body">
                 <div class="row">
                   <div class="col-xs-4 text-center">
                     <a href="#">Followers</a>
@@ -169,18 +172,18 @@
                     <a href="#">Friends</a>
                   </div>
                 </div>
-                <!-- /.row -->
-              </li>
+                <! /.row >
+              </li> --}}
               <!-- Menu Footer-->
               <li class="user-footer">
-                <div class="pull-left">
-                  <a href="#" class="btn btn-default btn-flat">Profile</a>
-                </div>
+{{--                 <div class="pull-left">
+                  <a href="#" class="btn btn-default btn-flat">Cuenta</a>
+                </div> --}}
                 <div class="pull-right">                  
                   <a class="btn btn-default btn-flat" href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                            Desconectar
+                                            Cerrar Sesión
                                         </a>
                 </div>
               </li>
@@ -191,9 +194,9 @@
           {{ csrf_field() }}
           </form>
 
-          <li>
+          {{-- <li>
             <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
-          </li>
+          </li> --}}
         </ul>
       </div>
     </nav>

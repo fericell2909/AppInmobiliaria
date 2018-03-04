@@ -44,21 +44,18 @@ function current_page($url = '/'){
 
       <!-- Sidebar Menu -->
       <ul class="sidebar-menu" data-widget="tree">
-        <li class="header">HEADER</li>
-        <!-- Optionally, you can add icons to the links -->
-        <li <?php echo current_page('home') ? "class='active'" : "";?>><a href="{{ url('home')}}"><i class="fa fa-link"></i> <span>Home</span></a></li>
-        <li><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li>
+  
         <li class="treeview">
-          <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
+          <a href="#"><i class="fa fa-map-marker"></i> <span>Ubicaciones</span>
             <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="#">Link in level 2</a></li>
-            <li><a href="#">Link in level 2</a></li>
+            <li><a href="{{route("ubicaciones")}}"><i class="fa fa-street-view" aria-hidden="true"></i> Registro de Ubicaciones</a></li>
           </ul>
         </li>
+      
       </ul>
       <!-- /.sidebar-menu -->
     </section>
