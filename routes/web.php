@@ -37,6 +37,13 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/ubicacion/editarguardar', 'UbicacionController@editarguardar')->name('ubicacion/editarguardar');
 
 
+        // EJemplo BootGRid Basico
+
+        Route::get('/UsuariosListar', 'UsersController@UsuariosListar')->name('UsuariosListar');
+
+        Route::get('/MonedasListar', 'MonedaController@MonedasListar')->name('MonedasListar');
+
+
         Route::get('/UbicacionesListar', 'UbicacionController@UbicacionesListar')->name('UbicacionesListar');
 
         Route::get('/UbicacionesBusqueda', 'UbicacionController@UbicacionesBusqueda')->name('UbicacionesBusqueda');
@@ -65,5 +72,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('Ubicaciones/Estilos/Listar_Estilos_x_Tipo/{id}',['as' => 'Estilos/Listar_Estilos_x_Tipo', 'uses' => 'UbicacionController@Listar_Estilos_x_Tipo']);
 
          Route::get('Ubicaciones/ImpresionUbicacion/{id}', 'UbicacionController@ImpresionUbicacion');
+
+
 
 });

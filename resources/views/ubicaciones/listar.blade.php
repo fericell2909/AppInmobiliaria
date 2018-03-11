@@ -42,8 +42,8 @@
 						  <thead>
 						     <tr>
 						      <th class="text-center" style="vertical-align:middle;" data-column-id="id" data-type="numeric">#</th>
-						      <th class="text-center" style="vertical-align:middle;" data-column-id="titulo_ubicacion">Titulo</th>
-						      <th class="text-center" style="vertical-align:middle;" data-column-id="cNomZona">Distrito</th>
+						      <th class="text-center" style="vertical-align:middle;" data-column-id="titulo_ubicacion">Nombre</th>
+						      <th class="text-center" style="vertical-align:middle;" data-column-id="cNomZona">Email</th>
 						      <th class="text-center" style="vertical-align:middle;" data-column-id="nombre_estado">Estado</th>
 						      <th class="text-center" style="vertical-align:middle;" data-column-id="email">Usuario</th>
 						      <th class="text-center" style="vertical-align:middle;" data-column-id="commands" data-formatter="commands" data-sortable="false">Acciones</th>
