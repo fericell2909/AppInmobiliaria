@@ -12,7 +12,7 @@ function current_page($url = '/'){
       <div class="user-panel">
         <div class="pull-left image">
         @if (Auth::user()->avatar == null)
-          <img src="dist/img/user.jpg" class="img-circle" alt="User Image">
+          <img src="/dist/img/user.jpg" class="img-circle" alt="User Image">
         @else  
           <img src="{{Auth::user()->avatar}}" class="img-circle" alt="User Image">
         @endif
@@ -53,6 +53,7 @@ function current_page($url = '/'){
           </a>
           <ul class="treeview-menu">
             <li><a href="{{route("ubicaciones")}}"><i class="fa fa-street-view" aria-hidden="true"></i> Registro de Ubicaciones</a></li>
+            <li><a href="{{route("UbicacionesListar")}}"><i class="fa fa-list" aria-hidden="true"></i> Listado de Ubicaciones</a></li>
           </ul>
         </li>
       

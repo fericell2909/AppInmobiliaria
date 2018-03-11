@@ -13,7 +13,16 @@ Bienvenido
                             <i class="fa fa-street-view fa-5x"></i>
                             <h3><small>Registro de Ubicaciones</small></h3>
                         </div>
-                </div>   <!-- end div #sales -->
+                    </a>    
+                </div>
+                <div class="col-md-4">
+                    <a href="{{route("UbicacionesListar")}}">
+                        <div class="contenedor-reporte">
+                            <i class="fa fa-list fa-5x"></i>
+                            <h3><small>Listado de Ubicaciones</small></h3>
+                        </div>
+                    </a>
+                </div>
     </div>
 
     <section class="content container-fluid">
