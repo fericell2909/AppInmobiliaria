@@ -57,7 +57,7 @@ function current_page($url = '/'){
           </ul>
         </li>
         <li class="treeview">
-          <a href="#"><i class="fa fa-list"></i> <span>Reportes</span>
+          <a href="#"><i class="fa fa-list"></i> <span>Listados</span>
             <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
