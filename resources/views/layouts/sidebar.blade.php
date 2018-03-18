@@ -67,6 +67,18 @@ function current_page($url = '/'){
             <li><a href="{{route("MonedasListar")}}"><i class="fa fa-money" aria-hidden="true"></i> Listado de Monedas</a></li>
           </ul>
         </li>
+
+        <li class="treeview">
+          <a href="#"><i class="fa fa-database"></i> <span>Reportes</span>
+            <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="{{route("ReportedeUsuarios")}}"><i class="fa fa-user" aria-hidden="true"></i> Reporte de Usuarios</a></li>
+            <li><a href="{{route("ReportedeUbicaciones")}}"><i class="fa fa-map-marker" aria-hidden="true"></i> Reporte de Ubicaciones</a></li>
+          </ul>
+        </li>
       
       </ul>
       <!-- /.sidebar-menu -->
