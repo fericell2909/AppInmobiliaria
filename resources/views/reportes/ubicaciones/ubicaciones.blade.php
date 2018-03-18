@@ -1,7 +1,6 @@
 @extends('layouts.app')
-@section('title', '| Reporte de Ubicaciones')
+@section('htmlheader_title', 'Reporte de Ubicaciones')
 @section('css-inicio')
-
 <style type="text/css">
         table { vertical-align: top; }
         tr    { vertical-align: top; }
@@ -40,14 +39,14 @@
 @endsection
 @section('content')
     <p></p>
-        <a href="{{url('Reportes/rptusuarios') .'/1'}}">
+        <a href="{{url('Reportes/rptubicaciones') .'/1'}}">
                                             <button class="btn btn-xs btn-white">
                                                 <i aria-hidden="true" class="fa fa-download">
                                                 </i>
                                                 Descargar Reporte
                                             </button>
                                         </a>
-        <a href="{{url('Reportes/rptusuarios') .'/2'}}" target="_blanck">
+        <a href="{{url('Reportes/rptubicaciones') .'/2'}}" target="_blanck">
                                             <button class="btn btn-xs btn-white">
                                                 <i aria-hidden="true" class="fa fa-print">
                                                 </i>
@@ -59,7 +58,7 @@
     <button class="btn btn-success">VENDER BOLETAS</button>
  --}}    <div class="panel panel-default">
         <div class="panel-body">
-           <table cellspacing="0" style="width: 100%;border-bottom: 1px solid #000;">
+    <table cellspacing="0" style="width: 100%;border-bottom: 1px solid #000;">
         <tr>
 
 
@@ -67,8 +66,10 @@
             <td style="width: 60%; color: #34495e;font-size:12px;text-align:center">
                 <span style="color: #34495e;font-size:14px;font-weight:bold">{{$empresas[0]->ph_name}}</span>
                 <br>{{$empresas[0]->ph_address}}<br> 
-                Teléfono: {{$empresas[0]->ph_telephone}}<br>
-                Email: {{$empresas[0]->ph_email}}
+                @lang('empresas.telefono') {{$empresas[0]->ph_telephone}}<br>
+                @lang('empresas.email') {{$empresas[0]->ph_email}}<br>
+                @lang('empresas.ruc') {{$empresas[0]->ph_ruc}}<br>
+
                 
             </td>
         @endforeach
@@ -78,21 +79,25 @@
         </tr>
     </table>
     <br>
-  	<p style="font-size:14px;font-weight:bold;text-align:center;display: block; margin-left: auto;margin-right: auto;"><span style="background: #2c3e50;color:#fff;padding: 10px;">REPORTE DE USUARIOS</span></p>	
+  	<p style="font-size:14px;font-weight:bold;text-align:center;display: block; margin-left: auto;margin-right: auto;"><span style="background: #2c3e50;color:#fff;padding: 10px;">@lang('rptubicaciones.title')</span></p>	
     <br>
-    <table cellspacing="0" style="width: 100%; text-align: left; font-size: 10pt;border:1px solid #000;">
+      <table cellspacing="0" style="width: 100%; text-align: left; font-size: 10pt;border:1px solid #000;">
         <tr>
-            <th style="width: 10%;text-align:left;color:#fff;border-right: 1px solid #fff;" class='midnight-blue'>Nombre</th>
-            <th style="width: 60%;text-align:left;color:#fff;;border-right: 1px solid #fff;" class='midnight-blue'>Email</th>
-            <th style="width: 15%;text-align: left;color:#fff;" class='midnight-blue'>Estado</th>
+            <th style="width: 15%;text-align:left;color:#fff;border-right: 1px solid #fff;" class='midnight-blue'>@lang('rptubicaciones.titulo_ubicacion')</th>
+            <th style="width: 10%;text-align:left;color:#fff;;border-right: 1px solid #fff;" class='midnight-blue'>@lang('rptubicaciones.nombre_moneda')</th>
+            <th style="width: 15%;text-align: left;color:#fff;" class='midnight-blue'>@lang('rptubicaciones.nPrecio')</th>
+            <th style="width: 15%;text-align:left;color:#fff;;border-right: 1px solid #fff;" class='midnight-blue'>@lang('rptubicaciones.descripcion_medida')</th>
+            <th style="width: 15%;text-align: left;color:#fff;" class='midnight-blue'>@lang('rptubicaciones.nExtension')</th>
             
         </tr>
-         @foreach($usuarios as $usuario)
+         @foreach($ubicaciones as $ubicacion)
             <tr>
-                    <td  style="width: 30%; text-align: left;border-bottom: 1px solid #000; border-right: 1px solid #000;"><small style="padding: 5px;">{{$usuario->name}}</small></td>
-                    <td  style="width: 30%; text-align: left;border-bottom: 1px solid #000; border-right: 1px solid #000;"><small style="padding: 5px;">{{$usuario->email}}</small></td>
-                    <td  style="width: 40%; text-align: left;border-bottom: 1px solid #000; border-right: 1px solid #000;"><small style="padding: 5px;">{{$usuario->nombre_estado}}</small></td>
-                </tr>
+                    <td  style="width: 15%; text-align: left;border-bottom: 1px solid #000; border-right: 1px solid #000;"><small style="padding: 5px;">{{$ubicacion->titulo_ubicacion}}</small></td>
+                    <td  style="width: 10%; text-align: left;border-bottom: 1px solid #000; border-right: 1px solid #000;"><small style="padding: 5px;">{{$ubicacion->nombre_moneda}}</small></td>
+                    <td  style="width: 15%; text-align: left;border-bottom: 1px solid #000; border-right: 1px solid #000;"><small style="padding: 5px;">{{number_format($ubicacion->nPrecio,2)}}</small></td>
+                     <td  style="width: 15%; text-align: left;border-bottom: 1px solid #000; border-right: 1px solid #000;"><small style="padding: 5px;">{{$ubicacion->descripcion_medida}}</small></td>
+                    <td  style="width: 15%; text-align: left;border-bottom: 1px solid #000; border-right: 1px solid #000;"><small style="padding: 5px;">{{number_format($ubicacion->nExtension,2)}}</small></td>
+            </tr>
         @endforeach  
     </table>
 @endsection

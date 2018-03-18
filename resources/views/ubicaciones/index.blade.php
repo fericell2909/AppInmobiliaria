@@ -236,5 +236,5 @@
      
 @endsection
 @section('script-fin')
-<script src="{{ asset('dist/js/inmobiliaria.min.js')}}"></script>
+<script src="{{ asset('dist/js/inmobiliaria.js')}}"></script>
 @endsection

@@ -36,10 +36,16 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/Reportes/rptusuarios/{id}', 'ReporteController@rptusuarios');
     
-
-
-
     //
+
+    // Definiendo nuestra Ruta para Reporte de Ubicaciones Simple.
+
+        Route::get('/Reportes/ReportedeUbicaciones', 'ReporteController@verreporteubicacion')->name('ReportedeUbicaciones');
+    
+        Route::get('/Reportes/rptubicaciones/{id}', 'ReporteController@rptubicaciones');
+    //
+
+
 
 
     Route::get('/ubicaciones', 'UbicacionController@gestionarubicaciones')->name('ubicaciones');

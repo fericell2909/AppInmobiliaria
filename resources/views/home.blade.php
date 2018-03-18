@@ -51,6 +51,17 @@ Bienvenido
                         </div>
                     </a>    
                 </div>
+
+                <div class="col-md-3">
+                    <a href="{{route("ReportedeUbicaciones")}}">
+                        <div class="contenedor-reporte">
+                            <i class="fa fa-map-marker fa-5x"></i>
+                            <h3><small>Reporte de Ubicaciones</small></h3>
+                        </div>
+                    </a>    
+                </div>
+
+                
     </div>
     </section>
 
