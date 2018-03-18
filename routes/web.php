@@ -30,6 +30,18 @@ Route::get('auth/{provider}/callback', 'Auth\LoginController@handleProviderCallb
 
 Route::group(['middleware' => 'auth'], function () {
     
+    // Definiendo una ruta de reporte 
+
+    Route::get('/Reportes/ReportedeUsuarios', 'ReporteController@verreporteusuario')->name('ReportedeUsuarios');
+
+    Route::get('/Reportes/rptusuarios/{id}', 'ReporteController@rptusuarios');
+    
+
+
+
+    //
+
+
     Route::get('/ubicaciones', 'UbicacionController@gestionarubicaciones')->name('ubicaciones');
 
         Route::post('/ubicacion/registrar', 'UbicacionController@registrarubicaciones')->name('ubicacion/registrar');

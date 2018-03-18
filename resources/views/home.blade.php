@@ -42,6 +42,16 @@ Bienvenido
                     </a>
                 </div>
     </div>
+    <div class="row container text-center"> 
+                <div class="col-md-3">
+                    <a href="{{route("ReportedeUsuarios")}}">
+                        <div class="contenedor-reporte">
+                            <i class="fa fa-user fa-5x"></i>
+                            <h3><small>Reporte de Usuarios</small></h3>
+                        </div>
+                    </a>    
+                </div>
+    </div>
     </section>
 
 
