@@ -12,20 +12,22 @@ class RolesTableSeeder extends Seeder
      */
     public function run()
     {
-        $dato = new Roles();
-        $dato->descripcion="Super Admin";      
-        $dato->save();
+
 
         $dato = new Roles();
         $dato->descripcion="Administrador";       
         $dato->save();
 
         $dato = new Roles();
-        $dato->descripcion="Usuario";    
+        $dato->descripcion="Supervisor ( Especialista )";    
         $dato->save();  
 
         $dato = new Roles();
-        $dato->descripcion="Invitado";    
+        $dato->descripcion="Coordinador Regional";    
+        $dato->save();
+
+        $dato = new Roles();
+        $dato->descripcion="Coordinador Local";    
         $dato->save();           
 
     }

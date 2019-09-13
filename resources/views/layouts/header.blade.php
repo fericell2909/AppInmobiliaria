@@ -160,25 +160,12 @@
                 </p>
               </li>
               <!-- Menu Body -->
-              {{-- <li class="user-body">
-                <div class="row">
-                  <div class="col-xs-4 text-center">
-                    <a href="#">Followers</a>
-                  </div>
-                  <div class="col-xs-4 text-center">
-                    <a href="#">Sales</a>
-                  </div>
-                  <div class="col-xs-4 text-center">
-                    <a href="#">Friends</a>
-                  </div>
-                </div>
-                <! /.row >
-              </li> --}}
+             
               <!-- Menu Footer-->
               <li class="user-footer">
-{{--                 <div class="pull-left">
+                <div class="pull-left">
                   <a href="#" class="btn btn-default btn-flat">Cuenta</a>
-                </div> --}}
+                </div>
                 <div class="pull-right">                  
                   <a class="btn btn-default btn-flat" href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
@@ -189,14 +176,11 @@
               </li>
             </ul>
           </li>
-          <!-- Control Sidebar Toggle Button -->
+
           <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
           {{ csrf_field() }}
           </form>
 
-          {{-- <li>
-            <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
-          </li> --}}
         </ul>
       </div>
     </nav>

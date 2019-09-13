@@ -1,53 +1,67 @@
-@extends('auth.layouts.app')
 
+<!------ Include the above in your HEAD tag ---------->
+
+
+@extends('auth.layouts.app' )
 @section('content')
- 
-  <div class="login-box-body">
-    <p class="login-box-msg">Iniciar sesión</p>
-
-    <form action="{{ route('login') }}" method="post">
-    {{ csrf_field() }}
-      <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }} has-feedback">
-        <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}"  autofocus placeholder="Correo">
-        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-        @if ($errors->has('email'))
+<div class="container">
+  <div class="d-flex justify-content-center h-100">
+    <div class="card">
+      <div class="card-header">
+        <h3 style="margin-top:5px;">Iniciar Sesión</h3>
+        <div class="d-flex justify-content-end social_icon">
+          <span><i class="fab fa-facebook-square"></i></span>
+          <span><i class="fab fa-google-plus-square"></i></span>
+          <span><i class="fab fa-twitter-square"></i></span>
+        </div>
+      </div>
+      <div class="card-body">
+       <form action="{{ route('login') }}" method="post">
+        {{ csrf_field() }}
+          <div class="input-group form-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fas fa-user"></i></span>
+            </div>
+             <input id="email" type="text" class="form-control" name="email" value="{{ old('email') }}"  autofocus placeholder="Usuario">
+            @if ($errors->has('email'))
             <span class="help-block">
                 <strong>{{ $errors->first('email') }}</strong>
             </span>
-        @endif
-      </div>
-      <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }} has-feedback">
-        <input id="password" type="password" class="form-control" name="password" placeholder="Contraseña">
-        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-        @if ($errors->has('password'))
+            @endif
+           
+            
+          </div>
+          <div class="input-group form-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fas fa-key"></i></span>
+            </div>
+             <input id="password" type="password" class="form-control" name="password" placeholder="Contraseña">
+             @if ($errors->has('password'))
             <span class="help-block">
                 <strong>{{ $errors->first('password') }}</strong>
             </span>
         @endif
-      </div>
-      <div class="row">
-        <div class="col-xs-8">
-          <div class="checkbox icheck">
+          </div>
+          <div class="row align-items-center remember">
             <label>
               <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Recordarme
             </label>
           </div>
-        </div>
-        <!-- /.col -->
-        <div class="col-xs-4">
-          <button type="submit" class="btn btn-primary btn-block">Entrar</button>
-        </div>
-        <!-- /.col -->
+          <div class="form-group">
+            <input type="submit" value="Ingresar" class="btn float-right login_btn">
+          </div>
+        </form>
       </div>
-    </form>
-
-  <!--  <div class="social-auth-links text-center">
-      <p>- O -</p>
-      <a href="{{ url('/auth/facebook') }}" class="btn btn-block btn-social btn-facebook"><span class="fa fa-facebook"></span>  Continuar con Facebook</a>      
-      <a href="#" class="btn btn-block btn-social btn-google"><i class="fa fa-google"></i> Iniciar sesión usando Google</a>    
+      <div class="card-footer" style="display:none;">
+        <div class="d-flex justify-content-center">
+          <a href="{{ route('password.request') }}"> Olvidé mi contraseña</a>
+        </div>
+      </div>
     </div>
--->    <!-- /.social-auth-links -->
+  </div>
+</div>
 
-    <a href="{{ route('password.request') }}"> Olvidé mi contraseña</a><br>    
+
+
 
 @endsection

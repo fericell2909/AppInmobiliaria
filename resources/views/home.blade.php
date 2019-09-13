@@ -16,7 +16,7 @@ Bienvenido
       @endif
 
       <h1 class="text-center text-primary">Bienvenido</h1>
-    <div class="row container text-center"> 
+   <!--  <div class="row container text-center"> 
                 <div class="col-md-3">
                     <a href="{{route("ubicaciones")}}">
                         <div class="contenedor-reporte">
@@ -62,7 +62,7 @@ Bienvenido
                 </div>
 
                 
-    </div>
+    </div> -->
     </section>
 
 

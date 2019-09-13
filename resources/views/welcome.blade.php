@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Bienvenidos a AppInmobiliaria</title>
+        <title>Gestion de Riegos y Desastres</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
@@ -23,10 +23,12 @@
             }
             body
             {
-                background-image: url('./dist/img/mapa.png');
-                background-repeat:no-repeat;
-                background-position:center;
+               background-image: url('http://getwallpapers.com/wallpaper/full/a/5/d/544750.jpg');
                 background-size: cover;
+                background-repeat: no-repeat;
+                height: 100%;
+                font-family: 'Numans', sans-serif;
+                
             }
             .full-height {
                 height: 100vh;
@@ -69,16 +71,16 @@
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
-                        <a href="{{ url('/home') }}" style="color:blue;">Inicio</a>
+                        <a href="{{ url('/home') }}" style="color:white;">Inicio</a>
                     @else
-                        <a href="{{ route('login') }}" style="color:blue;">Iniciar Sesion</a>                   
+                        <a href="{{ route('login') }}" style="color:white;">Iniciar Sesion</a>                   
                     @endauth
                 </div>
             @endif
 
             <div class="content">
                 <div class="container">                                     
-                    <h1  style="color:blue;">Bienvenidos</h1> 
+                    <h1  style="color:white;">Gestion de Riesgos y Desastres</h1> 
                 </div>
 
              

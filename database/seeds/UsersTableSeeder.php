@@ -13,21 +13,40 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         $dato = new User();   
-        $dato->documento="1014205146";
-        $dato->name="Marco Estrada";
-        $dato->email="fericell2909@gmail.com";
+        $dato->documento="000";
+        $dato->name="Administrador";
+        $dato->email="44577092";
         $dato->password=bcrypt('secret');
         $dato->rol_id=1;      
         $dato->estado=1;        
         $dato->save();
 
         $dato = new User();   
-        $dato->documento="1010";
-        $dato->name="Usuario";
-        $dato->email="correo@correo.com";
+        $dato->documento="001";
+        $dato->name="Supervisor";
+        $dato->email="32542348";
         $dato->password=bcrypt('secret');
-        $dato->rol_id=1;      
+        $dato->rol_id=2;      
         $dato->estado=1;        
         $dato->save();
+
+        $dato = new User();   
+        $dato->documento="002";
+        $dato->name="Coordinador Regional";
+        $dato->email="32659846";
+        $dato->password=bcrypt('secret');
+        $dato->rol_id=3;      
+        $dato->estado=1;        
+        $dato->save();
+
+        $dato = new User();   
+        $dato->documento="003";
+        $dato->name="Coordinador Local";
+        $dato->email="32323232";
+        $dato->password=bcrypt('secret');
+        $dato->rol_id=4;      
+        $dato->estado=1;        
+        $dato->save();
+
     }
 }

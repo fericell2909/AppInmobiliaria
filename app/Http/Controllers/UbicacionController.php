@@ -17,6 +17,9 @@ use App\Models\Tipo;
 use App\Models\TipoDetalle;
 use App\Models\Ubicacion;
 use App\Models\Zona;
+use App\Models\Nivel;
+use App\Models\Caracteristica;
+use App\Models\Modalidad;
 use PDF;
 
 class UbicacionController extends Controller
@@ -24,9 +27,9 @@ class UbicacionController extends Controller
     public function gestionarubicaciones()
     {
 
-    	$clasificaciones = Clasificacion::Listar_Clasificaciones();
-    	$tipos = Tipo::Listar_Tipos();
-    	$cuartos = Cuarto::Listar_Cuartos();
+    	$clasificaciones = Nivel::Listar_Niveles();
+    	$tipos = Caracteristica::Listar_Caracteristicas_Institucion();
+    	$cuartos = Modalidad::Listar_Modalidades_Institucion();
 		$banios = Banio::Listar_Banios();    	
     	$medidas = Medida::Listar_Medidas();
     	$monedas = Moneda::Listar_Monedas();

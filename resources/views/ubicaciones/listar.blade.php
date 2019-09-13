@@ -22,21 +22,24 @@
       @endif
         <div class="contenedor-list">
             <div class="panel-heading">
-                <h2 class="text-center titulo-ubicacion" style="font-weight:bold;"><i class="fa fa-list" aria-hidden="true"></i>&nbsp; Listado de Ubicaciones &nbsp;<i class="fa fa-list" aria-hidden="true"></i></h2>
+                <h2 class="text-center titulo-ubicacion" style="font-weight:bold;"><i class="fa fa-list" aria-hidden="true"></i>&nbsp; Listado de Fichas &nbsp;<i class="fa fa-list" aria-hidden="true"></i></h2>
             </div>
             <div class="panel-body">
-					
+				
+				@if (Auth::user()->rol_id != 2)	
 	            <div id="tablePanel">
 	                <div class="row">
 	                    <div class="col-md-8">
 	                        <a href="{{route("ubicaciones")}}">
 	                            <button class="btn btn-sm btn-info" data-id=""><i class="fa fa-street-view"
-	                                                          aria-hidden="true"></i> Registrar Ubicación
+	                                                          aria-hidden="true"></i> Registrar Fichas
 	                            </button>
 	                        </a>
 	                    </div>
 	                </div>
 	            </div>  <!-- end div #tablePanel -->
+	            @endif	
+
 	            <div class="table-responsive" id="lista-ubicaciones">
                         <table class="table table-hover" id="tbl-ubicaciones">
 						  <thead>

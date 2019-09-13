@@ -1,62 +1,119 @@
 <!DOCTYPE html>
 <html>
+
+
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE-Laravel</title>
-  <!-- Tell the browser to be responsive to screen width -->
-  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-  <!-- Bootstrap 3.3.7 -->
-  <link rel="stylesheet" href="{{ asset('bower_components/bootstrap/dist/css/bootstrap.min.css')}}">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="{{ asset('bower_components/font-awesome/css/font-awesome.min.css')}}">
-  <!-- Ionicons -->
-  <link rel="stylesheet" href="{{ asset('bower_components/Ionicons/css/ionicons.min.css')}}">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="{{ asset('dist/css/AdminLTE.min.css')}}">
-  <!-- iCheck -->
-  <link rel="stylesheet" href="{{ asset('plugins/iCheck/square/blue.css')}}">
+  <title></title>
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+   <!--Made with love by Mutiullah Samim -->
+   
+  <!--Bootsrap 4 CDN-->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    
+    <!--Fontawesome CDN-->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 
-  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-  <!--[if lt IE 9]>
-  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-  <![endif]-->
-
-  <!-- Google Font -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
   <style>
-   body
-            {
-                background-image: url('./dist/img/mapa.png') !important;
-                background-repeat:no-repeat !important;
-                background-position:center !important;
-                background-size: cover !important;
-            }
-</style>
-</head>
-<body class="hold-transition login-page">
-<div class="login-box">
-  <!--<div class="login-logo">
-    <a href="{{ url('home')}}"><b>Admin</b>LTE</a> 
-        
-  </div>-->
+    @import url('https://fonts.googleapis.com/css?family=Numans');
+
+    html,body{
+    background-image: url('http://getwallpapers.com/wallpaper/full/a/5/d/544750.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100%;
+    font-family: 'Numans', sans-serif;
+    }
+
+    .container{
+    height: 100%;
+    align-content: center;
+    }
+
+    .card{
+    height: 370px;
+    margin-top: auto;
+    margin-bottom: auto;
+    width: 400px;
+    background-color: rgba(0,0,0,0.5) !important;
+    }
+
+    .social_icon span{
+    font-size: 60px;
+    margin-left: 10px;
+    color: #FFC312;
+    }
+
+    .social_icon span:hover{
+    color: white;
+    cursor: pointer;
+    }
+
+    .card-header h3{
+    color: white;
+    }
+
+    .social_icon{
+    position: absolute;
+    right: 20px;
+    top: -45px;
+    }
+
+    .input-group-prepend span{
+    width: 50px;
+    background-color: #FFC312;
+    color: black;
+    border:0 !important;
+    }
+
+    input:focus{
+    outline: 0 0 0 0  !important;
+    box-shadow: 0 0 0 0 !important;
+
+    }
+
+    .remember{
+    color: white;
+    }
+
+    .remember input
+    {
+    width: 20px;
+    height: 20px;
+    margin-left: 15px;
+    margin-right: 5px;
+    }
+
+    .login_btn{
+    color: black;
+    background-color: #FFC312;
+    width: 100px;
+    }
+
+    .login_btn:hover{
+    color: black;
+    background-color: white;
+    }
+
+    .links{
+    color: white;
+    }
+
+    .links a{
+    margin-left: 4px;
+    }
+
+    </style>
+    </head>
+
+<body>
 
 
 @yield('content')
 
-</div>
-  <!-- /.login-box-body -->
-</div>
-<!-- /.login-box -->
 
-<!-- jQuery 3 -->
-<script src="{{ asset('bower_components/jquery/dist/jquery.min.js')}}"></script>
-<!-- Bootstrap 3.3.7 -->
-<script src="{{ asset('bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
-<!-- iCheck -->
-<script src="{{ asset('plugins/iCheck/icheck.min.js')}}"></script>
+
 <script>
   $(function () {
     $('input').iCheck({

@@ -36,7 +36,7 @@
 						     <tr>
 						      <th class="text-center" style="vertical-align:middle;" data-column-id="id" data-type="numeric">#</th>
 						      <th class="text-center" style="vertical-align:middle;" data-column-id="titulo_ubicacion">Nombre</th>
-						      <th class="text-center" style="vertical-align:middle;" data-column-id="cNomZona">Email</th>
+						      <th class="text-center" style="vertical-align:middle;" data-column-id="cNomZona">Usuario</th>
 						      <th class="text-center" style="vertical-align:middle;" data-column-id="nombre_estado">Estado</th>
 						    </tr>
 						  </thead>

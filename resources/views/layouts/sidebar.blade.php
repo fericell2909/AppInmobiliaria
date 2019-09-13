@@ -44,16 +44,19 @@ function current_page($url = '/'){
 
       <!-- Sidebar Menu -->
       <ul class="sidebar-menu" data-widget="tree">
-  
+      
+
+      <!-- Administrador -->
+      @if (Auth::user()->rol_id == 1)  
         <li class="treeview">
-          <a href="#"><i class="fa fa-map-marker"></i> <span>Ubicaciones</span>
+          <a href="#"><i class="fa fa-map-marker"></i> <span>Fichas</span>
             <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="{{route("ubicaciones")}}"><i class="fa fa-street-view" aria-hidden="true"></i> Registro de Ubicaciones</a></li>
-            <li><a href="{{route("UbicacionesListar")}}"><i class="fa fa-list" aria-hidden="true"></i> Listado de Ubicaciones</a></li>
+            <li><a href="{{route("ubicaciones")}}"><i class="fa fa-street-view" aria-hidden="true"></i> Registro de Fichas</a></li>
+            <li><a href="{{route("UbicacionesListar")}}"><i class="fa fa-list" aria-hidden="true"></i> Listado de Fichas</a></li>
           </ul>
         </li>
         <li class="treeview">
@@ -76,10 +79,39 @@ function current_page($url = '/'){
           </a>
           <ul class="treeview-menu">
             <li><a href="{{route("ReportedeUsuarios")}}"><i class="fa fa-user" aria-hidden="true"></i> Reporte de Usuarios</a></li>
-            <li><a href="{{route("ReportedeUbicaciones")}}"><i class="fa fa-map-marker" aria-hidden="true"></i> Reporte de Ubicaciones</a></li>
+            <li><a href="{{route("ReportedeUbicaciones")}}"><i class="fa fa-map-marker" aria-hidden="true"></i> Reporte de Fichas</a></li>
           </ul>
         </li>
-      
+      @endif
+
+      <!-- Supervisor -->
+      @if (Auth::user()->rol_id == 2)  
+        <li class="treeview">
+          <a href="#"><i class="fa fa-map-marker"></i> <span>Fichas</span>
+            <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="{{route("UbicacionesListar")}}"><i class="fa fa-list" aria-hidden="true"></i> Consultar Fichas</a></li>
+          </ul>
+        </li>
+      @endif
+
+      <!-- Coordinador Regional o Coordinador Local -->
+      @if (Auth::user()->rol_id == 3 || Auth::user()->rol_id == 4)  
+        <li class="treeview">
+          <a href="#"><i class="fa fa-map-marker"></i> <span>Fichas</span>
+            <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="{{route("ubicaciones")}}"><i class="fa fa-street-view" aria-hidden="true"></i> Registro de Fichas</a></li>
+          </ul>
+        </li>
+      @endif
+
       </ul>
       <!-- /.sidebar-menu -->
     </section>

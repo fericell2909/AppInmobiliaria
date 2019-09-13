@@ -32,8 +32,8 @@ class CreateTableSettings extends Migration
         DB::table('settings')->insert([
             'language'     => 'es',
             'color'        => 'white',
-            'ph_name'      => 'DEMO INBMOBILIARIA S.R.L.',
-            'ph_address'   => 'Urb. XXX I Etapa Mz. X Lte. XXX Nuevo Chimbote  - Ancash - Peru',
+            'ph_name'      => 'SISTEMA DE MONITOREO Y CONTROL DE DESASTRES',
+            'ph_address'   => 'XXXXXXXXXXXXXXXX  - Ancash - Peru',
             'ph_telephone' => 'XXXXXX',
             'ph_email'     => 'XXXXXX@XXXXX.com',
             'ph_fax'       => 'xxxxxxxxx',

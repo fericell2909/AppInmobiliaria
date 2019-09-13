@@ -14,11 +14,11 @@ class CreateForeignKeyZonas extends Migration
     public function up()
     {
 
-        DB::statement("ALTER TABLE inmobiliaria_ubicaciones ADD CONSTRAINT fk_departamento_id FOREIGN KEY(departamento_id) REFERENCES zonas(id)");
+        DB::statement("ALTER TABLE desastres_ubicaciones ADD CONSTRAINT fk_departamento_id FOREIGN KEY(departamento_id) REFERENCES zonas(id)");
 
-        DB::statement("ALTER TABLE inmobiliaria_ubicaciones ADD CONSTRAINT fk_provincia_id FOREIGN KEY(provincia_id) REFERENCES zonas(id)");
+        DB::statement("ALTER TABLE desastres_ubicaciones ADD CONSTRAINT fk_provincia_id FOREIGN KEY(provincia_id) REFERENCES zonas(id)");
 
-        DB::statement("ALTER TABLE inmobiliaria_ubicaciones ADD CONSTRAINT fk_distrito_id FOREIGN KEY(distrito_id) REFERENCES zonas(id)");
+        DB::statement("ALTER TABLE desastres_ubicaciones ADD CONSTRAINT fk_distrito_id FOREIGN KEY(distrito_id) REFERENCES zonas(id)");
     }
 
     /**
