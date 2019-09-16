@@ -57,7 +57,7 @@ function current_page($url = '/'){
             <ul class="treeview-menu">
               
               <li><a href="{{ route("nivelinstitucion")}}"><i class="fa fa-list" aria-hidden="true"></i> Nivel de Institución </a></li>
-              <li><a href="#"><i class="fa fa-list" aria-hidden="true"></i> Caracteristicas de Institución </a></li>
+              <li><a href="{{ route("caracteristicainstitucion")}}"><i class="fa fa-list" aria-hidden="true"></i> Caracteristicas de Institución </a></li>
               <li><a href="#"><i class="fa fa-list" aria-hidden="true"></i> Modalidad de Institución </a></li>
               
               <li><a href="#"><i class="fa fa-list" aria-hidden="true"></i> Aliados Estrategicos </a></li>

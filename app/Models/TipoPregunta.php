@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Support\Facades\DB as DB;
 class TipoPregunta extends Model
 {
       protected $table ='mae_tipo_respuesta';
@@ -28,5 +28,13 @@ class TipoPregunta extends Model
  									->where('mae_tipo_respuesta.bMostrar','1')
  									->get();
  		}
+	}
+
+	public static function Listar_opciones_respuesta()
+	{
+
+		return TipoPregunta::select("mae_tipo_respuesta.id","mae_tipo_respuesta.descripcion" , 
+ 										    "mae_tipo_respuesta.estados_id")
+ 						->get();
 	}
 }

@@ -100,7 +100,11 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/NivelInstitucion/guardar', 'NivelInstitucionController@guardar')->name('nivelinstitucionguardar');
 
 
-
+        Route::get('/CaracteristicaInstitucion', 'CaracteristicaInstitucionController@Listar')->name('caracteristicainstitucion');
+        Route::get('/CaracteristicaInstitucion/Editar/{id}', 'CaracteristicaInstitucionController@Editar')->name('caracteristicainstitucioneditar');
+        Route::get('/CaracteristicaInstitucion/Nuevo', 'CaracteristicaInstitucionController@Nuevo')->name('caracteristicainstitucionnuevo');
+        Route::post('/CaracteristicaInstitucion/Listar', 'CaracteristicaInstitucionController@CaracteristicaInstitucionMostrarRegistros');
+        Route::post('/CaracteristicaInstitucion/guardar', 'CaracteristicaInstitucionController@guardar')->name('caracteristicainstitucionguardar');
         
         Route::get('/Preguntas', 'PreguntasController@Listar')->name('preguntas');
         Route::get('/Preguntas/Editar/{id}', 'PreguntasController@Editar')->name('preguntaseditar');
