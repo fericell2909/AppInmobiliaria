@@ -50,11 +50,11 @@ class NivelInstitucionController extends Controller
     		$bresultado = NivelInstitucion::Nuevo($data);
     	}
 
-		#if ($bresultado) {
-		#	 return redirect()->route('nivelinstitucion')->with('status','Los Datos han sido actualizados correctamente.');
-		#} else {
-		#	 return redirect()->back()->with('errors','Los Datos no han sido actualizados correctamente.');
-		#}
+		if ($bresultado) {
+			 return redirect()->route('nivelinstitucion')->with('status','Los Datos han sido actualizados correctamente.');
+		} else {
+			 return redirect()->back()->with('errors','Los Datos no han sido actualizados correctamente.');
+		}
 
     }
 

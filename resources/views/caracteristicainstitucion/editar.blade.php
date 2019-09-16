@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('htmlheader_title')
-    Editar Nivel de Institucion
+    Editar Caracteristica de Institucion
 @endsection
 @section('content')
     <!-- Content Header (Page header) -->
@@ -15,16 +15,16 @@
           </div>
       @endif
 
-                {!! Form::open(['route' => 'nivelinstitucionguardar', 'class' => 'form','method' => 'POST','id'=> 'EditarNivelInstitucionForm','files' => true]) !!}
+                {!! Form::open(['route' => 'caracteristicainstitucionguardar', 'class' => 'form','method' => 'POST','id'=> 'EditarCaracteristicaInstitucionForm','files' => true]) !!}
                 <div class="panel-heading">
-                    <h2 class="text-center titulo-ubicacion" style="font-weight:bold;"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>&nbsp; Editar Nivel de Institucion &nbsp;<i class="fa fa-pencil-square-o" aria-hidden="true"></i></h2>
+                    <h2 class="text-center titulo-ubicacion" style="font-weight:bold;"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>&nbsp; Editar Caracteristica de Institucion &nbsp;<i class="fa fa-pencil-square-o" aria-hidden="true"></i></h2>
                 </div>
                     <div class="panel-body">
 
                         <div class="form-group row">
                             <div class="col-sm-8">
                               <label class="color-azul">Descripcion</label>
-                              <input type="text" class="form-control text-center" id="descripcion" name="descripcion"  required maxlength="100" placeholder="Descripcion" value="{{ $instituciones[0]->descripcion }}">
+                              <input type="text" class="form-control text-center" id="descripcion" name="descripcion"  required maxlength="100" placeholder="Descripcion" value="{{ $caracteristicas[0]->descripcion }}">
                               <span  id ="ErrorMensaje-descripcion" class="help-block"></span>
                             </div>
                         </div>
@@ -34,7 +34,7 @@
                                 <label class="color-azul">Estado</label>
                                     <select class="form-control text-center" name="estados_id" id="estados_id">
                                         @foreach($estados as $estado)
-											@if( $instituciones[0]->estados_id == $estado->id ) 
+											@if( $caracteristicas[0]->estados_id == $estado->id )
                                             	<option selected value="{{$estado->id}}">{{$estado->nombre_estado}}</option>
                                         	@else
 												<option value="{{$estado->id}}">{{$estado->nombre_estado}}</option>	
@@ -46,9 +46,9 @@
                         </div>
                         <div class="form-group">
                             <input type="text" style="display:none;" class="form-control" name="user_id"  value="{{Auth::user()->id}}">
-                            <input type="text" style="display:none;" class="form-control" name="id"  value="{{$instituciones[0]->id}}">
+                            <input type="text" style="display:none;" class="form-control" name="id"  value="{{$caracteristicas[0]->id}}">
                             <button type="submit" id = "btnEditarNivelInstitucion" class="btnRegistrarNivelInstitucion btn btn-principal btn-primary" >
-                            <i class="fa fa-map-marker"></i> &nbsp;Editar Nivel Institucion       
+                            <i class="fa fa-map-marker"></i> &nbsp;Editar Caracterisitca de Institucion
                             </button>
                         </div>
 
@@ -76,6 +76,12 @@
 	
 	});
 
+    $('#EditarCaracteristicaInstitucionForm').on('keypress', function (e) {
+        tecla = (document.all) ? e.keyCode :e.which;
+        // si la tecla no es 13 devuelve verdadero,  si es 13 devuelve false y la pulsación no se ejecuta
+        return (tecla!=13);
+
+    });
 	$('#descripcion').on("keypress",function (){
 		$("#ErrorMensaje-descripcion").hide();
 	})

@@ -22,9 +22,9 @@ class CaracteristicaInstitucionController extends Controller
 
 
     	$estados = Estado::Listar_Estados();
-    	$instituciones = CaracteristicaInstitucion::Listar_ID($id);
+    	$caracteristicas = CaracteristicaInstitucion::Listar_ID($id);
   
-    	return view('caracteristicainstitucion.editar',compact('estados','instituciones'));	
+    	return view('caracteristicainstitucion.editar',compact('estados','caracteristicas'));
     
     }
 

@@ -80,6 +80,12 @@
 		$("#ErrorMensaje-descripcion").hide();
 	})
 
+    $('#EditarNivelInstitucionForm').on('keypress', function (e) {
+        tecla = (document.all) ? e.keyCode :e.which;
+        // si la tecla no es 13 devuelve verdadero,  si es 13 devuelve false y la pulsación no se ejecuta
+        return (tecla!=13);
+
+    });
 
 </script>
 @endsection
