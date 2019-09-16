@@ -92,7 +92,7 @@ Route::group(['middleware' => 'auth'], function () {
          Route::get('Ubicaciones/ImpresionUbicacion/{id}', 'UbicacionController@ImpresionUbicacion');
 
 
-         # Mantenedores Basicos.
+         # Mantenedores.
         Route::get('/NivelInstitucion', 'NivelInstitucionController@Listar')->name('nivelinstitucion');
         Route::get('/NivelInstitucion/Editar/{id}', 'NivelInstitucionController@Editar')->name('nivelinstitucioneditar');
         Route::get('/NivelInstitucion/Nuevo', 'NivelInstitucionController@Nuevo')->name('nivelinstitucionnuevo');
@@ -114,6 +114,13 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::post('/ModalidadInstitucion/guardar', 'ModalidadInstitucionController@guardar')->name('modalidadinstitucionguardar');
 	
 	
+		Route::get('/AliadoEstrategico', 'AliadoEstrategicoController@Listar')->name('aliadoestrategico');
+		Route::get('/AliadoEstrategico/Editar/{id}', 'AliadoEstrategicoController@Editar')->name('aliadoestrategicoeditar');
+		Route::get('/AliadoEstrategico/Nuevo', 'AliadoEstrategicoController@Nuevo')->name('aliadoestrategiconuevo');
+		Route::post('/AliadoEstrategico/Listar', 'AliadoEstrategicoController@AliadoEstrategicoMostrarRegistros');
+		Route::post('/AliadoEstrategico/guardar', 'AliadoEstrategicoController@guardar')->name('aliadoestrategicoguardar');
+	
+		
         Route::get('/Preguntas', 'PreguntasController@Listar')->name('preguntas');
         Route::get('/Preguntas/Editar/{id}', 'PreguntasController@Editar')->name('preguntaseditar');
         Route::get('/Preguntas/Nuevo', 'PreguntasController@Nuevo')->name('preguntasnuevo');

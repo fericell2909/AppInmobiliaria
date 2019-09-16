@@ -59,8 +59,8 @@ function current_page($url = '/'){
               <li><a href="{{ route("nivelinstitucion")}}"><i class="fa fa-university" aria-hidden="true"></i> Nivel de Institución </a></li>
               <li><a href="{{ route("caracteristicainstitucion")}}"><i class="fa fa-inbox" aria-hidden="true"></i> Caracteristicas de Institución </a></li>
               <li><a href="{{ route("modalidadinstitucion")}}"><i class="fa fa-share-alt" aria-hidden="true"></i> Modalidad de Institución </a></li>
-              
-              <li><a href="#"><i class="fa fa-list" aria-hidden="true"></i> Aliados Estrategicos </a></li>
+
+              <li><a href="{{ route("aliadoestrategico")}}"><i class="fa fa-shield" aria-hidden="true"></i> Aliados Estrategicos </a></li>
               <li><a href="#"><i class="fa fa-list" aria-hidden="true"></i> Condicion Laboral</a></li>
               <li><a href="#"><i class="fa fa-list" aria-hidden="true"></i> Usuarios</a></li>
             </ul>

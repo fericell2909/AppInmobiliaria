@@ -52,7 +52,7 @@ class CaracteristicaInstitucionController extends Controller
 			return redirect()->route('caracteristicainstitucion')->with('status','Los Datos han sido actualizados correctamente.');
 			#return $this->Listar();
 		} else {
-			 return "Error ------------------";
+			return redirect()->back()->with('errors','Los Datos no han sido actualizados correctamente.');
 		}
 		
     }
