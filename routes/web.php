@@ -92,5 +92,23 @@ Route::group(['middleware' => 'auth'], function () {
          Route::get('Ubicaciones/ImpresionUbicacion/{id}', 'UbicacionController@ImpresionUbicacion');
 
 
+         # Mantenedores Basicos.
+        Route::get('/NivelInstitucion', 'NivelInstitucionController@Listar')->name('nivelinstitucion');
+        Route::get('/NivelInstitucion/Editar/{id}', 'NivelInstitucionController@Editar')->name('nivelinstitucioneditar');
+        Route::get('/NivelInstitucion/Nuevo', 'NivelInstitucionController@Nuevo')->name('nivelinstitucionnuevo');
+        Route::post('/NivelInstitucion/Listar', 'NivelInstitucionController@NivelInstitucionMostrarRegistros');
+        Route::post('/NivelInstitucion/guardar', 'NivelInstitucionController@guardar')->name('nivelinstitucionguardar');
+
+
+
+        
+        Route::get('/Preguntas', 'PreguntasController@Listar')->name('preguntas');
+        Route::get('/Preguntas/Editar/{id}', 'PreguntasController@Editar')->name('preguntaseditar');
+        Route::get('/Preguntas/Nuevo', 'PreguntasController@Nuevo')->name('preguntasnuevo');
+        Route::post('/Preguntas/Listar', 'PreguntasController@PreguntasMostrarRegistros');
+        Route::post('/Preguntas/guardar', 'PreguntasController@guardar')->name('preguntasguardar');
+        
+
+
 
 });

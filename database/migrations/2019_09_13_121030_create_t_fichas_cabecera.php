@@ -96,6 +96,6 @@ class CreateTFichasCabecera extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('fichas');
+        Schema::dropIfExists('fichas_cabecera');
     }
 }

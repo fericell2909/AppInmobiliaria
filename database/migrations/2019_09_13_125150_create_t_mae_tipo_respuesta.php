@@ -26,10 +26,7 @@ class CreateTMaeTipoRespuesta extends Migration
          DB::table('mae_tipo_respuesta')->insert([
             ['descripcion' => 'Sistema','estados_id' => 1 , 'bMostrar' => 0], 
             ['descripcion' => 'SI( )  NO( )','estados_id' => 1, 'bMostrar' => 1],
-            ['descripcion' => 'Exclusivo( ) Multiple( )','estados_id' => 1 , 'bMostrar' => 1],
-            ['descripcion' => 'Detallado','estados_id' => 1, 'bMostrar' => 1], 
-            ['descripcion' => 'Sistema','estados_id' => 1, 'bMostrar' => 1],   
-            
+            ['descripcion' => 'Maestros','estados_id' => 1, 'bMostrar' => 1], 
         ]);
 
     }
