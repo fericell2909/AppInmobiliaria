@@ -49,16 +49,16 @@ function current_page($url = '/'){
       <!-- Administrador -->
       @if (Auth::user()->rol_id == 1)  
         <li class="treeview">
-            <a href="#"><i class="fa fa-list"></i> <span>Mantenedores</span>
+            <a href="#"><i class="fa fa-edit"></i> <span>Mantenedores</span>
               <span class="pull-right-container">
                   <i class="fa fa-angle-left pull-right"></i>
                 </span>
             </a>
             <ul class="treeview-menu">
               
-              <li><a href="{{ route("nivelinstitucion")}}"><i class="fa fa-list" aria-hidden="true"></i> Nivel de Institución </a></li>
-              <li><a href="{{ route("caracteristicainstitucion")}}"><i class="fa fa-list" aria-hidden="true"></i> Caracteristicas de Institución </a></li>
-              <li><a href="#"><i class="fa fa-list" aria-hidden="true"></i> Modalidad de Institución </a></li>
+              <li><a href="{{ route("nivelinstitucion")}}"><i class="fa fa-university" aria-hidden="true"></i> Nivel de Institución </a></li>
+              <li><a href="{{ route("caracteristicainstitucion")}}"><i class="fa fa-inbox" aria-hidden="true"></i> Caracteristicas de Institución </a></li>
+              <li><a href="{{ route("modalidadinstitucion")}}"><i class="fa fa-share-alt" aria-hidden="true"></i> Modalidad de Institución </a></li>
               
               <li><a href="#"><i class="fa fa-list" aria-hidden="true"></i> Aliados Estrategicos </a></li>
               <li><a href="#"><i class="fa fa-list" aria-hidden="true"></i> Condicion Laboral</a></li>

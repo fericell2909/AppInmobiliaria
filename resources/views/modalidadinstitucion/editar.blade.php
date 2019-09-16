@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('htmlheader_title')
-    Nuevo Caracteristica de Institucion
+    Editar Modalidad de Institucion
 @endsection
 @section('content')
     <!-- Content Header (Page header) -->
@@ -15,16 +15,16 @@
           </div>
       @endif
 
-                {!! Form::open(['route' => 'caracteristicainstitucionguardar', 'class' => 'form','method' => 'POST','id'=> 'RegistroCaracteristicaInstitucionForm','files' => true]) !!}
+                {!! Form::open(['route' => 'modalidadinstitucionguardar', 'class' => 'form','method' => 'POST','id'=> 'EditarModalidadInstitucionForm','files' => true]) !!}
                 <div class="panel-heading">
-                    <h2 class="text-center titulo-ubicacion" style="font-weight:bold;"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>&nbsp; Registar Caracteristica de Institucion &nbsp;<i class="fa fa-pencil-square-o" aria-hidden="true"></i></h2>
+                    <h2 class="text-center titulo-ubicacion" style="font-weight:bold;"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>&nbsp; Editar Modalidad de Institucion &nbsp;<i class="fa fa-pencil-square-o" aria-hidden="true"></i></h2>
                 </div>
                     <div class="panel-body">
 
                         <div class="form-group row">
                             <div class="col-sm-8">
                               <label class="color-azul">Descripcion</label>
-                              <input type="text" class="form-control text-center" id="descripcion" name="descripcion"  maxlength="100" placeholder="Descripcion">
+                              <input type="text" class="form-control text-center" id="descripcion" name="descripcion"  required maxlength="100" placeholder="Descripcion" value="{{ $modalidades[0]->descripcion }}">
                               <span  id ="ErrorMensaje-descripcion" class="help-block"></span>
                             </div>
                         </div>
@@ -34,7 +34,11 @@
                                 <label class="color-azul">Estado</label>
                                     <select class="form-control text-center" name="estados_id" id="estados_id">
                                         @foreach($estados as $estado)
-                                            <option value="{{$estado->id}}">{{$estado->nombre_estado}}</option>
+											@if( $modalidades[0]->estados_id == $estado->id )
+                                            	<option selected value="{{$estado->id}}">{{$estado->nombre_estado}}</option>
+                                        	@else
+												<option value="{{$estado->id}}">{{$estado->nombre_estado}}</option>	
+                                        	@endif
                                         @endforeach
                                         </select>
                                         <span  id ="ErrorMensaje-estado_id" class="help-block"></span>
@@ -42,9 +46,9 @@
                         </div>
                         <div class="form-group">
                             <input type="text" style="display:none;" class="form-control" name="user_id"  value="{{Auth::user()->id}}">
-                            <input type="text" style="display:none;" class="form-control" name="id"  value="0">
-                            <button type="submit" id = "btnRegistrarCaracteristicaInstitucion" class="btnRegistrarCaracteristicaInstitucion btn btn-principal btn-primary" >
-                            <i class="fa fa-map-marker"></i> &nbsp;Registrar Nivel Institucion       
+                            <input type="text" style="display:none;" class="form-control" name="id"  value="{{$modalidades[0]->id}}">
+                            <button type="submit" id = "btnEditarModalidadInstitucion" class="btnEditarModalidadInstitucion btn btn-principal btn-primary" >
+                            <i class="fa fa-map-marker"></i> &nbsp;Editar Modalidad Institucion
                             </button>
                         </div>
 
@@ -55,9 +59,7 @@
 @section('script-fin')
 <script>
 	
-  
-
-	$('#RegistroCaracteristicaInstitucionForm').on('submit', function (evt) {
+	$('#btnEditarModalidadInstitucion').on('click', function (evt) {
 
 	    var descripcion_id = $('#descripcion').val().trim();
 
@@ -70,19 +72,20 @@
 	       }
 
 
+	      $('#EditarModalidadInstitucionForm').submit();
+	
 	});
-
-  $('#RegistroCaracteristicaInstitucionForm').on('keypress', function (e) {
-      tecla = (document.all) ? e.keyCode :e.which;
-    // si la tecla no es 13 devuelve verdadero,  si es 13 devuelve false y la pulsación no se ejecuta
-    return (tecla!=13);
-  
-  });
 
 	$('#descripcion').on("keypress",function (){
 		$("#ErrorMensaje-descripcion").hide();
 	})
 
+    $('#EditarModalidadInstitucionForm').on('keypress', function (e) {
+        tecla = (document.all) ? e.keyCode :e.which;
+        // si la tecla no es 13 devuelve verdadero,  si es 13 devuelve false y la pulsación no se ejecuta
+        return (tecla!=13);
+
+    });
 
 </script>
 @endsection

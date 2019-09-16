@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('htmlheader_title')
-    Nuevo Caracteristica de Institucion
+    Nuevo Modalidad de Institucion
 @endsection
 @section('content')
     <!-- Content Header (Page header) -->
@@ -15,9 +15,9 @@
           </div>
       @endif
 
-                {!! Form::open(['route' => 'caracteristicainstitucionguardar', 'class' => 'form','method' => 'POST','id'=> 'RegistroCaracteristicaInstitucionForm','files' => true]) !!}
+                {!! Form::open(['route' => 'modalidadinstitucionguardar', 'class' => 'form','method' => 'POST','id'=> 'RegistroModalidadInstitucionForm','files' => true]) !!}
                 <div class="panel-heading">
-                    <h2 class="text-center titulo-ubicacion" style="font-weight:bold;"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>&nbsp; Registar Caracteristica de Institucion &nbsp;<i class="fa fa-pencil-square-o" aria-hidden="true"></i></h2>
+                    <h2 class="text-center titulo-ubicacion" style="font-weight:bold;"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>&nbsp; Registar Modalidad de Institucion &nbsp;<i class="fa fa-pencil-square-o" aria-hidden="true"></i></h2>
                 </div>
                     <div class="panel-body">
 
@@ -43,8 +43,8 @@
                         <div class="form-group">
                             <input type="text" style="display:none;" class="form-control" name="user_id"  value="{{Auth::user()->id}}">
                             <input type="text" style="display:none;" class="form-control" name="id"  value="0">
-                            <button type="submit" id = "btnRegistrarCaracteristicaInstitucion" class="btnRegistrarCaracteristicaInstitucion btn btn-principal btn-primary" >
-                            <i class="fa fa-map-marker"></i> &nbsp;Registrar Nivel Institucion       
+                            <button type="submit" id = "btnRegistrarModalidadInstitucion" class="btn btn-principal btn-primary" >
+                            <i class="fa fa-map-marker"></i> &nbsp;Registrar Modalidad de Institucion
                             </button>
                         </div>
 
@@ -54,10 +54,8 @@
 @endsection
 @section('script-fin')
 <script>
-	
-  
 
-	$('#RegistroCaracteristicaInstitucionForm').on('submit', function (evt) {
+	$('#RegistroModalidadInstitucionForm').on('submit', function (evt) {
 
 	    var descripcion_id = $('#descripcion').val().trim();
 
@@ -66,23 +64,22 @@
 	       $("#ErrorMensaje-descripcion").text('Debe Ingresar una Descripcion');
 	         $("#ErrorMensaje-descripcion").show();
 	         $("#descripcion").focus();
+	         evt.preventDefault();
 	         return false;
 	       }
 
-
 	});
-
-  $('#RegistroCaracteristicaInstitucionForm').on('keypress', function (e) {
-      tecla = (document.all) ? e.keyCode :e.which;
-    // si la tecla no es 13 devuelve verdadero,  si es 13 devuelve false y la pulsación no se ejecuta
-    return (tecla!=13);
-  
-  });
 
 	$('#descripcion').on("keypress",function (){
 		$("#ErrorMensaje-descripcion").hide();
 	})
 
+    $('#RegistroModalidadInstitucionForm').on('keypress', function (e) {
+        tecla = (document.all) ? e.keyCode :e.which;
+        // si la tecla no es 13 devuelve verdadero,  si es 13 devuelve false y la pulsación no se ejecuta
+        return (tecla!=13);
+
+    });
 
 </script>
 @endsection

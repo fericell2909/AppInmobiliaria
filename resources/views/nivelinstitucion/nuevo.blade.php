@@ -24,7 +24,7 @@
                         <div class="form-group row">
                             <div class="col-sm-8">
                               <label class="color-azul">Descripcion</label>
-                              <input type="text" class="form-control text-center" id="descripcion" name="descripcion"  required maxlength="100" placeholder="Descripcion">
+                              <input type="text" class="form-control text-center" id="descripcion" name="descripcion"  maxlength="100" placeholder="Descripcion">
                               <span  id ="ErrorMensaje-descripcion" class="help-block"></span>
                             </div>
                         </div>
@@ -55,7 +55,7 @@
 @section('script-fin')
 <script>
 	
-	$('#btnRegistrarNivelInstitucion').on('click', function (evt) {
+	$('#RegistroNivelInstitucionForm').on('submit', function (evt) {
 
 	    var descripcion_id = $('#descripcion').val().trim();
 
@@ -64,12 +64,10 @@
 	       $("#ErrorMensaje-descripcion").text('Debe Ingresar una Descripcion');
 	         $("#ErrorMensaje-descripcion").show();
 	         $("#descripcion").focus();
+	         evt.preventDefault();
 	         return false;
 	       }
 
-
-	      $('#RegistroNivelInstitucionForm').submit(); 
-	
 	});
 
 	$('#descripcion').on("keypress",function (){
