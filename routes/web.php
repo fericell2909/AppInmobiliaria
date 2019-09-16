@@ -120,6 +120,12 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::post('/AliadoEstrategico/Listar', 'AliadoEstrategicoController@AliadoEstrategicoMostrarRegistros');
 		Route::post('/AliadoEstrategico/guardar', 'AliadoEstrategicoController@guardar')->name('aliadoestrategicoguardar');
 	
+		Route::get('/CondicionLaboral', 'CondicionLaboralController@Listar')->name('condicionlaboral');
+		Route::get('/CondicionLaboral/Editar/{id}', 'CondicionLaboralController@Editar')->name('condicionlaboraleditar');
+		Route::get('/CondicionLaboral/Nuevo', 'CondicionLaboralController@Nuevo')->name('condicionlaboralnuevo');
+		Route::post('/CondicionLaboral/Listar', 'CondicionLaboralController@CondicionLaboralMostrarRegistros');
+		Route::post('/CondicionLaboral/guardar', 'CondicionLaboralController@guardar')->name('condicionlaboralguardar');
+		
 		
         Route::get('/Preguntas', 'PreguntasController@Listar')->name('preguntas');
         Route::get('/Preguntas/Editar/{id}', 'PreguntasController@Editar')->name('preguntaseditar');
