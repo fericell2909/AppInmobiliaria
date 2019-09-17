@@ -62,7 +62,7 @@ function current_page($url = '/'){
 
               <li><a href="{{ route("aliadoestrategico")}}"><i class="fa fa-shield" aria-hidden="true"></i> Aliados Estrategicos </a></li>
               <li><a href="{{ route("condicionlaboral")}}"><i class="fa fa-balance-scale" aria-hidden="true"></i> Condicion Laboral</a></li>
-              <li><a href="#"><i class="fa fa-list" aria-hidden="true"></i> Usuarios</a></li>
+              <li><a href="{{ route("musuarios")}}"><i class="fa fa-user-circle-o" aria-hidden="true"></i> Usuarios</a></li>
             </ul>
         </li>
 

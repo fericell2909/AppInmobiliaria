@@ -16,8 +16,8 @@ class Roles extends Model
     }	
     public static function Listar_Roles()
  	{
- 		return Roles::select("roles.id","roles.descripcion as name")
- 						->whereIn("roles.id",array(2,5))
+ 		return Roles::select("roles.id","roles.descripcion")
+ 						#->whereIn("roles.id",array(2,5))
  						->get();	
 	}
 }
