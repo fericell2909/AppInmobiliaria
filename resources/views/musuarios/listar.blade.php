@@ -90,8 +90,7 @@ $(document).ready(function()
 		        "commands": function(column, row)
 		        {
 
-		            return  "<a  class=\"btn \" href=\"../Usuarios/Editar/" +   row.id + "\"><i class=\"fa fa-pencil\" aria-hidden=\"true\"></i>&nbsp; Editar</a>";
-		            // <a  class=\"btn \" href=\"../Ubicaciones/Imprimir/" +   row.id + "\"><i class=\"fa fa-print\" aria-hidden=\"true\"></i>&nbsp; Imprimir</a>";
+		            return  "<a  class=\"btn \" href=\"../Usuarios/Editar/" +   row.id + "\"><i class=\"fa fa-pencil\" aria-hidden=\"true\"></i>&nbsp; Editar</a><a  class=\"btn \" href=\"../Usuarios/EditarClave/" +   row.id + "\"><i class=\"fa fa-key\" aria-hidden=\"true\"></i>&nbsp; Cambiar Clave</a>";
 		        }
     		}
 	});

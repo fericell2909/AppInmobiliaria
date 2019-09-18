@@ -13,7 +13,7 @@ class CreateProcedureZonasUspListarZonasDistritosXProvincia extends Migration
      */
     public function up()
     {
-       DB::unprepared('CREATE PROCEDURE usp_listar_zonas_distritos_x_provincia(IN CODIGO INTEGER)
+       /*DB::unprepared('CREATE PROCEDURE usp_listar_zonas_distritos_x_provincia(IN CODIGO INTEGER)
                 BEGIN
                    select z.id,z.cNomZona
                     from zonas z
@@ -25,7 +25,8 @@ class CreateProcedureZonasUspListarZonasDistritosXProvincia extends Migration
                     substring(z.ccodzona,5,6) <> 00 and z.id <> CODIGO;
     
                     END');
-    }
+        */
+       }
 
     /**
      * Reverse the migrations.

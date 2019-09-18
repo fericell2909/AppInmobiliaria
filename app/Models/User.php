@@ -40,7 +40,7 @@ class User extends Model
 	public static function Listar_ID($id){
 		
 		return User::select("users.id","users.name as nombre" ,
-			"users.estado as estados_id")
+			"users.estado as estados_id" , "users.rol_id","users.nSexo","users.email","users.password")
 			->where('users.id',$id)
 			->get();
 	}
@@ -92,7 +92,7 @@ class User extends Model
 		#echo $query;
 		if(!empty($_POST["searchPhrase"]))
 		{
-			$query .= ' WHERE (desastres_users.id LIKE "%'.$_POST["searchPhrase"].'%" ';
+			$query .= ' WHERE (desastres_users.email LIKE "%'.$_POST["searchPhrase"].'%" ';
 			$query .= 'OR desastres_users.name LIKE "%'.$_POST["searchPhrase"].'%" ';
 			$query .= 'OR desastres_estados.nombre_estado LIKE "%'.$_POST["searchPhrase"].'%" )';
 		}
@@ -150,12 +150,12 @@ class User extends Model
 		try {
 			$user  = new User();
 			$user->name= $data['name'];
-			$user->email= $data['usuario'];
+			$user->email= $data['email'];
 			$user->password= bcrypt($data['password']);
 			$user->estado = $data['estados_id'];
 			$user->rol_id = $data['rol_id'];
-			$user->nSexo = $data['sexo_id'];
-			$user->documento = $data['usuario'];
+			$user->nSexo = $data['nSexo'];
+			$user->documento = $data['email'];
 			$user->save();
 			
 			return true;
@@ -173,10 +173,10 @@ class User extends Model
 		try {
 			
 			$valores =  array(  'name' => $data['name'],
-			                    'password' => bcrypt($data['password']),
+			                    #'password' => bcrypt($data['password']),
 			                    'estado' => $data['estados_id'],
 			                    'rol_id' => $data['rol_id'],
-			                    'nSexo' => $data['sexo_id']
+			                    'nSexo' => $data['nSexo']
 			);
 			
 			User::where('id',$data['id'])
@@ -188,5 +188,26 @@ class User extends Model
 		}
 		
 		
+	}
+	
+	public static function EditarPassword($data){
+		try {
+			
+			$valores =  array(  'password' => bcrypt($data['password'])
+			
+			);
+			
+			User::where('id',$data['id'])
+				->update($valores);
+			
+			return true;
+		} catch (Exception $e) {
+			return false;
+		}
+	}
+	
+	public static function ExisteUsuario($usuario){
+		
+		return User::where('users.email',$usuario)->count();
 	}
 }

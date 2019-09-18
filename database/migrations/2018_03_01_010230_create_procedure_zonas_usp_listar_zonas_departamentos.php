@@ -13,13 +13,14 @@ class CreateProcedureZonasUspListarZonasDepartamentos extends Migration
      */
     public function up()
     {
-        DB::unprepared('CREATE PROCEDURE usp_listar_zonas_departamentos()
+        /*DB::unprepared('CREATE PROCEDURE usp_listar_zonas_departamentos()
                 BEGIN
                     SELECT z.id, z.cNomZona
                     FROM zonas z
                     WHERE substring(z.ccodzona,3,12)=0000000000;
     
                     END');
+        */
     }
 
     /**

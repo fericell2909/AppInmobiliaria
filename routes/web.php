@@ -129,10 +129,11 @@ Route::group(['middleware' => 'auth'], function () {
 		
 		Route::get('/Usuarios', 'UsersController@Listar')->name('musuarios');
 		Route::get('/Usuarios/Editar/{id}', 'UsersController@Editar')->name('musuarioseditar');
+		Route::get('/Usuarios/EditarClave/{id}', 'UsersController@EditarClave')->name('musuarioseditarclave');
 		Route::get('/Usuarios/Nuevo', 'UsersController@Nuevo')->name('musuariosnuevo');
 		Route::post('/Usuarios/Listar', 'UsersController@UserMostrarRegistros');
 		Route::post('/Usuarios/guardar', 'UsersController@guardar')->name('musuariosguardar');
-	
+		Route::post('/Usuarios/guardarclave', 'UsersController@guardarclave')->name('musuariosguardarclave');
 		
         Route::get('/Preguntas', 'PreguntasController@Listar')->name('preguntas');
         Route::get('/Preguntas/Editar/{id}', 'PreguntasController@Editar')->name('preguntaseditar');

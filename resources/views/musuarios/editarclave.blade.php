@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('htmlheader_title')
-    Editar Usuario
+    Editar Clave de Usuario
 @endsection
 @section('content')
     <!-- Content Header (Page header) -->
@@ -15,17 +15,17 @@
           </div>
       @endif
 
-                {!! Form::open(['route' => 'musuariosguardar', 'class' => 'form','method' => 'POST',
-                'id'=> 'EditarUsuarioForm','files' => true]) !!}
+                {!! Form::open(['route' => 'musuariosguardarclave', 'class' => 'form','method' => 'POST',
+                'id'=> 'EditarUsuarioClaveForm','files' => true]) !!}
                 <div class="panel-heading">
-                    <h2 class="text-center titulo-ubicacion" style="font-weight:bold;"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>&nbsp; Editar Usuario &nbsp;<i class="fa fa-pencil-square-o" aria-hidden="true"></i></h2>
+                    <h2 class="text-center titulo-ubicacion" style="font-weight:bold;"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>&nbsp; Editar Clave de Usuario &nbsp;<i class="fa fa-pencil-square-o" aria-hidden="true"></i></h2>
                 </div>
     <div class="panel-body">
 
         <div class="form-group row">
             <div class="col-sm-4">
                 <label class="color-azul">Nombre</label>
-                <input type="text" class="form-control text-center" id="name" name="name"  maxlength="100" placeholder="Ingrese Nombre Usuario"
+                <input readonly disabled  type="text" class="form-control text-center" id="name" name="name"  maxlength="100" placeholder="Ingrese Nombre Usuario"
                     value="{{$usuarios[0]->nombre}}">
                 <span  id ="ErrorMensaje-name" class="help-block"></span>
             </div>
@@ -36,9 +36,9 @@
                 <span  id ="ErrorMensaje-email" class="help-block"></span>
             </div>
             <div class="col-sm-4">
-                <label class="color-azul">Clave</label>
-                <input readonly disabled  type="password" class="form-control text-center" id="password" name="password"
-                       maxlength="15" placeholder="Clave" style="font-size: 16px;" value="{{ $usuarios[0]->password  }}">
+                <label class="color-azul">Nueva Clave</label>
+                <input  type="password" class="form-control text-center" id="password" name="password"
+                       maxlength="15" placeholder="Clave" style="font-size: 16px;" value="">
                 <span  id ="ErrorMensaje-password" class="help-block"></span>
             </div>
         </div>
@@ -51,8 +51,6 @@
                     @foreach($roles as $rol)
                         @if($rol->id == $usuarios[0]->rol_id )
                             <option selected value="{{$rol->id}}">{{$rol->descripcion}}</option>
-                        @else
-                            <option value="{{$rol->id}}">{{$rol->descripcion}}</option>
                         @endif
 
                     @endforeach
@@ -64,9 +62,7 @@
                 <select class="form-control text-center" name="nSexo" id="nSexo">
                     @if($usuarios[0]->nSexo == 1)
                         <option selected value="1">MASCULINO</option>
-                        <option value="2">FEMENINO</option>
                      @else
-                        <option value="1">MASCULINO</option>
                         <option selected value="2">FEMENINO</option>
                     @endif
 
@@ -79,8 +75,6 @@
                     @foreach($estados as $estado)
                         @if($estado->id == $usuarios[0]->estados_id )
                             <option selected value="{{$estado->id}}">{{$estado->nombre_estado}}</option>
-                        @else
-                            <option value="{{$estado->id}}">{{$estado->nombre_estado}}</option>
                         @endif
 
                     @endforeach
@@ -91,7 +85,7 @@
         <div class="form-group">
             <input type="text" style="display:none;" class="form-control" name="id"  value="{{$usuarios[0]->id}}">
             <button type="submit" id = "btnEditarUsuario" class="btnEditarUsuario btn btn-principal btn-primary" >
-                <i class="fa fa-map-marker"></i> &nbsp;Editar Nuevo Usuario
+                <i class="fa fa-map-marker"></i> &nbsp;Editar Clave Usuario
             </button>
         </div>
 
@@ -110,7 +104,7 @@
     }
 
 
-    $('#EditarUsuarioForm').on('submit', function (evt) {
+    $('#EditarUsuarioClaveForm').on('submit', function (evt) {
 
         var descripcion_id = $('#name').val().trim();
 
@@ -147,7 +141,7 @@
 
     });
 
-    $('#EditarUsuarioForm').on('keypress', function (e) {
+    $('#EditarUsuarioClaveForm').on('keypress', function (e) {
         tecla = (document.all) ? e.keyCode :e.which;
         // si la tecla no es 13 devuelve verdadero,  si es 13 devuelve false y la pulsación no se ejecuta
         return (tecla!=13);

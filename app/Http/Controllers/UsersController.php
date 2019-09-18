@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Estado;
 use App\Models\User;
 use App\Models\Roles;
+use function PHPSTORM_META\elementType;
 
 class UsersController extends Controller
 {
@@ -36,7 +37,14 @@ class UsersController extends Controller
 		return view('musuarios.editar',compact('estados','usuarios','roles'));
 		
 	}
+	public function EditarClave($id){
+		$estados = Estado::Listar_Estados();
+		$usuarios = User::Listar_ID($id);
+		$roles = Roles::Listar_Roles();
+		
+		return view('musuarios.editarclave',compact('estados','usuarios','roles'));
 	
+   }
 	public function Nuevo()
 	{
 		$estados = Estado::Listar_Estados();
@@ -46,16 +54,43 @@ class UsersController extends Controller
 	
 	}
 	
+	public function guardarclave(Request $request){
+		$data =  $request->all();
+		// var_dump($data);
+		$bvalidacion = false;
+		
+			$bresultado = User::EditarPassword($data);
+		
+		if ($bresultado) {
+			return redirect()->route('musuarios')->with('status','La Clave ha sido Actualizada Correctamente.');
+			
+		} else{
+			
+				return redirect()->back()->with('errors','Ha Ocurrido un Erro. No se pudo actualizar la clave.');
+			
+		}
+	}
 	public function guardar(Request $request)
 	{
 		$data =  $request->all();
 		// var_dump($data);
+		$bvalidacion = false;
 		
 		if ( $data['id'] > 0) {
 			$bresultado = User::Editar($data);
 		} else
 		{
-			$bresultado = User::Nuevo($data);
+			# Validar si el usuario ya existe.
+			
+			if (User::ExisteUsuario($data['email']) <= 0)
+			{
+				$bresultado = User::Nuevo($data);
+			} else
+			{
+				$bresultado = false;
+				$bvalidacion = true;
+			}
+			
 		}
 		#var_dump($data);
 		
@@ -63,7 +98,12 @@ class UsersController extends Controller
 			return redirect()->route('musuarios')->with('status','Los Datos han sido actualizados correctamente.');
 			
 		} else {
-			return redirect()->back()->with('errors','Los Datos no han sido actualizados correctamente.');
+			if ( !$bvalidacion) {
+				return redirect()->back()->with('errors','Los Datos no han sido actualizados correctamente.');
+			} else {
+				return redirect()->route('musuarios')->with('status','El Usuario : ' .$data['email'] . ' ya existe en el sistema.' );
+			}
+			
 		}
 		
 	}

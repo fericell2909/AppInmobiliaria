@@ -23,16 +23,22 @@
                     <div class="panel-body">
 
                         <div class="form-group row">
-                            <div class="col-sm-8">
+                            <div class="col-sm-4">
                               <label class="color-azul">Nombre</label>
                               <input type="text" class="form-control text-center" id="name" name="name"  maxlength="100" placeholder="Ingrese Nombre Usuario">
                               <span  id ="ErrorMensaje-name" class="help-block"></span>
                             </div>
                             <div class="col-sm-4">
                                 <label class="color-azul">Usuario</label>
-                                <input type="text" class="form-control text-center" id="usuario" name="usuario"
+                                <input type="text" class="form-control text-center" id="email" name="email"
                                        maxlength="8" placeholder="DNI" onkeypress="soloNumeros(event);">
-                                <span  id ="ErrorMensaje-usuario" class="help-block"></span>
+                                <span  id ="ErrorMensaje-email" class="help-block"></span>
+                            </div>
+                            <div class="col-sm-4">
+                                <label class="color-azul">Clave</label>
+                                <input type="password" class="form-control text-center" id="password" name="password"
+                                       maxlength="15" placeholder="Clave" style="font-size: 16px;" >
+                                <span  id ="ErrorMensaje-password" class="help-block"></span>
                             </div>
                         </div>
 
@@ -101,13 +107,24 @@
 	         return false;
 	       }
 
-	    var usuario  = $('#usuario').val().trim();
+	    var usuario  = $('#email').val().trim();
 
         if( usuario == null || usuario.length == 0  ) {
             usuario = null;
-            $("#ErrorMensaje-usuario").text('El DNI no puede ser vacio.');
-            $("#ErrorMensaje-usuario").show();
-            $("#usuario").focus();
+            $("#ErrorMensaje-email").text('El DNI no puede ser vacio.');
+            $("#ErrorMensaje-email").show();
+            $("#email").focus();
+            evt.preventDefault();
+            return false;
+        }
+
+        var clave  = $('#password').val().trim();
+
+        if( clave == null || clave.length == 0  ) {
+            clave = null;
+            $("#ErrorMensaje-password").text('La Clave no puede ser vacía.');
+            $("#ErrorMensaje-password").show();
+            $("#password").focus();
             evt.preventDefault();
             return false;
         }
