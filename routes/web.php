@@ -140,8 +140,9 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/Preguntas/Nuevo', 'PreguntasController@Nuevo')->name('preguntasnuevo');
         Route::post('/Preguntas/Listar', 'PreguntasController@PreguntasMostrarRegistros');
         Route::post('/Preguntas/guardar', 'PreguntasController@guardar')->name('preguntasguardar');
-        
-
-
+	
+	
+		Route::post('/PreguntasOpciones/Listar/{id}', 'PreguntaOpcionesController@PreguntasOpcionesMostrarRegistros');
+		Route::post('/PreguntasOpciones/Mantenimiento', 'PreguntaOpcionesController@Mantenimiento');
 
 });

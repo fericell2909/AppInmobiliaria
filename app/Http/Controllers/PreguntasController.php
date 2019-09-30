@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Pregunta;
 use App\Models\Estado;
 use App\Models\TipoPregunta;
+use App\Models\OpcionRespuestaPregunta;
 
 class PreguntasController extends Controller
 {
@@ -20,12 +21,14 @@ class PreguntasController extends Controller
 
     public function Editar($id)
     {
-
-
-    	$estados = Estado::Listar_Estados();
-    	$instituciones = Pregunta::Listar_ID($id);
-  
-    	return view('preguntas.editar',compact('estados','instituciones'));	
+    	
+    	$preguntas = Pregunta::Listar_ID($id);
+	    $estados = Estado::Listar_Estados();
+	    $tipopreguntas = TipoPregunta::Listar('1');
+	    $maestros =  TipoPregunta::Listar_opciones_respuesta();
+	    $opcionmaestros = OpcionRespuestaPregunta::Listar('1');
+	    
+    	return view('preguntas.editar',compact('preguntas','estados','tipopreguntas','maestros','opcionmaestros'));
     
     }
 
@@ -36,16 +39,20 @@ class PreguntasController extends Controller
     	$tipopreguntas = TipoPregunta::Listar('1');
 
     	$maestros =  TipoPregunta::Listar_opciones_respuesta();
-
-    	return view('preguntas.nuevo',compact('estados','tipopreguntas','maestros'));	
+			
+    	$opcionmaestros = OpcionRespuestaPregunta::Listar('1');
+     
+	    return view('preguntas.nuevo',compact('estados','tipopreguntas','maestros','opcionmaestros'));
     }
 
     public function guardar(Request $request)
     {
     	$data =  $request->all();
-		// var_dump($data);
-
-    	if ( $data['id'] > 0) {
+		//var_dump($data);
+	    //exit;
+    	# print_r($data);
+    	# exit;
+	    if ( $data['pregunta_id'] <> '') {
     		$bresultado = Pregunta::Editar($data);
     	} else
     	{
@@ -53,7 +60,7 @@ class PreguntasController extends Controller
     	}
 
 		if ($bresultado) {
-			 return redirect()->route('nivelinstitucion')->with('status','Los Datos han sido actualizados correctamente.');
+			 return redirect()->route('preguntas')->with('status','Los Datos han sido actualizados correctamente.');
 		} else {
 			 return redirect()->back()->with('errors','Los Datos no han sido actualizados correctamente.');
 		}

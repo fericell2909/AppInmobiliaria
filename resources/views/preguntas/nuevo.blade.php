@@ -24,13 +24,13 @@
                         <div class="form-group row">
                             <div class="col-sm-12">
                               <label class="color-azul">Nombre de Pregunta</label>
-                              <input type="text" class="form-control text-center" id="descripcion" name="descripcion"  required maxlength="100" placeholder="Descripcion">
+                              <input type="text" class="form-control text-center" id="descripcion" name="descripcion"  maxlength="100" placeholder="Descripcion">
                               <span  id ="ErrorMensaje-descripcion" class="help-block"></span>
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <div class="col-sm-4">
+                            <div class="col-sm-3">
                                 <label class="color-azul">Estado</label>
                                     <select class="form-control text-center" name="estados_id" id="estados_id">
                                         @foreach($estados as $estado)
@@ -39,15 +39,23 @@
                                         </select>
                                         <span  id ="ErrorMensaje-estado_id" class="help-block"></span>
                             </div>
-                            <div class="col-sm-4">
+                            <div class="col-sm-3">
                                 <label class="color-azul">Opcion Multiple</label>
-                                  <select class="form-control text-center" name="bopcion_multiple" id="bopcion_multiple">
+                                  <select class="form-control text-center" name="bOpcionMultiples" id="bOpcionMultiples">
                                             <option value="0">NO</option>
-                                            <option value="0">SI</option>
+                                            <option value="1">SI</option>
                                   </select>
                                         <span  id ="ErrorMensaje-bopcion_multiple" class="help-block"></span>
                             </div>
-                            <div class="col-sm-4">
+                            <div class="col-sm-3">
+                                <label class="color-azul">Incluye Otros</label>
+                                <select class="form-control text-center" name="bIncluyeotros" id="bIncluyeotros">
+                                    <option value="0">NO</option>
+                                    <option value="1">SI</option>
+                                </select>
+                                <span  id ="ErrorMensaje-bIncluyeotros" class="help-block"></span>
+                            </div>
+                            <div class="col-sm-3">
                                 <label class="color-azul">Tipo de Pregunta</label>
                                   <select class="form-control text-center" name="tipo_respuesta_id" id="tipo_respuesta_id">
                                        @foreach($tipopreguntas as $tipopregunta)
@@ -57,50 +65,46 @@
                                         <span  id ="ErrorMensaje-tipo_respuesta_id" class="help-block"></span>          
                                   </select>
                             </div>
+                            <div class="col-sm-3" id="lst_opcion_maestro" style="display:none;">
+                                <label class="color-azul">Maestro</label>
+                                <select class="form-control text-center" name="opcion_maestro" id="opcion_maestro">
+                                    @foreach($opcionmaestros as $opcionmaestro)
+                                        <option value="{{$opcionmaestro->id}}">{{$opcionmaestro->descripcion}}</option>
+                                    @endforeach
+                                </select>
+                                <span  id ="ErrorMensaje-opcion_maestro" class="help-block"></span>
+                                </select>
+                            </div>
                         </div>
                             
-                            <fieldset>
+                            <fieldset style="display:none;">
                               <legend>Opciones de Respuesta a Pregunta</legend>
 
                             </fieldset>
 
-                            <div class="form-group row">
-                                  <div class="col-sm-4">
-                                    <label class="color-azul">Maestro</label>
-                                      <select class="form-control text-center" name="opcion_seleccionable" id="opcion_seleccionable">
-                                         @foreach($maestros as $maestro)
-                                            <option value="{{$maestro->id}}">{{$maestro->descripcion}}</option>
-                                        @endforeach       
-                                      </select>
-                                        <span  id ="ErrorMensaje-bopcion_multiple" class="help-block"></span>
-                                  </div>
-                            </div>
-
-                            <div class="form-group row">
+                            <!--<div class="form-group row">
                               <div class="col-sm-8 col-sm-offset-2">
-                                  
-                                  
-                                 <table class="table table-bordered">
-                                    <thead>
-                                      <tr>
-                                        <th>Descripción</th>
-                                        <th>Estado</th>
-                                        <th style="text-align:center;">Acciones</th>
-                                      </tr>
-                                    </thead>
-                                    <tbody>
-                                    </tbody>
-                                  </table>  
+                                  <div class="table-responsive" id="lista-preguntas_opciones">
+                                      <table class="table table-hover" id="tbl-preguntas_opciones">
+                                          <thead>
+                                          <tr>
+                                              <th class="text-center" style="vertical-align:middle;" data-column-id="descripcion">Descripcion</th>
+                                              <th class="text-center" style="vertical-align:middle;" data-column-id="nombre_estado">Estado</th>
+                                              <th class="text-center" style="vertical-align:middle;" data-column-id="commands" data-formatter="commands" data-sortable="false">Acciones</th>
+                                          </tr>
+                                          </thead>
+                                      </table>
+                                  </div>
                                 
                               </div>  
-                            </div>
+                            </div>-->
         
 
                         <div class="form-group">
                             <input type="text" style="display:none;" class="form-control" name="user_id"  value="{{Auth::user()->id}}">
                             <input type="text" style="display:none;" class="form-control" name="id"  value="0">
                             <button type="submit" id = "btnRegistrarPregunta" class="btnRegistrarPregunta btn btn-principal btn-primary" >
-                            <i class="fa fa-pencil"></i> &nbsp;Registrar Pregunta       
+                            <i class="fa fa-question-circle"></i> &nbsp;Registrar Pregunta
                             </button>
                         </div>
 
@@ -110,27 +114,48 @@
 @endsection
 @section('script-fin')
 <script>
-	
-	$('#btnRegistrarPregunta').on('click', function (evt) {
 
-	    var descripcion_id = $('#descripcion').val().trim();
+    $(document).ready(function()
+    {
 
-	    if( descripcion_id == null || descripcion_id.length == 0  ) {
-	       descripcion_id = null;
-	       $("#ErrorMensaje-descripcion").text('Debe Ingresar una Descripcion');
-	         $("#ErrorMensaje-descripcion").show();
-	         $("#descripcion").focus();
-	         return false;
-	       }
+        $('#tipo_respuesta_id').change(function(){
+
+            if($('#tipo_respuesta_id').val() == 3){
+                $('#lst_opcion_maestro').css('display','block');
+            } else
+            {
+                $('#lst_opcion_maestro').css('display','none');
+            }
 
 
-	      $('#RegistroPreguntForm').submit(); 
-	
-	});
+        });
 
-	$('#descripcion').on("keypress",function (){
-		$("#ErrorMensaje-descripcion").hide();
-	})
+
+
+        $('#RegistroPreguntForm').on('submit', function (evt) {
+
+            var descripcion_id = $('#descripcion').val().trim();
+
+            if( descripcion_id == null || descripcion_id.length == 0  ) {
+                descripcion_id = null;
+                $("#ErrorMensaje-descripcion").text('Debe Ingresar una Descripcion');
+                $("#ErrorMensaje-descripcion").show();
+                $("#descripcion").focus();
+                evt.preventDefault();
+                return false;
+            }
+
+
+        });
+
+        $('#descripcion').on("keypress",function (){
+            $("#ErrorMensaje-descripcion").hide();
+        })
+    });
+
+
+
+
 
 
 </script>

@@ -31,7 +31,7 @@
 	                <div class="row">
 	                    <div class="col-md-8">
 	                        <a href="{{route("preguntasnuevo")}}">
-	                            <button class="btn btn-sm btn-info" data-id=""><i class="fa fa-add"
+	                            <button class="btn btn-sm btn-info" data-id=""><i class="fa fa-question-circle"
 	                                                          aria-hidden="true"></i> Nueva Pregunta
 	                            </button>
 	                        </a>
@@ -87,7 +87,7 @@ $(document).ready(function()
 		        "commands": function(column, row)
 		        {
 
-		            return  "<a  class=\"btn \" href=\"../Preguntas/Editar/" +   row.id + "\"><i class=\"fa fa-pencil\" aria-hidden=\"true\"></i>&nbsp; Editar</a>";
+		            return  "<a  class=\"btn \" href=\"../Preguntas/Editar/" +   row.preguntas_id + "\"><i class=\"fa fa-pencil\" aria-hidden=\"true\"></i>&nbsp; Editar</a>";
 		            // <a  class=\"btn \" href=\"../Ubicaciones/Imprimir/" +   row.id + "\"><i class=\"fa fa-print\" aria-hidden=\"true\"></i>&nbsp; Imprimir</a>";
 		        }
     		}

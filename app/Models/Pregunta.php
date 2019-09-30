@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB as DB;
-
+use App\Models\PreguntaOpcion;
 
 class Pregunta extends Model
 {
@@ -30,10 +30,12 @@ class Pregunta extends Model
 
 	public static function Listar_ID($id){
 
-			return Pregunta::select("mae_preguntas.id","mae_preguntas.descripcion" , 
- 										    "mae_preguntas.estados_id")
- 									->where('mae_preguntas.id',$id)
- 									->get();
+		return Pregunta::select( "mae_preguntas.preguntas_id","mae_preguntas.descripcion" ,
+ 								 "mae_preguntas.estados_id" , "mae_preguntas.bOpcionMultiples" ,
+								 "mae_preguntas.tipo_respuesta_id" , "mae_preguntas.bIncluyeotros" ,
+								 "mae_preguntas.opcion_maestro")
+								->where('mae_preguntas.preguntas_id',$id)
+ 								->get();
 	}
 
 	public static function ListarBootGridPregunta($datos,$codigo_usuario)
@@ -109,7 +111,7 @@ class Pregunta extends Model
         $results = DB::select($query);
 
 
-        $total_records = NivelInstitucion::select('desastres_mae_preguntas.preguntas_id')->count();
+        $total_records = Pregunta::select('desastres_mae_preguntas.preguntas_id')->count();
 
 
         $output = array(
@@ -128,23 +130,55 @@ class Pregunta extends Model
         return json_encode($output);
 	}
 
-	public static function Nuevo($institucion)
+	public static function Nuevo($data)
 	{
 
 		try {
-				$niveles_institucion  = new NivelInstitucion();
-				$niveles_institucion->descripcion = $institucion['descripcion'];
-				$niveles_institucion->estados_id = $institucion['estados_id'];
-
-				$niveles_institucion->save();	
-
+			
+				$pregunta  = new Pregunta();
+			
+				$preguntas_id = Pregunta::ObtieneNuevoCorrelativo();
+				
+				$pregunta->preguntas_id = $preguntas_id[0]->correlativo;
+				$pregunta->descripcion = $data['descripcion'];
+				$pregunta->bOpcionMultiples = $data['bOpcionMultiples'];
+				$pregunta->tipo_respuesta_id = $data['tipo_respuesta_id'];
+				$pregunta->estados_id = $data['estados_id'];
+				$pregunta->bIncluyeotros = $data['bIncluyeotros'];
+				$pregunta->opcion_maestro = $data['opcion_maestro'];
+				
+				$pregunta->save();
+				
+				# Opcion de Respuesta SI ( ) -  NO ( )
+				if ($data['tipo_respuesta_id'] == 2) {
+					
+					PreguntaOpcion::Nuevo(array(  'preguntas_id' => $preguntas_id[0]->correlativo,
+					                              'opcion' => 1, 'descripcion' => 'SI','estados_id' => '1'
+					                            )
+										  );
+					
+					PreguntaOpcion::Nuevo(array(  'preguntas_id' => $preguntas_id[0]->correlativo,
+					                              'opcion' => 2, 'descripcion' => 'NO','estados_id' => '1'
+						)
+					);
+					
+				} else {
+					
+					PreguntaOpcion::NuevoMaestro($preguntas_id[0]->correlativo, $data['opcion_maestro']);
+				}
+			
 				return true;
 
 		} catch (Exception $e) {
 				return false;
 		}
-
-
+		
+	}
+	
+	public static function ObtieneNuevoCorrelativo(){
+		
+		return DB::select("SELECT IF( MAX(preguntas_id) IS NULL, (CONCAT('P', YEAR(NOW()), '00001' )), (CONCAT('P', YEAR(NOW()), LPAD(RIGHT(MAX(preguntas_id), 5) + 1, 5, '0')))) as correlativo FROM desastres_mae_preguntas WHERE LEFT(preguntas_id, 5) = CONCAT('P',YEAR(NOW()));");
+		
 	}
 
 	public static function Editar($institucion)
@@ -153,10 +187,12 @@ class Pregunta extends Model
 		  try {
 
                 $valores =  array(  'descripcion' => $institucion['descripcion'],
-                                    'estados_id' => $institucion['estados_id']
+                                    'estados_id' => $institucion['estados_id'],
+                                    'bOpcionMultiples' => $institucion['estados_id'],
+									'bIncluyeotros' => $institucion['estados_id']
                                 );
         
-                    NivelInstitucion::where('id',$institucion['id'])
+                    Pregunta::where('preguntas_id',$institucion['pregunta_id'])
                             ->update($valores);
 
                 return true;
