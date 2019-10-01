@@ -140,9 +140,15 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/Preguntas/Nuevo', 'PreguntasController@Nuevo')->name('preguntasnuevo');
         Route::post('/Preguntas/Listar', 'PreguntasController@PreguntasMostrarRegistros');
         Route::post('/Preguntas/guardar', 'PreguntasController@guardar')->name('preguntasguardar');
-	
-	
+        
+        
 		Route::post('/PreguntasOpciones/Listar/{id}', 'PreguntaOpcionesController@PreguntasOpcionesMostrarRegistros');
 		Route::post('/PreguntasOpciones/Mantenimiento', 'PreguntaOpcionesController@Mantenimiento');
-
+	
+		Route::get('/Productos', 'ProductoController@Listar')->name('productos');
+		Route::get('/Productos/Editar/{id}', 'ProductoController@Editar')->name('productoseditar');
+		Route::get('/Productos/Nuevo', 'ProductoController@Nuevo')->name('productosnuevo');
+		Route::post('/Productos/Listar', 'ProductoController@ProductoMostrarRegistros');
+		Route::post('/Productos/guardar', 'ProductoController@guardar')->name('productosguardar');
+		
 });
