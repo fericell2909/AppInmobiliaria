@@ -150,5 +150,12 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('/Productos/Nuevo', 'ProductoController@Nuevo')->name('productosnuevo');
 		Route::post('/Productos/Listar', 'ProductoController@ProductoMostrarRegistros');
 		Route::post('/Productos/guardar', 'ProductoController@guardar')->name('productosguardar');
+	
+		Route::get('/Actividades', 'ActividadController@Listar')->name('actividades');
+		Route::get('/Actividades/Editar/{id}', 'ActividadController@Editar')->name('actividadeseditar');
+		Route::get('/Actividades/Nuevo', 'ActividadController@Nuevo')->name('actividadesnuevo');
+		Route::post('/Actividades/Listar', 'ActividadController@ActividadMostrarRegistros');
+		Route::post('/Actividades/guardar', 'ActividadController@guardar')->name('actividadesguardar');
+	
 		
 });
