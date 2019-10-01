@@ -158,4 +158,11 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::post('/Actividades/guardar', 'ActividadController@guardar')->name('actividadesguardar');
 	
 		
+		Route::get('/CodigosFases', 'CodigoFaseController@Listar')->name('codigosfases');
+		Route::get('/CodigosFases/Editar/{id}', 'CodigoFaseController@Editar')->name('codigosfaseseditar');
+		Route::get('/CodigosFases/Nuevo', 'CodigoFaseController@Nuevo')->name('codigosfasesnuevo');
+		Route::post('/CodigosFases/Listar', 'CodigoFaseController@CodigoFaseMostrarRegistros');
+		Route::post('/CodigosFases/guardar', 'CodigoFaseController@guardar')->name('codigosfasesguardar');
+		
+		
 });

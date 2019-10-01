@@ -67,7 +67,7 @@ function current_page($url = '/'){
         </li>
 
         <li class="treeview">
-            <a href="#"><i class="fa fa-asterisk" aria-hidden="true"></i> <span>Encuestas</span>
+            <a href="#"><i class="fa fa-asterisk" aria-hidden="true"></i> <span>M. Encuestas</span>
               <span class="pull-right-container">
                   <i class="fa fa-angle-left pull-right"></i>
                 </span>
@@ -77,7 +77,7 @@ function current_page($url = '/'){
               <li><a href="{{ route("preguntas")}}"><i class="fa fa-question-circle" aria-hidden="true"></i> Preguntas </a></li>
               <li><a href="{{ route("productos")  }}"><i class="fa fa-product-hunt" aria-hidden="true"></i> Productos </a></li>
               <li><a href="{{ route("actividades")  }}"><i class="fa fa-tasks" aria-hidden="true"></i> Actividades </a></li>
-              <li><a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i> Codigos de Fase</a></li>
+              <li><a href="{{ route("codigosfases") }}"><i class="fa fa-code-fork" aria-hidden="true"></i> Codigos de Fase</a></li>
               <li><a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i> Fases</a></li>
               <li><a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i> Encuestas </a></li>
             </ul>
