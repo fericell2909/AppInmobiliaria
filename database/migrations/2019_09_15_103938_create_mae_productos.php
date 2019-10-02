@@ -128,7 +128,7 @@ class CreateMaeProductos extends Migration
         # Descripcion de Fases.
         Schema::create('mae_fase_preguntas', function (Blueprint $table) {
             $table->unsignedInteger('codigos_fase_id');
-            $table->foreign('codigos_fase_id')->references('id')->on('mae_codigos_fase');
+            $table->foreign('codigos_fase_id')->references('id')->on('mae_fase');
             $table->string('codigo_pregunta',10);
             $table->foreign('codigo_pregunta')->references('preguntas_id')->on('mae_preguntas'); 
 

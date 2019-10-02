@@ -23,7 +23,7 @@ class Pregunta extends Model
  		{
  			return Pregunta::select("mae_preguntas.id","mae_preguntas.descripcion" , 
  										    "mae_preguntas.estados_id")
- 									->where('mae_preguntas.estados_id',$estado_id)
+ 									->where('mae_preguntas.estados_id',$estados_id)
  									->get();
  		}
 	}
