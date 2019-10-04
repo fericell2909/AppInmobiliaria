@@ -172,6 +172,6 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::post('/Fases/guardar', 'FaseController@guardar')->name('fasesguardar');
 	
 		Route::post('/FasesPreguntas/Listar/{id}', 'FasePreguntaController@FasePreguntaMostrarRegistros');
-		Route::post('/FasesPreguntas/Mantenimiento', 'FasePreguntaControlle@Mantenimiento');
+		Route::post('/FasesPreguntas/Mantenimiento', 'FasePreguntaController@Mantenimiento');
 	
 });

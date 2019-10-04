@@ -25,8 +25,8 @@ class FasePregunta extends Model
 		
 		$valores = array( 'estados_id' => $data['estados_id']);
 		
-		FasePregunta::where('codigos_fase_id',$data['codigos_fase_id'])
-					->where('codigo_pregunta',$data['codigo_pregunta'])
+		FasePregunta::where('codigo_pregunta',$data['codigo_pregunta'])
+			->where('codigos_fase_id',$data['codigos_fase_id'])
 			->update($valores);
 		
 	}

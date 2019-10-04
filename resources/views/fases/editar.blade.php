@@ -7,6 +7,7 @@
 @endsection
 @section('script-inicio')
     <script src="{{ asset('dist/js/jquery.bootgrid.min.js')}}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 @endsection
 @section('content')
     <!-- Content Header (Page header) -->
@@ -29,7 +30,7 @@
                 </div>
                     <div class="panel-body">
                         {!! Form::open(['route' => 'fasesguardar', 'class' => 'form','method' => 'POST','id'=> 'EditarFaseForm','files' => true]) !!}
-                        <input type="hidden" id="id" name="id" value="{{ $fases[0]->id }}">
+                        <input type="hidden" id= "id" name="id" value="{{$fases[0]->id}}">
                         <div class="form-group row">
                             <div class="col-sm-12">
                               <label class="color-azul">Nombre de Pregunta</label>
@@ -70,20 +71,19 @@
                         </div>
                         <div class="form-group">
                             <input type="text" style="display:none;" class="form-control" name="user_id"  value="{{Auth::user()->id}}">
-                            <input type="text" style="display:none;" class="form-control" name="id"  value="0">
                             <button type="submit" id = "btnEditarFase" class="btnEditarFase btn btn-principal btn-primary" >
                                 <i class="fa fa-pencil-square-o"></i> &nbsp;Editar Fase
                             </button>
                         </div>
                         {!! Form::close() !!}
                             <fieldset style="">
-                              <legend>Preguntas Asociadas</legend>
+                              <legend>Preguntas Asociadas a Fase</legend>
 
                             </fieldset>
                             <div class="form-group row">
                               <div class="col-sm-10 col-sm-offset-1">
                                   <a href="#" class="btn btn-small btn-primary" data-toggle="modal" data-target="#largeModal"
-                                    onclick="abrir_ventana_modal('1','<?php echo $fases[0]->id;?>', '1' , '', '1');"
+                                    onclick="abrir_ventana_modal('1','' , '', '1');"
                                     >
                                       <i class="fa fa-plus" aria-hidden="true"></i>&nbsp; ASociar Pregunta a Fase
                                   </a>
@@ -112,9 +112,7 @@
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     <h4 class="modal-title" id="myModalLabel"> Nueva Pregunta Fase</h4>
-                    <input type="hidden" id="hdd_tipo_opcion" value="0" name= "hdd_tipo_opcion" >
-                    <input type="hidden" id="hdd_pregunta_opcion" value="0" name= "hdd_pregunta_opcion" >
-                    <input type="hidden" id="hdd_correlativo_opcion" value="0" name= "hdd_correlativo_opcion" >
+                    <input type="hidden" id="hdd_tipo_fase" value="0" name= "hdd_tipo_fase" >
                 </div>
                 <div class="modal-body">
                     <h3 class="text-center" id="titulo_fase_pregunta"></h3>
@@ -122,7 +120,7 @@
                     <input type="text" class="form form-control text-center " name="txtbusquedapregunta"
                            id="txtbusquedapregunta"
                             placeholder="Escriba Codigo o una Descripcion y Pulse [Enter]."
-                                >
+                                autocomplete="off">
                     <div id="div_txtbusquedapregunta" style=""></div>
                     <label for="lbl_codigo_fase_pregunta">Codigo de Pregunta</label>
                     <input type="text" class="form form-control text-center " name="lbl_codigo_fase_pregunta"
@@ -132,15 +130,15 @@
                     <input type="text" class="form form-control text-center " name="lbl_descripcion_fase_pregunta"
                            id="lbl_descripcion_fase_pregunta" readonly style="background-color: #eee !important;"
                     >
-                    <label for="estado_id_opcion">Estado</label>
-                    <select class="form-control text-center" name="estado_id_opcion" id="estado_id_opcion">
-                            <option selected value="1">ACTIVO</option>
+                    <label for="estados_id_fase">Estado</label>
+                    <select class="form-control text-center" name="estados_id_fase" id="estados_id_fase">
+                            <option value="1">ACTIVO</option>
                             <option value="2">INACTIVO</option>
                     </select>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-close"></i>Cerrar</button>
-                    <button type="button" class="btn btn-primary" onclick="save_pregunta_opcion();" ><i class="fa fa-save"></i> Guardar Cambios</button>
+                    <button type="button" class="btn btn-primary" onclick="save_pregunta_fase();" ><i class="fa fa-save"></i> Guardar Cambios</button>
                 </div>
             </div>
         </div>
@@ -150,44 +148,66 @@
 @section('script-fin')
 <script>
 
-    function save_pregunta_opcion(){
+    function save_pregunta_fase(){
 
-        action_pregunta_opciones($('#hdd_tipo_opcion').val(), $('#hdd_pregunta_opcion').val() , $('#hdd_correlativo_opcion').val() ,
-            $('#descripcion_opcion').val() , $('#estado_id_opcion').val());
+        let pregunta_id = $('#lbl_codigo_fase_pregunta').val();
+
+        if ( pregunta_id == '' ) {
+            Swal.fire({
+                type: 'warning',
+                title: 'Atencion. Aviso Importante',
+                text: 'De Seleccionar una pregunta'
+            })
+            return false;
+        }
+
+        action_pregunta_fase($('#hdd_tipo_fase').val(), pregunta_id , $('#estados_id_fase').val());
 
     }
 
-    function abrir_ventana_modal(ptipo,ppreguntaid , pcorrelativo , pdescripcion , pestado)
+    function abrir_ventana_modal(ptipo,ppreguntaid , pdescripcionpregunta ,  pestados_id)
     {
 
-        $('#hdd_tipo_opcion').val(ptipo);
-        $('#descripcion_opcion').val(pdescripcion);
-        $('#estado_id_opcion').val(pestado);
-        $('#hdd_pregunta_opcion').val(ppreguntaid);
-        $('#hdd_correlativo_opcion').val(pcorrelativo);
+        $('#lbl_codigo_fase_pregunta').val(ppreguntaid);
+        $('#hdd_tipo_fase').val(ptipo);
+        $('#lbl_descripcion_fase_pregunta').val(pdescripcionpregunta);
+
+        $('#estados_id_fase').val(pestados_id);
+        $('txtbusquedapregunta').val('');
+
         if ( ptipo != 1 ) { $('#largeModal').modal('show') }
 
 
     }
 
-    function action_pregunta_opciones(ptipo,ppreguntaid , pcorrelativo , pdescripcion , pestado)
+    function action_pregunta_fase(ptipo,ppreguntaid , pestado)
     {
 
-        let data_proceso =  {"tipo" : ptipo ,  "pregunta_id" : ppreguntaid , "opcion" :  pcorrelativo ,
-                             "descripcion" : pdescripcion , "estados_id" : pestado}
+        let data_proceso =  {"tipo" : ptipo ,
+                             "codigos_fase_id" : '<?php echo $fases[0]->id;?>' ,
+                             "codigo_pregunta" : ppreguntaid  , "estados_id" : pestado }
 
         $.ajax({
-            url: '../../PreguntasOpciones/Mantenimiento',
+            url: '../../FasesPreguntas/Mantenimiento',
             data : data_proceso ,
             type: 'POST',
+            datatype: 'JSON',
             success: function(respuesta) {
-                //alert('amen');
-                //recargar_grilla();
-                $('#tbl-preguntas_opciones').bootgrid('reload');
+                let data =  JSON.parse(respuesta);
+                Swal.fire({
+                    type: 'success',
+                    title: 'Atencion. Aviso Importante',
+                    text: data.mensajerespuesta
+                });
+                $('#tbl-preguntas_fase').bootgrid('reload');
                 $('#largeModal').modal('hide');
                 },
             error: function() {
-                console.log("No se ha podido obtener la información");
+                Swal.fire({
+                    type: 'error',
+                    title: 'Atencion. Aviso Importante',
+                    text: respuesta.mensajerespuesta
+                });
             }
         });
 
@@ -215,7 +235,7 @@
                 "commands": function(column, row)
                 {
 
-                    return  "<a  class=\"btn \" onclick=\" abrir_ventana_modal(\'2\',\'"  + row.codigo_pregunta + "\',\'"  + row.codigos_fase_id  + "\',\'"  + row.descripcion  + "\1',\'"  + row.estados_id  + "\');\" " +
+                    return  "<a  class=\"btn \" onclick=\" abrir_ventana_modal(\'2\',\'"  + row.codigo_pregunta + "\',\'"  + row.descripcionpregunta  + "\',\'"  + row.estados_id  + "\');\" " +
                         "><i class=\"fa fa-pencil\" aria-hidden=\"true\"></i>&nbsp; Editar</a>";
                     // <a  class=\"btn \" href=\"../Ubicaciones/Imprimir/" +   row.id + "\"><i class=\"fa fa-print\" aria-hidden=\"true\"></i>&nbsp; Imprimir</a>";
                 }
@@ -250,7 +270,7 @@
 
 
 
-        $('#EditarPreguntaForm').on('submit', function (evt) {
+        $('#EditarFaseForm').on('submit', function (evt) {
 
             var descripcion_id = $('#descripcion').val().trim();
 
@@ -263,7 +283,7 @@
                 return false;
             }
 
-            $('#id').val(1);
+            $('#id').val("1");
         });
 
         $('#descripcion').on("keypress",function (){
@@ -291,16 +311,17 @@
                     url: '../../Preguntas/Listar',
                     data: datajson,
                     method: 'POST',
+                    datatype: 'json',
                     async: false
                 }).done(function (respuesta) {
-                    //console.log(respuesta);
-                    console.log( JSON.parse(respuesta));
-                    console.log(JSON.stringify(respuesta));
-                    if (respuesta.total > 0) {
 
-                        $.each(respuesta.rows, function (index, val) {
-                            let codigopregunta = respuesta.rows[index].preguntas_id;
-                            let descripcionpregunta = respuesta.rows[index].descripcion;
+                    let data  =  JSON.parse(respuesta);
+
+                    if (data.total > 0) {
+                            let rows =  data.rows;
+                        $.each(rows, function (index, val) {
+                            let codigopregunta = rows[index].preguntas_id;
+                            let descripcionpregunta = rows[index].descripcion;
 
                             string_cdatospreguntas = string_cdatospreguntas + '<option value="' + codigopregunta + '" >' + descripcionpregunta + '</option>';
 
@@ -319,8 +340,8 @@
                             let lst_this = $('#lst_txtbusquedapregunta option:selected');
                             let txtdatostxtbusquedapregunta = lst_this.text();
 
-                            $('#lbl_codigo_fase_pregunta').val(txtdatostxtbusquedapregunta);
-                            $('#lbl_descripcion_fase_pregunta').val(lst_val);
+                            $('#lbl_codigo_fase_pregunta').val(lst_val);
+                            $('#lbl_descripcion_fase_pregunta').val(txtdatostxtbusquedapregunta);
                             $('#div_txtbusquedapregunta').html('');
 
                         });

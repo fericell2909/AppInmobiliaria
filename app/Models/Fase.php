@@ -157,7 +157,7 @@ class Fase extends Model
 			
 			$valores =  array(  'descripcion' => $data['descripcion'],
 			                    'estados_id' => $data['estados_id'],
-			                    'codigos_fase_id' => $data['codigos_fase_id']
+			                    'codigos_fase_id' => $data['codigos_fases_id']
 			);
 			
 			Fase::where('id',$data['id'])
