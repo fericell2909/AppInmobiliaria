@@ -174,4 +174,11 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::post('/FasesPreguntas/Listar/{id}', 'FasePreguntaController@FasePreguntaMostrarRegistros');
 		Route::post('/FasesPreguntas/Mantenimiento', 'FasePreguntaController@Mantenimiento');
 	
+	
+		Route::get('/ModeloEncuestas', 'ModeloEncuestaController@Listar')->name('modeloencuestas');
+		Route::get('/ModeloEncuestas/Editar/{id}', 'ModeloEncuestaController@Editar')->name('actividadeseditar');
+		#Route::get('/ModeloEncuestas/Nuevo', 'ActividadController@Nuevo')->name('actividadesnuevo');
+		Route::post('/ModeloEncuestas/Listar', 'ModeloEncuestaController@ModeloEncuestaMostrarRegistros');
+		#Route::post('/ModeloEncuestas/guardar', 'ActividadController@guardar')->name('actividadesguardar');
+	
 });
