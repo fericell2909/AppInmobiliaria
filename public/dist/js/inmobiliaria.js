@@ -375,17 +375,6 @@ $(document).ready(function() {
     })
 
 
-	var map = null;
-	var infoWindow = null;
- 	initialize();
-
-
-function openInfoWindow(marker) {
-    var markerLatLng = marker.getPosition();
-    $('#nLatitudNegocio').val(markerLatLng.lat());
-    $('#nLongitudNegocio').val(markerLatLng.lng());
-}
-
 function ValidarEmail(email){
 		var regex = /[\w-\.]{2,}@([\w-]{2,}\.)*([\w-]{2,}\.)[\w-]{2,4}/;
 		 if (!regex.test(email)) {
@@ -395,40 +384,6 @@ function ValidarEmail(email){
 		 {
 		 	return true; // email correcto
 		 }
-}
-
-function initialize() {
-
-    $editar = $('#editar').val();
-    
-    if ($editar != "Editar" ) 
-    {
-
-    	var myLatlng = new google.maps.LatLng(-9.123218781402, -78.53048789703);	
-    } else {
-    	var myLatlng = new google.maps.LatLng($('#nLatitudNegocio').val(), $('#nLongitudNegocio').val());	
-    }
-
-    var myOptions = {
-      zoom: 12,
-      center: myLatlng,
-      mapTypeId: google.maps.MapTypeId.ROADMAP
-    }
- 
-    map = new google.maps.Map($('#map_canvas').get(0), myOptions);
-    
-
-    infoWindow = new google.maps.InfoWindow({});
- 
-    var marker = new google.maps.Marker({
-        position: myLatlng,
-        draggable: true,
-        map: map,
-        title:'Arrastre el Marcador Hasta Ubicar su Negocio.'
-    });
- 
-    google.maps.event.addListener(marker, 'dragend', function(){ openInfoWindow(marker); });
-    google.maps.event.addListener(marker, 'click', function(){ openInfoWindow(marker); });
 }
 
 	

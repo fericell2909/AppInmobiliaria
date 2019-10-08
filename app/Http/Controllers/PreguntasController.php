@@ -48,14 +48,16 @@ class PreguntasController extends Controller
     public function guardar(Request $request)
     {
     	$data =  $request->all();
-		//var_dump($data);
+		#var_dump($data);
 	    //exit;
     	# print_r($data);
-    	# exit;
+    	#exit;
 	    if ( $data['pregunta_id'] <> '') {
+	    	#echo "editarrr";
     		$bresultado = Pregunta::Editar($data);
     	} else
     	{
+    		#echo "nuevooo";
     		$bresultado = Pregunta::Nuevo($data);
     	}
 

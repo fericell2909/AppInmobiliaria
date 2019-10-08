@@ -24,7 +24,8 @@
                         <div class="form-group row">
                             <div class="col-sm-12">
                               <label class="color-azul">Nombre de Pregunta</label>
-                              <input type="text" class="form-control text-center" id="descripcion" name="descripcion"  maxlength="100" placeholder="Descripcion">
+                              <input type="text" class="form-control text-center" id="descripcion" name="descripcion"
+                                     maxlength="500" placeholder="Descripcion">
                               <span  id ="ErrorMensaje-descripcion" class="help-block"></span>
                             </div>
                         </div>
@@ -102,7 +103,7 @@
 
                         <div class="form-group">
                             <input type="text" style="display:none;" class="form-control" name="user_id"  value="{{Auth::user()->id}}">
-                            <input type="text" style="display:none;" class="form-control" name="id"  value="0">
+                            <input type="text" style="display:none;" class="form-control" name="pregunta_id"  value="">
                             <button type="submit" id = "btnRegistrarPregunta" class="btnRegistrarPregunta btn btn-principal btn-primary" >
                             <i class="fa fa-question-circle"></i> &nbsp;Registrar Pregunta
                             </button>

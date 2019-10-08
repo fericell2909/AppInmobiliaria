@@ -90,7 +90,8 @@ function current_page($url = '/'){
               </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="{{route("ubicaciones")}}"><i class="fa fa-street-view" aria-hidden="true"></i> Registro de Fichas</a></li>
+            <li><a href="{{route("registrofichas")}}"><i class="fa fa-street-view" aria-hidden="true"></i> Registro de Fichas</a></li>
+            <li><a href="{{route("ubicaciones")}}"><i class="fa fa-street-view" aria-hidden="true"></i> Registro de Fichas 2</a></li>
             <li><a href="{{route("UbicacionesListar")}}"><i class="fa fa-list" aria-hidden="true"></i> Listado de Fichas</a></li>
           </ul>
         </li>

@@ -34,6 +34,66 @@ class ModeloEncuesta extends Model
 			->get();
 	}
 	
+	public static function Listar_productos($codigo){
+		
+		$query = "SELECT DISTINCT  p.id AS id, p.descripcion AS descripcion FROM desastres_mae_modelo_encuesta_detalle det INNER JOIN desastres_mae_productos p ON det.productos_id = p.id WHERE det.codigo_encuesta_id  = '".$codigo."';";
+		
+		return DB::select($query);
+	
+	}
+
+	public static function Listar_Actividades($codigo){
+		
+		$query = "SELECT DISTINCT det.productos_id AS codigoproducto , det.actividades_id AS codigoactividad , act.`descripcion` AS descripcionactividad FROM desastres_mae_modelo_encuesta_detalle det INNER JOIN desastres_mae_actividades act ON act.id = det.actividades_id WHERE det.codigo_encuesta_id  = '".$codigo."';";
+		
+		return DB::select($query);
+	}
+	
+	public static function Listar_Fases($codigo){
+		
+		$query = "SELECT DISTINCT productos_id  AS codigoproducto ,  actividades_id AS codigoactividad  , fases_id AS codigofase ,
+	        			CONCAT( cf.descripcion , ' : ' , f.descripcion) AS descripcion
+	        	 FROM desastres_mae_modelo_encuesta_detalle det
+					INNER JOIN desastres_mae_fase f ON f.id  = det.fases_id
+					INNER JOIN desastres_mae_codigos_fase cf ON cf.id =  f.codigos_fase_id
+				WHERE det.estados_id = 1 AND det.codigo_encuesta_id  = '".$codigo."';";
+		
+		return DB::select($query);
+	}
+	
+	public static function Listar_Preguntas($codigo){
+		
+		$query = "SELECT DISTINCT det.productos_id  AS codigoproducto ,
+					        det.actividades_id AS codigoactividad  , fases_id AS codigofase ,
+					        p.preguntas_id AS codigopregunta ,
+					        p.descripcion AS descripcion ,
+					        p.bIncluyeotros AS bincluyeotros ,
+					        p.bingresacantidades as bingresacantidades ,
+					        p.bOpcionMultiples as bopcionmultiple
+				FROM desastres_mae_modelo_encuesta_detalle det
+					INNER JOIN desastres_mae_fase_preguntas fp ON fp.codigos_fase_id =  det.fases_id
+					INNER JOIN desastres_mae_preguntas p ON fp.codigo_pregunta =  p.preguntas_id
+				WHERE det.estados_id = 1  AND det.codigo_encuesta_id  = '".$codigo."';";
+		
+		return DB::select($query);
+		
+	}
+	
+	public static function Listar_Opciones($codigo){
+		
+		$query = "  SELECT opc.preguntas_id AS codigopregunta , opc.opcion AS codigoopcion, opc.descripcion AS descripcion
+					FROM desastres_mae_preguntas_opciones opc
+					WHERE opc.preguntas_id IN (
+					SELECT DISTINCT p.preguntas_id
+					FROM desastres_mae_modelo_encuesta_detalle det
+						INNER JOIN desastres_mae_fase_preguntas fp ON fp.codigos_fase_id =  det.fases_id
+						INNER JOIN desastres_mae_preguntas p ON fp.codigo_pregunta =  p.preguntas_id
+					WHERE det.estados_id = 1 AND det.codigo_encuesta_id  = '".$codigo."' ) AND opc.estados_id = 1;";
+		
+		return DB::select($query);
+		
+	}
+	
 	public static function ListarBootGridModeloEncuesta($datos,$codigo_usuario)
 	{
 		$query = '';

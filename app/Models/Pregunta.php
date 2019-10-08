@@ -152,12 +152,12 @@ class Pregunta extends Model
 				# Opcion de Respuesta SI ( ) -  NO ( )
 				if ($data['tipo_respuesta_id'] == 2) {
 					
-					PreguntaOpcion::Nuevo(array(  'preguntas_id' => $preguntas_id[0]->correlativo,
+					PreguntaOpcion::Nuevo(array(  'pregunta_id' => $preguntas_id[0]->correlativo,
 					                              'opcion' => 1, 'descripcion' => 'SI','estados_id' => '1'
 					                            )
 										  );
 					
-					PreguntaOpcion::Nuevo(array(  'preguntas_id' => $preguntas_id[0]->correlativo,
+					PreguntaOpcion::Nuevo(array(  'pregunta_id' => $preguntas_id[0]->correlativo,
 					                              'opcion' => 2, 'descripcion' => 'NO','estados_id' => '1'
 						)
 					);
@@ -183,13 +183,13 @@ class Pregunta extends Model
 
 	public static function Editar($institucion)
 	{
-
+		var_dump($institucion);
 		  try {
 
                 $valores =  array(  'descripcion' => $institucion['descripcion'],
                                     'estados_id' => $institucion['estados_id'],
-                                    'bOpcionMultiples' => $institucion['estados_id'],
-									'bIncluyeotros' => $institucion['estados_id']
+                                    'bOpcionMultiples' => $institucion['bOpcionMultiples'],
+									'bIncluyeotros' => $institucion['bIncluyeotros']
                                 );
         
                     Pregunta::where('preguntas_id',$institucion['pregunta_id'])

@@ -65,14 +65,14 @@
                                           <option value="0">SI</option>
                                       @endif
                                   </select>
-                                        <span  id ="ErrorMensaje-bopcion_multiple" class="help-block"></span>
+                                        <span  id ="ErrorMensaje-bOpcionMultiples" class="help-block"></span>
                             </div>
                             <div class="col-sm-3">
                                 <label class="color-azul">Incluye Otros</label>
                                 <select class="form-control text-center" name="bIncluyeotros" id="bIncluyeotros">
                                     @if( $preguntas[0]->bIncluyeotros ==  1 )
                                         <option value="0">NO</option>
-                                        <option selected value="1">SI</option>
+                                        <option  selected value="1">SI</option>
                                     @else
                                         <option selected value="0">NO</option>
                                         <option value="1">SI</option>
