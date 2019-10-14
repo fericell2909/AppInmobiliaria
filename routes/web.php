@@ -182,5 +182,9 @@ Route::group(['middleware' => 'auth'], function () {
 		#Route::post('/ModeloEncuestas/guardar', 'ActividadController@guardar')->name('actividadesguardar');
 	
 		Route::get('/RegistroFichas', 'FichaController@RegistroFichas')->name('registrofichas');
+		Route::post('/FichaController/GuardarFicha', 'FichaController@guardarNuevo');
+		
+		Route::post('/Locales/Listar', 'LocalesController@LocalesMostrarRegistros');
+		
 
 });

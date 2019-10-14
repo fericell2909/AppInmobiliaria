@@ -22,7 +22,7 @@
             <div class="input-group-prepend">
               <span class="input-group-text"><i class="fas fa-user"></i></span>
             </div>
-             <input id="email" type="text" class="form-control" name="email" value="{{ old('email') }}"  autofocus placeholder="Usuario">
+             <input id="email" type="text" class="form-control text-center" name="email" value="{{ old('email') }}"  autofocus placeholder="Usuario">
             @if ($errors->has('email'))
             <span class="help-block">
                 <strong>{{ $errors->first('email') }}</strong>
@@ -35,7 +35,7 @@
             <div class="input-group-prepend">
               <span class="input-group-text"><i class="fas fa-key"></i></span>
             </div>
-             <input id="password" type="password" class="form-control" name="password" placeholder="Contraseña">
+             <input id="password" type="password" class="form-control text-center" name="password" placeholder="Contraseña">
              @if ($errors->has('password'))
             <span class="help-block">
                 <strong>{{ $errors->first('password') }}</strong>

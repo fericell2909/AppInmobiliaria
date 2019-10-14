@@ -94,6 +94,94 @@ class ModeloEncuesta extends Model
 		
 	}
 	
+	public static function Listar_Cantidad_Actividades_x_Producto($codigo){
+		
+		$query = "  SELECT GROUP_CONCAT(dt.cantidad SEPARATOR '#') AS cadena
+					FROM (
+							SELECT LENGTH(tmp.cantidad) - LENGTH(REPLACE( tmp.cantidad , '*','')) + 1 AS cantidad
+							FROM
+							(
+								SELECT productos_id AS producto, GROUP_CONCAT(DISTINCT actividades_id SEPARATOR '*') AS cantidad
+								FROM desastres_mae_modelo_encuesta_detalle
+								WHERE codigo_encuesta_id = '".$codigo."'
+								GROUP BY productos_id
+							) tmp
+						) dt";
+		
+		return DB::select($query);
+	}
+	
+	public static function Listar_Cantidad_Fases_x_Actividad($codigo){
+		
+		$query = "  SELECT GROUP_CONCAT(dt.cantidad SEPARATOR '#') AS cadena
+					FROM (
+							SELECT LENGTH(tmp.cantidad) - LENGTH(REPLACE( tmp.cantidad , '*','')) + 1 AS cantidad
+							FROM
+							(
+								SELECT actividades_id AS fase, GROUP_CONCAT(DISTINCT fases_id SEPARATOR '*') AS cantidad
+								FROM desastres_mae_modelo_encuesta_detalle
+								WHERE codigo_encuesta_id = '".$codigo."'
+								GROUP BY actividades_id
+							) tmp
+					) dt";
+		
+		return DB::select($query);
+	}
+	
+	public static function Listar_Cantidad_Preguntas_x_Fase($codigo)
+	{
+		
+		$query = "  SELECT GROUP_CONCAT(dt.cantidad SEPARATOR '#') AS cadena
+					FROM (
+						SELECT LENGTH(tmp.cantidad) - LENGTH(REPLACE( tmp.cantidad , '*','')) + 1 AS cantidad
+						FROM
+							(
+								SELECT p.codigos_fase_id AS codigos_fase_id, GROUP_CONCAT(DISTINCT p.codigo_pregunta SEPARATOR '*') AS cantidad
+								FROM desastres_mae_modelo_encuesta_detalle det
+								  INNER JOIN desastres_mae_fase_preguntas p ON det.fases_id = p.codigos_fase_id
+								WHERE codigo_encuesta_id = '".$codigo."' AND det.estados_id = '1'
+								GROUP BY p.codigos_fase_id
+								) tmp
+					) dt";
+		
+		return DB::select($query);
+		
+	}
+	
+	public static function Listar_Preguntas_x_fase($codigo){
+		
+		
+		$query = "  SELECT GROUP_CONCAT(tmp.cantidad) AS cadena
+					FROM	(
+						SELECT p.codigos_fase_id AS codigos_fase_id, GROUP_CONCAT(DISTINCT p.codigo_pregunta SEPARATOR '*') AS cantidad
+								FROM desastres_mae_modelo_encuesta_detalle det
+								  INNER JOIN desastres_mae_fase_preguntas p ON det.fases_id = p.codigos_fase_id
+								WHERE codigo_encuesta_id = '".$codigo."' AND det.estados_id = '1'
+								GROUP BY p.codigos_fase_id
+						) tmp";
+		
+		return DB::select($query);
+		
+	}
+	
+	public static function Listar_Names_Preguntas($codigo){
+		$query = "  SELECT GROUP_CONCAT(tmp.cantidad SEPARATOR ',') AS cadena
+					FROM
+					(
+						SELECT p.codigos_fase_id AS codigos_fase_id,
+					GROUP_CONCAT(DISTINCT
+								CONCAT(
+									'opt_producto_',det.productos_id,'_actividad_',det.actividades_id,'_fase_',det.fases_id,'_pregunta_'
+									,p.codigo_pregunta) SEPARATOR '*') AS cantidad
+				FROM desastres_mae_modelo_encuesta_detalle det
+					INNER JOIN desastres_mae_fase_preguntas p ON det.fases_id = p.codigos_fase_id
+				WHERE codigo_encuesta_id = '".$codigo."' AND det.estados_id = '1'
+				GROUP BY p.codigos_fase_id
+				) tmp";
+		
+		return DB::select($query);
+	}
+	
 	public static function ListarBootGridModeloEncuesta($datos,$codigo_usuario)
 	{
 		$query = '';

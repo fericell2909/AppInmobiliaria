@@ -26,13 +26,23 @@
         .nav-pills>li.nav-item.active {
             background-color: #f44336 !important;
         }
+        .loader {
+            position: fixed;
+            left: 0px;
+            top: 0px;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            background: url('/img/loading.gif') 50% 50% no-repeat rgb(249,249,249);
+            opacity: .8;
+        }
     </style>
 </head>
 
 <body>
 <a href="/home"><i class="fa fa-home"></i> Inicio</a>
 
-
+<div class="loader"></div>
 <div class="image-container set-full-height">
 
 <!--   Big container   -->
@@ -42,8 +52,35 @@
                 <!--      Wizard container        -->
                 <div class="wizard-container" style="padding-top: 10px !important;">
                     <div class="card wizard-card" data-color="red" id="wizard">
-                        <form action="" method="">
+                        <form action="" method="" id="registro_ficha">
                             <!--        You can switch " data-color="blue" "  with one of the next bright colors: "green", "orange", "red", "purple"             -->
+
+                            <input type="hidden" id="hdd_productos_total" name="hdd_productos_total" value="<?php echo count($productos);?>" />
+                            <input type="hidden" id="hdd_productos_codigos" name="hdd_productos_total" value="<?php echo $cadenaproductos['cadenaproductos']?>" />
+
+                            <input type="hidden" id="hdd_actividades_codigos" name="hdd_actividades_codigos" value="<?php echo $cadenaactividades['cadenaactividades']?>" />
+                            <input type="hidden" id="hdd_actividades_total" name="hdd_actividades_total" value="<?php echo count($actividades)?>" />
+
+
+                            <input type="hidden" id="hdd_fases_codigos" name="hdd_fases_codigos" value="<?php echo $cadenafases['cadenafases']?>" />
+                            <input type="hidden" id="hdd_fases_total" name="hdd_fases_total" value="<?php echo count($fases)?>" />
+
+                            <input type="hidden" id="hdd_preguntas_codigos" name="hdd_preguntas_codigos" value="<?php echo $cadenapreguntas['cadenapreguntas']?>" />
+                            <input type="hidden" id="hdd_preguntas_total" name="hdd_preguntas_total" value="<?php echo count($preguntas)?>" />
+
+
+                            <input type="hidden" id="hdd_grupoactividades" name="hdd_grupoactividades" value="<?php echo $grupoactividades[0]->cadena?>" />
+
+                            <input type="hidden" id="hdd_grupofases" name="hdd_grupofases" value="<?php echo $grupofases[0]->cadena?>" />
+
+                            <input type="hidden" id="hdd_grupopreguntas" name="hdd_grupopreguntas" value="<?php echo $grupopreguntas[0]->cadena?>" />
+
+                            <input type="hidden" id="hdd_cadenaspreguntas_fases" name="hdd_cadenaspreguntas_fases" value="<?php echo $preguntasfases[0]->cadena;?>">
+
+                            <input type="hidden" id ="hdd_name_preguntas" name ="hdd_name_preguntas" value="<?php echo $namepreguntas[0]->cadena;?>" />
+
+                            <input type="hidden" id ="usuarioregistro" name ="usuarioregistro" value="<?php echo $usuarioregistro['usuarioregistro'];?>" />
+                            <input type="hidden" id ="codigo_encuesta" name ="codigo_encuesta" value="<?php echo $codigo_encuesta['codigo_encuesta'];?>" />
 
                             <div class="wizard-header">
                                 <h3 class="wizard-title">
@@ -87,6 +124,49 @@
                                                 <span  id ="ErrorMensaje-distrito_id" class="help-block"></span>
                                             </div>
                                         </div>
+                                        <div class="form-group">
+                                            <legend style="display: inline-block;">
+                                                <a href="#" class="btn btn-small btn-primary" data-toggle="modal" data-target="#largeModal"
+                                                           onclick="abrir_ventana_modal('1','', '1' , '', '1');"
+                                                    >
+                                                        <i class="fa fa-plus" aria-hidden="true"></i>&nbsp; Local
+                                                    </a></legend>
+
+                                            <div class="row">
+                                                <div class="col-xs-12 col-lg-3">
+                                                    <label class="color-azul">DRE / GRE </label>
+                                                    <div class="form-group ">
+                                                        <input type="text" class="form-control text-center"
+                                                               id="ficha_dre_local" name="ficha_dre_local"
+                                                               placeholder="" disabled ></div>
+                                                    <span id="ErrorMensaje-ficha_dre_local" class="help-block"></span>
+                                                </div>
+                                                <div class="col-xs-12 col-lg-3">
+                                                    <label class="color-azul"> UGEL </label>
+                                                    <div class="form-group ">
+                                                        <input type="text" class="form-control text-center"
+                                                               id="ficha_ugel" name="ficha_ugel"
+                                                               placeholder="" disabled ></div>
+                                                    <span id="ErrorMensaje-ficha_ugel" class="help-block"></span>
+                                                </div>
+                                                <div class="col-xs-12 col-lg-3">
+                                                    <label class="color-azul">NOMBRE DE LA I.E. </label>
+                                                    <div class="form-group ">
+                                                        <input type="text" class="form-control text-center"
+                                                               id="ficha_nombre_ie" name="ficha_nombre_ie"
+                                                               placeholder="" disabled ></div>
+                                                    <span id="ErrorMensaje-ficha_nombre_ie" class="help-block"></span>
+                                                </div>
+                                                <div class="col-xs-12 col-lg-3">
+                                                    <label class="color-azul">CODIGO LOCAL </label>
+                                                    <div class="form-group ">
+                                                        <input type="text" class="form-control text-center"
+                                                               id="ficha_codigo_local" name="ficha_codigo_local"
+                                                               placeholder="" disabled ></div>
+                                                    <span id="ErrorMensaje-ficha_codigo_local" class="help-block"></span>
+                                                </div>
+                                            </div>
+                                        </div>
                                         <div class="row">
                                             <div class="col-sm-8">
                                                 <label class="color-azul">Titulo de Ficha:</label>
@@ -96,12 +176,12 @@
                                             </div>
                                             <div class="col-sm-4">
                                                 <label class="color-azul">Nivel</label>
-                                                <select class="form-control text-center" name="clasificacion_id" id="clasificacion_id">
+                                                <select class="form-control text-center" name="nivel_id" id="nivel_id">
                                                     @foreach($niveles as $nivel)
                                                         <option class="text-center" value="{{$nivel->id}}">{{$nivel->descripcion}}</option>
                                                     @endforeach
                                                 </select>
-                                                <span  id ="ErrorMensaje-clasificacion_id" class="help-block"></span>
+                                                <span  id ="ErrorMensaje-nivel_id" class="help-block"></span>
                                             </div>
 
                                         </div>
@@ -116,23 +196,23 @@
                                                 <div class="form-group row">
                                                     <div class="col-sm-12">
                                                         <label class="color-azul">Caracteristicas</label>
-                                                        <select class="form-control text-center" name="tipos_id" id="tipos_id">
+                                                        <select class="form-control text-center" name="caracteristica_id" id="caracteristica_id">
                                                             @foreach($caracteristicas as $caracteristica)
                                                                 <option class="text-center" value="{{$caracteristica->id}}">{{$caracteristica->descripcion}}</option>
                                                             @endforeach
                                                         </select>
-                                                        <span  id ="ErrorMensaje-tipos_id" class="help-block"></span>
+                                                        <span  id ="ErrorMensaje-caracteristica_id" class="help-block"></span>
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
                                                     <div class="col-sm-12">
                                                         <label class="color-azul">Modalidad</label>
-                                                        <select class="form-control text-center" name="cuarto_id" id="cuarto_id">
+                                                        <select class="form-control text-center" name="modalidad_id" id="modalidad_id">
                                                             @foreach($modalidades as $modalidad)
                                                                 <option value="{{$modalidad->id}}">{{$modalidad->descripcion}}</option>
                                                             @endforeach
                                                         </select>
-                                                        <span  id ="ErrorMensaje-cuarto_id" class="help-block"></span>
+                                                        <span  id ="ErrorMensaje-modalidad_id" class="help-block"></span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -357,11 +437,6 @@
                                                     </div>
                                                     <div class="col-sm-3">
                                                         <div class="input-group">
-                                                            <div class="input-group-prepend">
-                                                                <span class="input-group-text">
-                                                                  <i class="fa fa-group"></i>
-                                                                </span>
-                                                            </div>
                                                             <label for="director_contacto_tiempo_cargo">Tiempo Cargo - Meses</label>
                                                             <input type="number" name="director_contacto_tiempo_cargo" id="director_contacto_tiempo_cargo"
                                                                    class="form-control text-center"
@@ -412,11 +487,6 @@
                                                     </div>
                                                     <div class="col-sm-3">
                                                         <div class="input-group">
-                                                            <div class="input-group-prepend">
-                                                                <span class="input-group-text">
-                                                                  <i class="fa fa-group"></i>
-                                                                </span>
-                                                            </div>
                                                             <label for="responsable_contacto_tiempo_cargo">Tiempo Cargo - Meses</label>
                                                             <input type="number" name="responsable_contacto_tiempo_cargo" id="responsable_contacto_tiempo_cargo"
                                                                    class="form-control text-center"
@@ -458,7 +528,11 @@
                                                                                                  @foreach($preguntas as $pregunta)
                                                                                                      @if( $producto->id == $pregunta->codigoproducto and $pregunta->codigoactividad == $actividad->codigoactividad
                                                                                                         and $pregunta->codigofase == $fase->codigofase)
-                                                                                                                 <h4 style="margin-left:5px; margin-top : 5px">{{$pregunta->descripcion}}</h4>
+                                                                                                                 <h4 style="margin-left:5px; margin-top : 5px"  >{{ $pregunta->codigopregunta . ' - ' .  $pregunta->descripcion}}</h4>
+                                                                                                         <input type="hidden" id="opt_producto_{{$producto->id}}_actividad_{{$actividad->codigoactividad}}_fase_{{$fase->codigofase}}_pregunta_{{$pregunta->codigopregunta}}_cantidades" value =
+                                                                                                                "{{$pregunta->bingresacantidades}}">
+                                                                                                         <input type="hidden" id="opt_producto_{{$producto->id}}_actividad_{{$actividad->codigoactividad}}_fase_{{$fase->codigofase}}_pregunta_{{$pregunta->codigopregunta}}_multiselect" value =
+                                                                                                         "{{$pregunta->bopcionmultiple}}">
                                                                                                          <div class="row">
 
                                                                                                          </div>
@@ -467,7 +541,7 @@
                                                                                                                  $pregunta->bingresacantidades == 0 and  $pregunta->bopcionmultiple == 0 )
                                                                                                              <label class="radio-inline" style="margin-left:5px;">
                                                                                                                  <input type="radio"
-                                                                                                                        name="opt_fase_{{$fase->codigofase}}_pregunta_{{$opcion->codigopregunta}}"
+                                                                                                                        name="opt_producto_{{$producto->id}}_actividad_{{$actividad->codigoactividad}}_fase_{{$fase->codigofase}}_pregunta_{{$opcion->codigopregunta}}"
                                                                                                                         value="{{ $opcion->codigoopcion }}">{{$opcion->descripcion}}
                                                                                                              </label>
                                                                                                              @endif
@@ -475,7 +549,7 @@
                                                                                                                          $pregunta->bingresacantidades == 0 and  $pregunta->bopcionmultiple == 1 )
                                                                                                                      <label class="radio-inline" style="margin-left:5px;">
                                                                                                                          <input type="checkbox"
-                                                                                                                                name="opt_fase_{{$fase->codigofase}}_pregunta_{{$opcion->codigopregunta}}"
+                                                                                                                                name="opt_producto_{{$producto->id}}_actividad_{{$actividad->codigoactividad}}_fase_{{$fase->codigofase}}_pregunta_{{$opcion->codigopregunta}}[]"
                                                                                                                                 value="{{ $opcion->codigoopcion }}">{{$opcion->descripcion}}
                                                                                                                      </label>
                                                                                                              @endif
@@ -489,15 +563,18 @@
                                                                                                                             </span>
                                                                                                                          </div>
                                                                                                                          <label for="nAlmMascSecundaria">{{$opcion->descripcion}}</label>
-                                                                                                                         <input type="number" name="nAlmMascSecundaria" id="nAlmMascSecundaria" class="form-control text-center"
+                                                                                                                         <input type="number"
+                                                                                                                                name="opt_producto_{{$producto->id}}_actividad_{{$actividad->codigoactividad}}_fase_{{$fase->codigofase}}_pregunta_{{$opcion->codigopregunta}}_dcantidad"
+                                                                                                                                class="form-control text-center"
                                                                                                                                 placeholder="{{$opcion->descripcion}}" value="0">
                                                                                                                      </div>
                                                                                                              @endif
                                                                                                          @endforeach
                                                                                                          @if($pregunta->bincluyeotros == 1 and
                                                                                                                  $pregunta->bingresacantidades == 0)
-                                                                                                             <input type="text" name="opt_otros_fase_{{$fase->codigofase}}_pregunta_{{$opcion->codigopregunta}}"
-                                                                                                                    id="opt_otros_fase_{{$fase->codigofase}}_pregunta_{{$opcion->codigopregunta}}"
+                                                                                                             <input type="text"
+                                                                                                                    name="opt_producto_{{$producto->id}}_actividad_{{$actividad->codigoactividad}}_fase_{{$fase->codigofase}}_pregunta_{{$pregunta->codigopregunta}}_otros"
+                                                                                                                    id="opt_producto_{{$producto->id}}_actividad_{{$actividad->codigoactividad}}_fase_{{$fase->codigofase}}_pregunta_{{$pregunta->codigopregunta}}_otros"
                                                                                                                     class="form text-center"
                                                                                                                     style="width: 350px;"
                                                                                                                     placeholder="Otros" value="">
@@ -521,7 +598,9 @@
                             <div class="wizard-footer">
                                 <div class="pull-right">
                                     <input type='button' class='btn btn-finish btn-fill btn-danger btn-wd' name='finish'
-                                           value='Registrar Ficha' id="Registrar_Ficha_Encuesta"/>
+                                           value='Registrar Ficha' id="Registrar_Ficha_Encuesta"
+                                            onclick="save_registrar_ficha();"
+                                    />
                                 </div>
                             </div>
                         </form>
@@ -532,7 +611,28 @@
     </div> <!--  big container -->
 
 </div>
-
+<div class="modal fade" id="largeModal" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Busqueda de Local</h4>
+                <input type="hidden" id="hdd_tipo_opcion" value="0" name= "hdd_tipo_opcion" >
+                <input type="hidden" id="hdd_pregunta_opcion" value="0" name= "hdd_pregunta_opcion" >
+                <input type="hidden" id="hdd_correlativo_opcion" value="0" name= "hdd_correlativo_opcion" >
+            </div>
+            <div class="modal-body">
+                <label for="descripcion_opcion">Nombre de Local a Buscar</label>
+                <input type="text" class="form form-control text-center " name="txtbusquedalocal" id="txtbusquedalocal"
+                placeholder="Digite un Nombre o Codigo y presione Enter...">
+                <div id="div_txtbusquedalocal" style=""></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-close"></i>Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 <!--   Core JS Files   -->
 <script src="assets/js/jquery-2.2.4.min.js" type="text/javascript"></script>
@@ -547,27 +647,349 @@
 <script src="{{ asset('dist/js/inmobiliaria.js')}}"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 <script>
+    function abrir_ventana_modal(ptipo,ppreguntaid , pcorrelativo , pdescripcion , pestado)
+    {
+
+        $('#txtbusquedalocal').val('');
+        if ( ptipo != 1 ) { $('#largeModal').modal('show') }
+
+
+    }
+
+    function save_registrar_ficha() {
+
+        let titulo = $('#titulo_ficha').val().trim();
+
+        if( titulo.length == 0 || titulo == "" ) {
+
+            Swal.fire({
+                type: 'warning',
+                title: 'Debe Ingresar un Titulo para la Ficha.'
+            });
+            return false;
+        }
+
+        let codigo_local = $('#ficha_codigo_local').val().trim();
+
+        if( codigo_local.length == 0 || codigo_local == '' ) {
+
+            Swal.fire({
+                type: 'warning',
+                title: 'Debe Seleccionar un Local.'
+            });
+            return false;
+        }
+
+        let data_procesar = {
+            codigo_departamento: $('#departamento_id').val(),
+            codigo_provincia: $('#provincia_id').val(),
+            codigo_distrito: $('#distrito_id').val(),
+            codigo_local: $('#ficha_codigo_local').val(),
+            titulo_ficha: $('#titulo_ficha').val().trim(),
+            observaciones: $('#descripcion_id').val().trim(),
+            nivel: $('#nivel_id').val().trim(),
+            caracteristica: $('#caracteristica_id').val().trim(),
+            modalidad: $('#modalidad_id').val().trim(),
+            nAlmMascInicial: $('#nAlmMascInicial').val().trim(),
+            nAlmMascPrimaria: $('#nAlmMascPrimaria').val().trim(),
+            nAlmMascSecundaria: $('#nAlmMascSecundaria').val().trim(),
+            nAlmMascEBE: $('#nAlmMascEBE').val(),
+            nAlmMascEBA: $('#nAlmMascEBA').val(),
+            nAlmMascCETPRO: $('#nAlmMascCETPRO').val(),
+            nAlmMujInicial: $('#nAlmMujInicial').val(),
+            nAlmMujPrimaria: $('#nAlmMujPrimaria').val(),
+            nAlmMujSecundaria: $('#nAlmMujSecundaria').val(),
+            nAlmMujcEBE: $('#nAlmMujEBE').val(),
+            nAlmMujcEBA: $('#nAlmMujEBA').val(),
+            nAlmMujCETPRO: $('#nAlmMujCETPRO').val(),
+            director_contacto_nombres_apellidos: $('#director_contacto_nombres_apellidos').val().trim(),
+            director_contacto_dni: $('#director_contacto_dni').val().trim(),
+            director_contacto_email: $('#director_contacto_email').val().trim(),
+            director_laboral: $('#director_laboral_id').val(),
+            director_contacto_celular: $('#director_contacto_celular').val(),
+            director_contacto_tiempo_cargo: $('#director_contacto_tiempo_cargo').val(),
+
+            responsable_contacto_nombres_apellidos: $('#responsable_contacto_nombres_apellidos').val().trim(),
+            responsable_contacto_dni: $('#responsable_contacto_dni').val().trim(),
+            responsable_contacto_email: $('#responsable_contacto_email').val().trim(),
+            responsable_laboral: $('#responsable_laboral_id').val(),
+            responsable_contacto_celular: $('#responsable_contacto_celular').val(),
+            responsable_contacto_tiempo_cargo: $('#responsable_contacto_tiempo_cargo').val(),
+            cantidad_productos: '<?php echo count($productos);?>',
+
+            hdd_productos_total: $('#hdd_productos_total').val(),
+            hdd_productos_codigos: $('#hdd_productos_codigos').val(),
+            hdd_actividades_codigos: $('#hdd_actividades_codigos').val(),
+            hdd_actividades_total: $('#hdd_actividades_total').val(),
+            hdd_fases_codigos: $('#hdd_fases_codigos').val(),
+            hdd_fases_total: $('#hdd_fases_total').val(),
+            hdd_preguntas_codigos: $('#hdd_preguntas_codigos').val(),
+            hdd_preguntas_total: $('#hdd_preguntas_total').val(),
+            hdd_grupoactividades: $('#hdd_grupoactividades').val(),
+            hdd_grupofases: $('#hdd_grupofases').val(),
+            hdd_grupopreguntas: $('#hdd_grupopreguntas').val(),
+            hdd_cadenaspreguntas_fases: $('#hdd_cadenaspreguntas_fases').val(),
+            hhdd_cadena_name_preguntas : $('#hdd_name_preguntas').val(),
+            usuarioregistro : $('#usuarioregistro').val(),
+            codigo_encuesta : $('#codigo_encuesta').val()
+        }
+
+
+        // opt_producto_1_actividad_1_fase_1_pregunta_P201900001
+        let hhdd_cadena_name = $('#hdd_name_preguntas').val();
+
+        let explode_names = hhdd_cadena_name.split(',');
+        let cadena_aux_preguntas = "";
+        let t_pregunta = 0;
+        let t_fase = $('#hdd_fases_total').val();
+        for (var i_fase = 1; i_fase <= t_fase; i_fase++) {
+
+            cadena_aux_preguntas = explode_names[i_fase-1].split('*');
+            t_pregunta =     cadena_aux_preguntas.length;
+
+            for (i_pregunta = 1 ; i_pregunta <= t_pregunta; i_pregunta++) {
+
+                let scadena = cadena_aux_preguntas[i_pregunta-1];
+
+                let valor = $("input:radio[name=" + scadena + "]:checked").val();
+                let valor_otros = $("#" + scadena + "_otros").val();
+
+                let ingresa_cantidades = $("#" + scadena + "_cantidades").val();
+
+                let ingresa_multiselect = $("#" + scadena + "_multiselect").val();
+
+                if( valor == undefined ) {
+
+                    if (ingresa_cantidades <= 0) {
+
+                        if(ingresa_multiselect <= 0){
+
+                            Swal.fire({
+                                type: 'warning',
+                                title: 'La Pregunta : ' + scadena.slice(-10) + ' Aun no ha sido respondida'
+                            });
+
+                            return false;
+
+                        } else
+                        {
+
+                            let i_cnt = 1;
+                            let saux = "";
+
+                            $("input[name='" + scadena + "[]']:checked").each(function () {
+                                if (i_cnt == 1) {
+                                    saux = $(this).val();
+                                } else {
+                                    saux = saux + ',' + $(this).val();
+                                }
+
+                                i_cnt = i_cnt + 1;
+                            });
+
+                            if (saux == '')
+                            {
+                                Swal.fire({
+                                    type: 'warning',
+                                    title: 'La Pregunta : ' + scadena.slice(-10) + ' Aun no ha sido respondida'
+                                });
+
+                                return false;
+
+                            } else
+                            {
+                                data_procesar[scadena] = saux;
+                            }
+
+                        }
+
+                    } else {
+                        if (parseInt(ingresa_cantidades) > 0) {
+
+                            let ii = 1;
+                            let scad_aux = "";
+
+                            $("input[name='" + scadena + "_dcantidad']").each(function () {
+                                if (ii == 1) {
+                                    scad_aux = $(this).val();
+                                } else {
+                                    scad_aux = scad_aux + ',' + $(this).val();
+                                }
+
+                                ii = ii + 1;
+                            });
+
+                            data_procesar[scadena] = scad_aux;
+                        }
+                    }
+                }
+                else
+                {
+
+                   data_procesar[scadena] = valor;
+
+
+                    if(valor_otros == undefined)
+                    {
+                        valor_otros = '-1';
+
+                    }
+
+                    data_procesar[scadena+'_otros'] = valor_otros;
+
+
+                }
+
+            }
+
+        }
+
+        console.log(data_procesar);
+
+        $(".loader").css("display","block");
+
+        $.ajax({
+            url: '../FichaController/GuardarFicha',
+            data : data_procesar,
+            type: 'POST',
+            datatype: 'JSON',
+            success: function(respuesta) {
+                let data =  JSON.parse(respuesta);
+                Swal.fire({
+                    type: 'success',
+                    title: 'Atencion. Aviso Importante',
+                    text: data.mensajerespuesta
+            });
+
+                $(".loader").css("display","none");
+
+                window.location.href = "/home";
+
+            },
+            error: function() {
+                Swal.fire({
+                    type: 'error',
+                    title: 'Atencion. Aviso Importante',
+                    text: respuesta.mensajerespuesta
+                });
+                $(".loader").css("display","none");
+            }
+        });
+
+
+    }
+
     $( document ).ready(function() {
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
 
         $('#Registrar_Ficha_Encuesta').on('click',function() {
 
-            let titulo = $('#titulo_ficha').val().trim();
 
-            if( titulo.length == 0 || titulo == '' ) {
-
-                Swal.fire({
-                    type: 'warning',
-                    title: 'Debe Ingresar un Titulo para la Ficha.'
-                });
-            }
 
 
         });
 
+        $('#txtbusquedalocal').on('keypress', function(e) {
+            if (e.which == 13) {
 
+                let string_cdatoslocales = '<select class="custom-select form form-control" id="lst_txtbusquedalocal">';
+
+                $('#div_txtbusquedalocal').html('');
+                $('#div_txtbusquedalocal').css('display','block');
+
+                $('#div_txtbusquedalocal').html('');
+
+                let datajson  = {
+                    current : 1 ,
+                    rowCount: 20 ,
+                    searchPhrase : $('#txtbusquedalocal').val()
+                }
+
+                $.ajax({
+                    url: '../../Locales/Listar',
+                    data: datajson,
+                    method: 'POST',
+                    datatype: 'json',
+                    async: false
+                }).done(function (respuesta) {
+
+                    let data  =  JSON.parse(respuesta);
+
+                    if (data.total > 0 && data.rows.length > 0) {
+                        let rows =  data.rows;
+                        $.each(rows, function (index, val) {
+                            let id = rows[index].id;
+                            let codigo = rows[index].codigo;
+                            let nombre =  rows[index].nombre;
+                            let dre = rows[index].dre;
+                            let ugel = rows[index].ugel;
+
+                            if(nombre == '') {
+                                nombre = 'No se ha defi';
+                            }
+                            string_cdatoslocales = string_cdatoslocales +
+                                '<option value="' + id + '" data-id="' + id + '" ' +
+                                'data-codigo="' + codigo + '" ' +
+                                'data-nombre = "' + nombre + '" ' +
+                                'data-dre = "' + dre + '"' +
+                                'data-ugel = "' + ugel + '"' +
+                                ' >' + nombre + '</option>';
+
+                        });
+
+                        string_cdatoslocales = string_cdatoslocales + '</select>';
+                        console.log(string_cdatoslocales);
+                        $('#div_txtbusquedalocal').html(string_cdatoslocales);
+
+                        let lst_datostxtbusquedalocal = $('#lst_txtbusquedalocal');
+                        lst_datostxtbusquedalocal.attr('size', '10');
+
+                        $('#lst_txtbusquedalocal').click(function(){
+
+                            var seleccionado = $(this).find('option:selected');
+                            // 'type' es lo que va a continuación del guión en data-type
+                            // var animal = seleccionado.data('type');
+
+                            $('#div_txtbusquedalocal').html('');
+
+                            $('#ficha_dre_local').val(seleccionado.data("dre"));
+                            $('#ficha_ugel').val(seleccionado.data("ugel"));
+                            $('#ficha_nombre_ie').val(seleccionado.data("nombre"));
+                            //$('#ficha_codigo_local').val(lst_datostxtbusquedalocal.data('codigo'));
+
+                            $('#ficha_codigo_local').val(seleccionado.data("codigo"));
+                            $('#largeModal').modal('hide');
+
+
+                        });
+
+
+                    } else{
+                        Swal.fire({
+                            type: 'warning',
+                            title: 'No se Encontraron Registros Disponibles'
+                        });
+                    }
+                }).fail(function (xhr) {
+                    Swal.fire({
+                        type: 'error',
+                        title: 'HA Ocurrido un Error.'
+                    });
+                });
+            }
+        });
 
     });
 </script>
 
-
+<script type="text/javascript">
+    $(window).load(function() {
+        $(".loader").fadeOut("slow");
+    });
+</script>
 </html>
