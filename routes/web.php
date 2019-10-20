@@ -191,4 +191,10 @@ Route::group(['middleware' => 'auth'], function () {
 	
 		Route::get('/FichasController/Imprimir/{id}', 'ReporteController@imprimirfichas')->name('imprimirfichas');
 	
+		Route::get('/SubirArchivos/{id}', 'StorageController@index');
+	
+		Route::post('storage/create', 'StorageController@save')->name('savearchivo');
+	
+		Route::post('/FichasController/ListarArchivos', 'FichaController@ListadoArchivosBootGrid');
+		Route::get('/FichasController/listardocumentos/{id}', 'FichaController@listararchivos')->name('listararchivos');
 });

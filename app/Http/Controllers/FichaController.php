@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Caracteristica;
 use App\Models\CondicionLaboral;
+use App\Models\EncuestaArchivo;
 use App\Models\EncuestaCabecera;
 use App\Models\Modalidad;
 use App\Models\Nivel;
@@ -85,7 +86,22 @@ class FichaController extends Controller
 	    $usuarios = EncuestaCabecera::Listar_Usuarios(Auth::user()->rol_id,Auth::user()->email);
     	return view('fichas.consultafichas',compact('usuarios'));
     }
-    
+
+    public function listararchivos($id){
+    	
+    	$identificador = array('identificador'=> $id);
+	    $cabeceras  = EncuestaCabecera::Datos_reporte($id);
+	
+	    return view('fichas.listararchivos',compact('identificador','cabeceras'));
+    	
+    }
+	public function ListadoArchivosBootGrid(Request $request)
+	{
+		$datos = $request->all();
+		
+		return EncuestaArchivo::ListarBootGridEncuestaArchivo($datos,$datos['identificador']);
+	}
+	
     public function ListarFichasMostrarRegistros(Request $request)
     {
 	

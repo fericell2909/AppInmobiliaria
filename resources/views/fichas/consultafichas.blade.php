@@ -93,7 +93,7 @@ Consulta de Fichas
                 "commands": function(column, row)
                 {
 
-                    return  "<a  class=\"btn \" href=\"../Fases/Editar/" +   row.identificador + "\"><i class=\"fa fa-pencil\" aria-hidden=\"true\"></i>&nbsp; Adjuntar Archivo</a> <a  class=\"btn \" href=\"../FichasController/Imprimir/" +   row.identificador + "\"><i class=\"fa fa-print\" aria-hidden=\"true\"></i>&nbsp; Ver Reporte</a>";
+                    return  "<a  class=\"btn \" href=\"../SubirArchivos/" +   row.identificador + "\"><i class=\"fa fa-pencil\" aria-hidden=\"true\"></i>&nbsp; Adjuntar Archivo</a> <a  class=\"btn \" href=\"../FichasController/listardocumentos/" +   row.identificador + "\"><i class=\"fa fa-download\" aria-hidden=\"true\"></i>&nbsp; Descargar Archivos</a> <a  class=\"btn \" href=\"../FichasController/Imprimir/" +   row.identificador + "\"><i class=\"fa fa-print\" aria-hidden=\"true\"></i>&nbsp; Ver Reporte</a>";
                 }
             }
         });
