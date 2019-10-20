@@ -3,14 +3,177 @@
 namespace App\Models;
 
 use App\Models\EncuestaDetalle;
+use App\Models\User;
+use App\Models\Pregunta;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB as DB;
-
 class EncuestaCabecera extends Model
+
 {
 	protected $table ='encuestas_cabecera';
 	public $primarykey='id';
 	
+	public static function Listar_Usuarios($rol_usuario,$email){
+	
+		if ( $rol_usuario == 1 || $rol_usuario == 2 ) {
+			
+			return User::select("users.name","users.email")
+				->get();
+		
+		} else
+		{
+			return User::select("users.name","users.email")
+						->where("users.email",$email)->get();
+			
+		}
+	
+	}
+	
+	public static function Lista_Datos_encuestadetalle($identificador)
+	{
+		
+		return DB::select("SELECT desastres_encuestas_detalle.preguntas_id AS preguntas_id,
+								desastres_encuestas_detalle.llave AS llave ,
+								desastres_encuestas_detalle.valor AS valor ,
+								desastres_encuestas_detalle.otros AS otros
+							FROM desastres_encuestas_detalle
+							WHERE desastres_encuestas_detalle.identificador = '" .$identificador.  "';");
+		
+	}
+	public static function Datos_reporte($identificador)
+	{
+		
+		return DB::select("SELECT desastres_locales.nombre AS nombre_local ,
+							       desastres_locales.departamento AS departamento,
+							       desastres_locales.provincia AS provincia,
+							       desastres_locales.distrito AS distrito,
+							       desastres_locales.direccion AS direccion,
+							       desastres_locales.dre AS dre ,
+							       desastres_locales.ugel AS ugel,
+							       desastres_locales.codigo AS codigo_local,
+							       desastres_niveles_institucion.descripcion AS nivel,
+							       desastres_caracteristicas_institucion.descripcion AS caracteristica ,
+							       desastres_modalidad_institucion.descripcion AS modalidad ,
+							       desastres_mae_modelo_encuesta.descripcion AS titulo ,
+							       desastres_encuestas_cabecera.director_contacto_celular AS director_contacto_celular,
+							       desastres_encuestas_cabecera.director_contacto_dni AS director_contacto_dni,
+							       desastres_encuestas_cabecera.director_contacto_email AS director_contacto_email,
+							       desastres_encuestas_cabecera.director_contacto_nombres_apellidos AS director_contacto_nombre_apellidos
+							FROM desastres_encuestas_cabecera
+								  INNER JOIN desastres_locales ON desastres_encuestas_cabecera.codigo_local = desastres_locales.codigo
+								  INNER JOIN desastres_niveles_institucion ON desastres_niveles_institucion.id = desastres_encuestas_cabecera.nivel
+								  INNER JOIN desastres_caracteristicas_institucion ON desastres_caracteristicas_institucion.id = desastres_encuestas_cabecera.caracteristica
+								  INNER JOIN desastres_modalidad_institucion ON desastres_modalidad_institucion.id = desastres_encuestas_cabecera.modalidad
+								  INNER JOIN desastres_mae_modelo_encuesta ON desastres_mae_modelo_encuesta.codigo_encuesta =  desastres_encuestas_cabecera.codigo_encuesta
+							WHERE identificador = '" .$identificador.  "';");
+	
+	}
+	
+	public static function Listar_Fichas_x_Usuario($datos,$email)
+	{
+		
+		#return EncuestaCabecera::select("encuestas_cabecera.identificador","encuestas_cabecera.codigo_local","encuestas_cabecera.director_contacto_nombres_apellidos")
+		#			->where("encuestas_cabecera.usuarioregistro",$usuario)
+		#			->get();
+		
+		$query = '';
+		
+		$records_per_page = 10;
+		
+		$start_from = 0;
+		
+		$current_page_number = 0;
+		
+		if(isset($_POST["rowCount"]))
+		{
+			$records_per_page = $datos["rowCount"];
+		}
+		else
+		{
+			$records_per_page = 10;
+		}
+		
+		if(isset($_POST["current"]))
+		{
+			$current_page_number = $datos["current"];
+		}
+		else
+		{
+			$current_page_number = 1;
+		}
+		
+		$start_from = ($current_page_number - 1) * $records_per_page;
+		
+		
+		$query .= " SELECT desastres_encuestas_cabecera.usuarioregistro as usuario ,
+ 						   desastres_encuestas_cabecera.identificador as identificador,
+ 						   desastres_encuestas_cabecera.codigo_local as codigo_local,
+ 						   desastres_locales.nombre as nombrelocal,
+                           CASE  desastres_estados.id
+                           		WHEN 1 THEN CONCAT('<span class=\"label label-success\">',desastres_estados.nombre_estado,'</span>') ELSE
+                           					CONCAT('<span class=\"label label-danger\">',desastres_estados.nombre_estado,'</span>') END    as  nombre_estado ,
+                           desastres_encuestas_cabecera.director_contacto_nombres_apellidos as director_contacto_nombres_apellidos
+                    FROM desastres_encuestas_cabecera
+						inner join desastres_estados on desastres_estados.id = desastres_encuestas_cabecera.estados_id
+						inner join desastres_locales on desastres_locales.codigo =  desastres_encuestas_cabecera.codigo_local
+					WHERE desastres_encuestas_cabecera.usuarioregistro = '" . $email . "'";
+		
+		
+		if(!empty($_POST["searchPhrase"]))
+		{
+			$query .= ' AND ( desastres_encuestas_cabecera.identificador LIKE "%'.$_POST["searchPhrase"].'%" ';
+			#$query .= 'OR desastres_mae_preguntas.descripcion LIKE "%'.$_POST["searchPhrase"].'%" ';
+			$query .= 'OR desastres_estados.nombre_estado LIKE "%'.$_POST["searchPhrase"].'%" )';
+		}
+		
+		$order_by = '';
+		
+		if(isset($_POST["sort"]) && is_array($_POST["sort"]))
+		{
+			foreach($_POST["sort"] as $key => $value)
+			{
+				$order_by .= " $key $value, ";
+			}
+		}
+		else
+		{
+			$query .= ' ORDER BY desastres_encuestas_cabecera.identificador ASC ';
+		}
+		
+		if($order_by != '')
+		{
+			$query .= ' ORDER BY ' . substr($order_by, 0, -2);
+		}
+		
+		if($records_per_page != -1)
+		{
+			$query .= " LIMIT " . $start_from . ", " . $records_per_page .";";
+		}
+		
+		
+		$results = DB::select($query);
+		
+		
+		$total_records = EncuestaCabecera::select('encuestas_cabecera.usuarioregistro')
+			->where('usuarioregistro', $email)->count();
+		
+		
+		$output = array(
+			'current'  => intval($datos["current"]),
+			'rowCount'  => $records_per_page,
+			'total'   => intval($total_records),
+			'rows'   => $results
+		);
+		
+		$total_records = null;
+		$query = null;
+		$records_per_page = null;
+		$order_by = null;
+		$start_from = null;
+		
+		return json_encode($output);
+	
+	}
 	public static function NumeroEncuestasRegistradas($usuario){
 		
 		return EncuestaCabecera::select("encuestas_cabecera.identificador")
@@ -28,7 +191,6 @@ class EncuestaCabecera extends Model
 		
 		try
 		{
-			
 			$encuesta =  new EncuestaCabecera();
 			
 			$identificador = EncuestaCabecera::ObtieneNuevoCorrelativo();
@@ -92,6 +254,7 @@ class EncuestaCabecera extends Model
 			$encuesta->usuarioregistro = $data['usuarioregistro'];
 			$encuesta->estados_id = 1;
 			$encuesta->codigo_encuesta = $data['codigo_encuesta'];
+			$encuesta->ficha_turno_id = $data['ficha_turno_id'];
 			
 			$encuesta->save();
 			
@@ -119,7 +282,24 @@ class EncuestaCabecera extends Model
 					$detalle->preguntas_id = substr($scadena, -10);
 					$detalle->llave = $scadena;
 					$detalle->valor = $data[$scadena];
-					$detalle->otros = ( (in_array($scadena.'_otros', $data)) ?  $data[$scadena.'_otros'] : "" ) ;
+					
+					if (EncuestaCabecera::Incluye_Otros(substr($scadena, -10)) == 1) {
+						
+						#echo $data[$scadena.'_otros'];
+						if(isset($data[$scadena.'_otros']) ? null : '' == null)
+						{
+							$detalle->otros = '' ;
+						} else
+						{
+							$detalle->otros = $data[$scadena.'_otros'] ;
+						}
+					} else
+					{
+						$detalle->otros = ( (in_array($scadena.'_otros', $data)) ?  $data[$scadena.'_otros'] : "" ) ;
+					}
+					
+					
+					
 					$detalle->estados_id = 1;
 					
 					$detalle->save();
@@ -137,5 +317,21 @@ class EncuestaCabecera extends Model
 		
 	
 	
+	}
+	
+	public static function Incluye_Otros($pregunta)
+	{
+		$data =  Pregunta::select("mae_preguntas.bIncluyeotros")
+				->where("mae_preguntas.preguntas_id",$pregunta)
+			->get();
+		
+		if (count($data) > 0 )
+		{
+			return $data[0]->bIncluyeotros;
+			
+		} else
+		{
+			return 0;
+		}
 	}
 }

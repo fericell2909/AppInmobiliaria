@@ -8,6 +8,7 @@ use App\Models\EncuestaCabecera;
 use App\Models\Modalidad;
 use App\Models\Nivel;
 use App\Models\Zona;
+use App\Models\Turno;
 use Illuminate\Http\Request;
 use App\Models\ModeloEncuesta;
 use Illuminate\Support\Facades\Auth;
@@ -48,13 +49,15 @@ class FichaController extends Controller
 	    $codigo_encuesta = array('codigo_encuesta' => 'E201900001');
 	    $usuarioregistro = array('usuarioregistro' => Auth::user()->email);
 	    #var_dump($cadenapreguntas);
-	    
+		
+	    $turnos = Turno::Listar();
+		   
 	    return view('fichas.registrarficha',
 		            compact('modeloencuestas','departamentos','niveles','caracteristicas',
 			                        'modalidades','laborales','productos','actividades','fases','preguntas','opciones',
 			                        'cadenaproductos', 'cadenaactividades','cadenafases','cadenapreguntas',
 		                            'grupoactividades' , 'grupofases', 'grupopreguntas','preguntasfases' ,
-		                            'namepreguntas','codigo_encuesta','usuarioregistro'
+		                            'namepreguntas','codigo_encuesta','usuarioregistro' , 'turnos'
 			            ));
     
 	    
@@ -74,6 +77,20 @@ class FichaController extends Controller
 	
 	    return json_encode($output);
 	    
+    }
+    
+    public function consultarfichas()
+    {
+		  
+	    $usuarios = EncuestaCabecera::Listar_Usuarios(Auth::user()->rol_id,Auth::user()->email);
+    	return view('fichas.consultafichas',compact('usuarios'));
+    }
+    
+    public function ListarFichasMostrarRegistros(Request $request)
+    {
+	
+	    $datos = $request->all();
+	    return EncuestaCabecera::Listar_Fichas_x_Usuario($datos,$datos['email']);
     }
     
     private function devuelve_cadena_productos($datos){

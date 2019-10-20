@@ -33,7 +33,7 @@
 						     <tr>
 						      <th class="text-center" style="vertical-align:middle;" data-column-id="descripcion">Descripcion</th>
 						      <th class="text-center" style="vertical-align:middle;" data-column-id="nombre_estado">Estado</th>
-						      <th class="text-center" style="vertical-align:middle;" data-column-id="commands" data-formatter="commands" data-sortable="false">Acciones</th>
+						      <!--<th class="text-center" style="vertical-align:middle;" data-column-id="commands" data-formatter="commands" data-sortable="false">Acciones</th>-->
 						    </tr>
 						  </thead>
 						  </table>

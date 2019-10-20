@@ -168,22 +168,14 @@
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-sm-8">
+                                            <div class="col-sm-8" style="display: none;">
                                                 <label class="color-azul">Titulo de Ficha:</label>
                                                 <input type="text" class="form-control text-center" id="titulo_ficha"
-                                                       name="titulo_ficha"  maxlength="100" placeholder="Titulo de Ficha">
+                                                       name="titulo_ficha"  maxlength="100" placeholder="Titulo de Ficha"
+                                                        style="display: none;" value="ejemplo_titulo_"
+                                                    >
                                                 <span  id ="ErrorMensaje-titulo_ficha" class="help-block"></span>
                                             </div>
-                                            <div class="col-sm-4">
-                                                <label class="color-azul">Nivel</label>
-                                                <select class="form-control text-center" name="nivel_id" id="nivel_id">
-                                                    @foreach($niveles as $nivel)
-                                                        <option class="text-center" value="{{$nivel->id}}">{{$nivel->descripcion}}</option>
-                                                    @endforeach
-                                                </select>
-                                                <span  id ="ErrorMensaje-nivel_id" class="help-block"></span>
-                                            </div>
-
                                         </div>
                                         <div class="row">
                                             <div class="col-sm-8">
@@ -215,6 +207,26 @@
                                                         <span  id ="ErrorMensaje-modalidad_id" class="help-block"></span>
                                                     </div>
                                                 </div>
+                                                <div class="col-sm-12">
+                                                    <label class="color-azul">Nivel</label>
+                                                    <select class="form-control text-center" name="nivel_id" id="nivel_id">
+                                                        @foreach($niveles as $nivel)
+                                                            <option class="text-center" value="{{$nivel->id}}">{{$nivel->descripcion}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                    <span  id ="ErrorMensaje-nivel_id" class="help-block"></span>
+                                                </div>
+
+                                                <div class="col-sm-12">
+                                                    <label class="color-azul">Turno</label>
+                                                    <select class="form-control text-center" name="ficha_turno_id" id="ficha_turno_id">
+                                                        @foreach($turnos as $turno)
+                                                            <option class="text-center" value="{{$turno->id}}">{{$turno->descripcion}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                    <span  id ="ErrorMensaje-ficha_turno_id" class="help-block"></span>
+                                                </div>
+
                                             </div>
                                         </div>
 
@@ -658,16 +670,16 @@
 
     function save_registrar_ficha() {
 
-        let titulo = $('#titulo_ficha').val().trim();
+        //let titulo = $('#titulo_ficha').val().trim();
 
-        if( titulo.length == 0 || titulo == "" ) {
+        //if( titulo.length == 0 || titulo == "" ) {
 
-            Swal.fire({
-                type: 'warning',
-                title: 'Debe Ingresar un Titulo para la Ficha.'
-            });
-            return false;
-        }
+            //Swal.fire({
+               // type: 'warning',
+             //   title: 'Debe Ingresar un Titulo para la Ficha.'
+           // });
+          //  return false;
+        //}
 
         let codigo_local = $('#ficha_codigo_local').val().trim();
 

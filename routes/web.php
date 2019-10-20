@@ -185,6 +185,10 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::post('/FichaController/GuardarFicha', 'FichaController@guardarNuevo');
 		
 		Route::post('/Locales/Listar', 'LocalesController@LocalesMostrarRegistros');
-		
-
+	
+		Route::get('/ConsultarFichas', 'FichaController@consultarfichas')->name('consultarfichas');
+		Route::post('/FichaController/ListarFichas', 'FichaController@ListarFichasMostrarRegistros');
+	
+		Route::get('/FichasController/Imprimir/{id}', 'ReporteController@imprimirfichas')->name('imprimirfichas');
+	
 });
