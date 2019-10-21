@@ -131,7 +131,9 @@ class ReporteController extends Controller
 	 $cadenapreguntas = array('cadenapreguntas' => $this->devuelve_cadena_preguntas($preguntas));
 	 
 	 $detalles = EncuestaCabecera::Lista_Datos_encuestadetalle($id);
-	 
+	 set_time_limit(0);
+	 ini_set("memory_limit",-1);
+	 ini_set('max_execution_time', 0);
 	 
 	 $view =  \View::make('reportes.fichas.impresionficha',['empresas' => $empresas,'usuarios' => $usuarios ,
 		                                                    'cabeceras' => $cabeceras ,

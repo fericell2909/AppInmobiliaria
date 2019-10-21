@@ -743,7 +743,8 @@
             hdd_cadenaspreguntas_fases: $('#hdd_cadenaspreguntas_fases').val(),
             hhdd_cadena_name_preguntas : $('#hdd_name_preguntas').val(),
             usuarioregistro : $('#usuarioregistro').val(),
-            codigo_encuesta : $('#codigo_encuesta').val()
+            codigo_encuesta : $('#codigo_encuesta').val(),
+            ficha_turno_id : $('#ficha_turno_id').val()
         }
 
 
