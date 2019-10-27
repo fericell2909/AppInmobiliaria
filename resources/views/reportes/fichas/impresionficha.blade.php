@@ -200,7 +200,7 @@
         @if( $producto->id == $actividad->codigoproducto )
             <table cellspacing="0" style="width: 100%; text-align: left; font-size: 8px;border:1px solid #C6C5FE;">
                 <tr>
-                    <th style="background-color:#C6C5FE; color:white;" colspan="3">{{$actividad->descripcionactividad}}</th>
+                    <th style="background-color:#58555A; color:white;" colspan="3">{{$actividad->descripcionactividad}}</th>
                 </tr>
             </table>
 
@@ -208,9 +208,9 @@
                 @if( $producto->id == $fase->codigoproducto and $fase->codigoactividad == $actividad->codigoactividad )
 
 
-                    <table cellspacing="0" style="width: 100%; text-align: left; font-size: 8px;border:1px solid #D2CCDE;">
+                    <table cellspacing="0" style="width: 100%; text-align: left; font-size: 8px;border:1px solid #8B0000;">
                         <tr>
-                            <th style="background-color:#D2CCDE; color:white;" colspan="3">{{$fase->descripcion}}</th>
+                            <th style="background-color:#8B0000; color:white;" colspan="3">{{$fase->descripcion}}</th>
                         </tr>
                     </table>
                     @foreach($preguntas as $pregunta)

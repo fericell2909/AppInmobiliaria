@@ -52,7 +52,7 @@ class ModeloEncuesta extends Model
 	public static function Listar_Fases($codigo){
 		
 		$query = "SELECT DISTINCT productos_id  AS codigoproducto ,  actividades_id AS codigoactividad  , fases_id AS codigofase ,
-	        			CONCAT( cf.descripcion , ' : ' , f.descripcion) AS descripcion
+	        			CONCAT( cf.descripcion , ' : ' , f.descripcion) AS descripcion , f.descripcion as mdescripcion , cf.descripcion as descripcioncdigofase
 	        	 FROM desastres_mae_modelo_encuesta_detalle det
 					INNER JOIN desastres_mae_fase f ON f.id  = det.fases_id
 					INNER JOIN desastres_mae_codigos_fase cf ON cf.id =  f.codigos_fase_id

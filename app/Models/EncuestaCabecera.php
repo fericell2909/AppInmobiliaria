@@ -256,6 +256,11 @@ class EncuestaCabecera extends Model
 			$encuesta->codigo_encuesta = $data['codigo_encuesta'];
 			$encuesta->ficha_turno_id = $data['ficha_turno_id'];
 			
+			$encuesta->fechavisita = $data['fechavisita'];
+			
+			$encuesta->nTotalAlumnosFemenino  = $data['nTotalAlumnosFemenino'];
+			$encuesta->nTotalAlumnosHombres  = $data['nTotalAlumnosHombres'];
+			
 			$encuesta->save();
 			
 			$t_fase = $data['hdd_fases_total'];

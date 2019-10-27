@@ -102,6 +102,14 @@
                                 <div class="tab-pane" id="details">
                                     <div class="panel-body">
                                         <div class="row">
+                                            <div class="col-lg-3">
+                                                <label for="fechavisita">Fecha Visita</label>
+                                                <input type="date" id="fechavisita" name="fechavisita"
+                                                       value="<?php echo date('Y-m-d');?>"
+                                                       class="form form-control">
+                                            </div>
+                                        </div>
+                                        <div class="row">
                                             <div class="col-sm-4">
                                                 <label class="color-azul">Departamento:</label>
                                                 <select class="form-control text-center" name="departamento_id" id="departamento_id">
@@ -133,7 +141,7 @@
                                                     </a></legend>
 
                                             <div class="row">
-                                                <div class="col-xs-12 col-lg-3">
+                                                <div class="col-xs-12 col-lg-2">
                                                     <label class="color-azul">DRE / GRE </label>
                                                     <div class="form-group ">
                                                         <input type="text" class="form-control text-center"
@@ -141,7 +149,7 @@
                                                                placeholder="" disabled ></div>
                                                     <span id="ErrorMensaje-ficha_dre_local" class="help-block"></span>
                                                 </div>
-                                                <div class="col-xs-12 col-lg-3">
+                                                <div class="col-xs-12 col-lg-2">
                                                     <label class="color-azul"> UGEL </label>
                                                     <div class="form-group ">
                                                         <input type="text" class="form-control text-center"
@@ -157,13 +165,21 @@
                                                                placeholder="" disabled ></div>
                                                     <span id="ErrorMensaje-ficha_nombre_ie" class="help-block"></span>
                                                 </div>
-                                                <div class="col-xs-12 col-lg-3">
+                                                <div class="col-xs-12 col-lg-1">
                                                     <label class="color-azul">CODIGO LOCAL </label>
                                                     <div class="form-group ">
                                                         <input type="text" class="form-control text-center"
                                                                id="ficha_codigo_local" name="ficha_codigo_local"
                                                                placeholder="" disabled ></div>
                                                     <span id="ErrorMensaje-ficha_codigo_local" class="help-block"></span>
+                                                </div>
+                                                <div class="col-xs-12 col-lg-4">
+                                                    <label class="color-azul">CENTRO POBLADO</label>
+                                                    <div class="form-group ">
+                                                        <input type="text" class="form-control text-center"
+                                                               id="ficha_centro_poblado" name="ficha_centro_poblado"
+                                                               placeholder="" disabled ></div>
+                                                    <span id="ErrorMensaje-ficha_centro_poblado" class="help-block"></span>
                                                 </div>
                                             </div>
                                         </div>
@@ -181,7 +197,7 @@
                                             <div class="col-sm-8">
                                                 <label class="color-azul">Observaciones</label>
                                                 <textarea  placeholder="Escriba sus Observaciones" class="form-control"
-                                                           name="descripcion_id" id="descripcion_id" rows="8"></textarea>
+                                                           name="descripcion_id" id="descripcion_id" rows="18"></textarea>
                                                 <span  id ="ErrorMensaje-descripcion_id" class="help-block"></span>
                                             </div>
                                             <div class="col-sm-4">
@@ -231,7 +247,14 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <legend>Toltal Alumnos</legend>
+                                            <div class="row">
+                                                <div class="col-lg-3">
+                                                    <label for="nTotalAlumnosHombres">Toltal Alumnos - Masculino :</label>
+                                                    <input type="number" name="nTotalAlumnosHombres" id="nTotalAlumnosHombres" class="form-control text-center"
+                                                           placeholder="0" value="0">
+                                                </div>
+                                            </div>
+
                                                 <div class="row">
                                                     <div class="col-lg-2">
                                                         <div class="form-group bmd-form-group">
@@ -241,7 +264,7 @@
                                                                   <i class="fa fa-group"></i>
                                                                 </span>
                                                                 </div>
-                                                                <label for="nAlmMascInicial">Inicial - Hombres</label>
+                                                                <label for="nAlmMascInicial">Inicial</label>
                                                                 <input type="number" name="nAlmMascInicial" id="nAlmMascInicial" class="form-control text-center"
                                                                        placeholder="Total de Alumnos" value="0">
                                                             </div>
@@ -255,7 +278,7 @@
                                                                   <i class="fa fa-group"></i>
                                                                 </span>
                                                                 </div>
-                                                                <label for="nAlmMascInicial">Primaria - Hombres</label>
+                                                                <label for="nAlmMascInicial">Primaria</label>
                                                                 <input type="number" name="nAlmMascPrimaria" id="nAlmMascPrimaria" class="form-control text-center"
                                                                        placeholder="Total de Alumnos" value="0">
                                                             </div>
@@ -269,7 +292,7 @@
                                                                   <i class="fa fa-group"></i>
                                                                 </span>
                                                                 </div>
-                                                                <label for="nAlmMascSecundaria">Secundaria - Hombres</label>
+                                                                <label for="nAlmMascSecundaria">Secundaria</label>
                                                                 <input type="number" name="nAlmMascSecundaria" id="nAlmMascSecundaria" class="form-control text-center"
                                                                        placeholder="Total de Alumnos" value="0">
                                                             </div>
@@ -283,7 +306,7 @@
                                                                   <i class="fa fa-group"></i>
                                                                 </span>
                                                                 </div>
-                                                                <label for="nAlmMascEBE">EBE - Hombres</label>
+                                                                <label for="nAlmMascEBE">EBE</label>
                                                                 <input type="number" name="nAlmMascEBE" id="nAlmMascEBE" class="form-control text-center"
                                                                        placeholder="Total de Alumnos" value="0">
                                                             </div>
@@ -297,7 +320,7 @@
                                                                   <i class="fa fa-group"></i>
                                                                 </span>
                                                                 </div>
-                                                                <label for="nAlmMascEBA">EBA - Hombres</label>
+                                                                <label for="nAlmMascEBA">EBA</label>
                                                                 <input type="number" name="nAlmMascEBA" id="nAlmMascEBA" class="form-control text-center"
                                                                        placeholder="Total de Alumnos" value="0">
                                                             </div>
@@ -311,7 +334,7 @@
                                                                   <i class="fa fa-group"></i>
                                                                 </span>
                                                                 </div>
-                                                                <label for="nAlmMascCETPRO">CETPRO - Hombres</label>
+                                                                <label for="nAlmMascCETPRO">CETPRO</label>
                                                                 <input type="number" name="nAlmMascCETPRO" id="nAlmMascCETPRO" class="form-control text-center"
                                                                        placeholder="Total de Alumnos" value="0">
                                                             </div>
@@ -320,7 +343,14 @@
                                                 </div>
                                         </div>
                                         <div class="form-group">
-                                            <legend>Toltal Alumnos</legend>
+                                            <div class="row">
+                                                <div class="col-lg-3">
+                                                    <label for="nTotalAlumnosFemenino">Total Alumnos - Femenino : </label>
+                                                    <input type="number" name="nTotalAlumnosFemenino" id="nTotalAlumnosFemenino" class="form-control text-center"
+                                                           placeholder="0" value="0">
+                                                </div>
+                                            </div>
+
                                             <div class="row">
                                                 <div class="col-lg-2">
                                                     <div class="form-group bmd-form-group">
@@ -330,7 +360,7 @@
                                                                   <i class="fa fa-group"></i>
                                                                 </span>
                                                             </div>
-                                                            <label for="nAlmMujInicial">Inicial - Mujeres</label>
+                                                            <label for="nAlmMujInicial">Inicial</label>
                                                             <input type="number" name="nAlmMujInicial" id="nAlmMujInicial" class="form-control text-center"
                                                                    placeholder="Total de Alumnos" value="0">
                                                         </div>
@@ -344,7 +374,7 @@
                                                                   <i class="fa fa-group"></i>
                                                                 </span>
                                                             </div>
-                                                            <label for="nAlmMujPrimaria">Primaria - Mujeres</label>
+                                                            <label for="nAlmMujPrimaria">Primaria</label>
                                                             <input type="number" name="nAlmMujPrimaria" id="nAlmMujPrimaria" class="form-control text-center"
                                                                    placeholder="Total de Alumnos" value="0">
                                                         </div>
@@ -358,7 +388,7 @@
                                                                   <i class="fa fa-group"></i>
                                                                 </span>
                                                             </div>
-                                                            <label for="nAlmMujSecundaria">Secundaria - Mujeres</label>
+                                                            <label for="nAlmMujSecundaria">Secundaria</label>
                                                             <input type="number" name="nAlmMujSecundaria" id="nAlmMujSecundaria" class="form-control text-center"
                                                                    placeholder="Total de Alumnos" value="0">
                                                         </div>
@@ -372,7 +402,7 @@
                                                                   <i class="fa fa-group"></i>
                                                                 </span>
                                                             </div>
-                                                            <label for="nAlmMujEBE">EBE - Mujeres</label>
+                                                            <label for="nAlmMujEBE">EBE</label>
                                                             <input type="number" name="nAlmMujEBE" id="nAlmMujEBE" class="form-control text-center"
                                                                    placeholder="Total de Alumnos" value="0">
                                                         </div>
@@ -386,7 +416,7 @@
                                                                   <i class="fa fa-group"></i>
                                                                 </span>
                                                             </div>
-                                                            <label for="nAlmMujEBA">EBA - Mujeres</label>
+                                                            <label for="nAlmMujEBA">EBA</label>
                                                             <input type="number" name="nAlmMujEBA" id="nAlmMujEBA" class="form-control text-center"
                                                                    placeholder="Total de Alumnos" value="0">
                                                         </div>
@@ -400,7 +430,7 @@
                                                                   <i class="fa fa-group"></i>
                                                                 </span>
                                                             </div>
-                                                            <label for="nAlmMujCETPRO">CETPRO - Mujeres</label>
+                                                            <label for="nAlmMujCETPRO">CETPRO</label>
                                                             <input type="number" name="nAlmMujCETPRO" id="nAlmMujCETPRO" class="form-control text-center"
                                                                    placeholder="Total de Alumnos" value="0">
                                                         </div>
@@ -530,24 +560,44 @@
                                                                              </div>
 
                                                                              <div id="collapseOne_act_{{ $actividad->codigoactividad  }}" class="collapse <?php if($actividad->codigoactividad == 1) { echo ""; } else { echo "false";} ?>" aria-labelledby="headingOne_act_{{ $actividad->codigoactividad  }}" data-parent="#accordionExample_act_{{ $actividad->codigoactividad  }}">
-
+                                                                                         <?php $contador = 0; ?>
                                                                                  @foreach($fases as $fase)
+		                                                                               <?php $contador = 0; ?>
                                                                                      @if( $producto->id == $fase->codigoproducto and $fase->codigoactividad == $actividad->codigoactividad )
                                                                                          <div class="row" style="margin-bottom: 5px;">
                                                                                              <div class="col-sm-12">
-                                                                                                <label for="" class="label label-primary"
-                                                                                                      style="font-size: 15px !important; margin-left: 5px !important;" >{{$fase->descripcion}}</label>
+                                                                                                 <div class="row">
+                                                                                                     <div class="col-lg-1 text-center">
+                                                                                                         <label for="" class="label label-primary"
+                                                                                                                style="font-size: 15px !important; margin-left: 5px !important;" >{{$fase->descripcioncdigofase}}</label>
+                                                                                                     </div>
+                                                                                                     <div class="col-lg-11">
+                                                                                                         <label for="" class="label label-primary"
+                                                                                                                style="font-size: 15px !important; margin-left: 5px !important;" >{{$fase->mdescripcion}}</label>
+                                                                                                     </div>
+                                                                                                 </div>
+
                                                                                                  @foreach($preguntas as $pregunta)
+
                                                                                                      @if( $producto->id == $pregunta->codigoproducto and $pregunta->codigoactividad == $actividad->codigoactividad
                                                                                                         and $pregunta->codigofase == $fase->codigofase)
-                                                                                                                 <h4 style="margin-left:5px; margin-top : 5px"  >{{ $pregunta->codigopregunta . ' - ' .  $pregunta->descripcion}}</h4>
-                                                                                                         <input type="hidden" id="opt_producto_{{$producto->id}}_actividad_{{$actividad->codigoactividad}}_fase_{{$fase->codigofase}}_pregunta_{{$pregunta->codigopregunta}}_cantidades" value =
-                                                                                                                "{{$pregunta->bingresacantidades}}">
-                                                                                                         <input type="hidden" id="opt_producto_{{$producto->id}}_actividad_{{$actividad->codigoactividad}}_fase_{{$fase->codigofase}}_pregunta_{{$pregunta->codigopregunta}}_multiselect" value =
-                                                                                                         "{{$pregunta->bopcionmultiple}}">
                                                                                                          <div class="row">
-
-                                                                                                         </div>
+                                                                                                             <div class="col-lg-1 text-center"
+                                                                                                                  style="height: 50px;
+                                                                                                                  vertical-align: middle;
+                                                                                                                  line-height: 50px;">
+                                                                                                                 <label for="" style="padding: 5px; font-weight: bold;">
+	                                                                                                                 <?php $contador = $contador + 1; echo $contador;?>
+                                                                                                                 </label>
+                                                                                                             </div>
+                                                                                                             <div class="col-lg-5">
+                                                                                                                 <h4 style="margin-left:5px; margin-top : 5px"  >{{ $pregunta->codigopregunta . ' - ' .  $pregunta->descripcion}}</h4>
+                                                                                                             </div>
+                                                                                                             <div class="col-lg-6" >
+                                                                                                                 <input type="hidden" id="opt_producto_{{$producto->id}}_actividad_{{$actividad->codigoactividad}}_fase_{{$fase->codigofase}}_pregunta_{{$pregunta->codigopregunta}}_cantidades" value =
+                                                                                                                 "{{$pregunta->bingresacantidades}}">
+                                                                                                                 <input type="hidden" id="opt_producto_{{$producto->id}}_actividad_{{$actividad->codigoactividad}}_fase_{{$fase->codigofase}}_pregunta_{{$pregunta->codigopregunta}}_multiselect" value =
+                                                                                                                 "{{$pregunta->bopcionmultiple}}">
                                                                                                          @foreach($opciones as $opcion)
                                                                                                              @if($pregunta->codigopregunta == $opcion->codigopregunta  and
                                                                                                                  $pregunta->bingresacantidades == 0 and  $pregunta->bopcionmultiple == 0 )
@@ -582,16 +632,20 @@
                                                                                                                      </div>
                                                                                                              @endif
                                                                                                          @endforeach
-                                                                                                         @if($pregunta->bincluyeotros == 1 and
-                                                                                                                 $pregunta->bingresacantidades == 0)
-                                                                                                             <input type="text"
-                                                                                                                    name="opt_producto_{{$producto->id}}_actividad_{{$actividad->codigoactividad}}_fase_{{$fase->codigofase}}_pregunta_{{$pregunta->codigopregunta}}_otros"
-                                                                                                                    id="opt_producto_{{$producto->id}}_actividad_{{$actividad->codigoactividad}}_fase_{{$fase->codigofase}}_pregunta_{{$pregunta->codigopregunta}}_otros"
-                                                                                                                    class="form text-center"
-                                                                                                                    style="width: 350px;"
-                                                                                                                    placeholder="Otros" value="">
-                                                                                                         @endif
-                                                                                                     @endif
+                                                                                                                 @if($pregunta->bincluyeotros == 1 and
+                                                                                                                $pregunta->bingresacantidades == 0)
+                                                                                                                     <input type="text"
+                                                                                                                            name="opt_producto_{{$producto->id}}_actividad_{{$actividad->codigoactividad}}_fase_{{$fase->codigofase}}_pregunta_{{$pregunta->codigopregunta}}_otros"
+                                                                                                                            id="opt_producto_{{$producto->id}}_actividad_{{$actividad->codigoactividad}}_fase_{{$fase->codigofase}}_pregunta_{{$pregunta->codigopregunta}}_otros"
+                                                                                                                            class="form text-center"
+                                                                                                                            style="width: 350px;"
+                                                                                                                            placeholder="Otros" value="">
+                                                                                                                 @endif
+                                                                                                             </div>
+                                                                                                         </div>
+
+                                                                                                      @endif
+
                                                                                                  @endforeach
                                                                                              </div>
                                                                                          </div>
@@ -744,7 +798,12 @@
             hhdd_cadena_name_preguntas : $('#hdd_name_preguntas').val(),
             usuarioregistro : $('#usuarioregistro').val(),
             codigo_encuesta : $('#codigo_encuesta').val(),
-            ficha_turno_id : $('#ficha_turno_id').val()
+            ficha_turno_id : $('#ficha_turno_id').val(),
+
+            fechavisita : $('#fechavisita').val(),
+            nTotalAlumnosFemenino : $('#nTotalAlumnosFemenino').val(),
+            nTotalAlumnosHombres : $('#nTotalAlumnosHombres').val()
+
         }
 
 
@@ -941,6 +1000,7 @@
                             let nombre =  rows[index].nombre;
                             let dre = rows[index].dre;
                             let ugel = rows[index].ugel;
+                            let centropoblado = rows[index].centropoblado;
 
                             if(nombre == '') {
                                 nombre = 'No se ha defi';
@@ -950,6 +1010,7 @@
                                 'data-codigo="' + codigo + '" ' +
                                 'data-nombre = "' + nombre + '" ' +
                                 'data-dre = "' + dre + '"' +
+                                'data-centropoblado = "' + centropoblado + '"' +
                                 'data-ugel = "' + ugel + '"' +
                                 ' >' + nombre + '</option>';
 
@@ -976,6 +1037,7 @@
                             //$('#ficha_codigo_local').val(lst_datostxtbusquedalocal.data('codigo'));
 
                             $('#ficha_codigo_local').val(seleccionado.data("codigo"));
+                            $('#ficha_centro_poblado').val(seleccionado.data("centropoblado"));
                             $('#largeModal').modal('hide');
 
 

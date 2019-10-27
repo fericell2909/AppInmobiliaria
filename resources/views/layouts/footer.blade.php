@@ -1,8 +1,4 @@
-<footer class="main-footer">
-    <!-- To the right -->
-    <div class="pull-right hidden-xs">
-      Anything you want
-    </div>
-    <!-- Default to the left -->
-    <strong>Copyright &copy; 2016 <a href="#">Company</a>.</strong> All rights reserved.
+<footer class="main-footer" >
+    
+    <strong>Copyright &copy; <?php echo date('Y'); ?> <a href="#">Compañía</a>.</strong> Todos los Derechos Reservados
   </footer>

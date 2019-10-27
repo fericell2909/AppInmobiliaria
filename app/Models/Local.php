@@ -45,6 +45,7 @@ class Local extends Model
                            desastres_locales.nombre as nombre,
                            desastres_locales.dre as dre,
                            desastres_locales.ugel as ugel,
+                           desastres_locales.centro_poblado as centropoblado,
                            CASE  desastres_estados.id WHEN 1 THEN CONCAT('<span class=\"label label-success\">',desastres_estados.nombre_estado,'</span>') ELSE  CONCAT('<span class=\"label label-danger\">',desastres_estados.nombre_estado,'</span>') END    as  nombre_estado
                     FROM desastres_locales
 						inner join desastres_estados on desastres_estados.id = desastres_locales.estados_id";

@@ -34,6 +34,10 @@ class StorageController extends Controller
 				//obtenemos el nombre del archivo
 				$nombre = $file->getClientOriginalName();
 				
+				$cabeceras  = EncuestaCabecera::Datos_reporte($data['identificador']);
+				
+				$nombre = '' .$cabeceras[0]->codigo_local . '_' .Auth::user()->name . '.'.strtolower($file->getClientOriginalExtension());
+				
 				//indicamos que queremos guardar un nuevo archivo en el disco local
 				\Storage::disk('local')->put('/'.$data['identificador'].'/'.$nombre,  \File::get($file));
 				
